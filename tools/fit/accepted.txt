@@ -1,0 +1,16 @@
+0.1 0.2 L: solid(.4, 5.7, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0);
+0.1 0.2 L: solid(.4, 8.2, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0); solid(8.5, 8.65, 11.9, 13.6, 1.0);
+0.2 0.18 L: solid(.4, 5.7, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0);
+0.2 0.18 L: solid(.4, 8.2, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0); solid(8.5, 8.65, 11.9, 13.6, 1.0);
+L: solid(5.3, 6.45, 6.82, 7.3, .92);
+L: solid(6.1, 7.0, 6.1, 7.3, 1.9); solid(5.2, 7.0, 5.82, 6.08, 4.3);   // low-headroom end of the nook under the
+L: solid(6.45, 7.0, 5.8, 7.3, 1.78);
+door x-wall 10.3 span 2.4-3.2 floor 1, side -1: 0.28 m away, overlaps width by 0.08 :: L: soft(2.21, 2.48, .76, .87, 9.62, 10.02, M.white, .03); cyl(2.27, .87, .98, 9.82, .01, M.me
+door x-wall 11.5 span 3.9-4.7 floor 2, side -1: 0.19 m away, overlaps width by 0.04 :: L: plant(4.82, 11.15, .8, 'snake'); plant(4.82, 8.85, .75, 'bush');
+overlap 0.35 x 0.48
+overlap 0.55 x 0.26
+overlap 0.55 x 1.20
+window x-wall 5.9-7.5 L: top 3.98 m, 0.10 m from glass, covers 1.60 m :: L: pillow(6.3, .78, 10.88, .42, .4, .13, M.accent1, { rx: .3 }); pillow(7.3, .78, 10.88, .42, .4, .13, M.ac
+window z-wall 6.4-8 L: top 1.20 m, 0.15 m from glass, covers 1.50 m :: L: solid(x, x + .9, 6.5, 8.6, 1.2); });
+window z-wall 6.4-8 floor 1: top 1.20 m, 0.15 m from glass, covers 1.50 m :: L: solid(x, x + .9, 6.5, 8.6, 1.2); });
+window z-wall 9.2-9.8 L: top 3.92 m, 0.00 m from glass, covers 0.20 m :: L: box(.41, .75, .04, .82, 9.6, 10.95, M.woodA); [.3, .56].forEach(y => box(.42, .75, y, y + .02, 9.62, 10.
