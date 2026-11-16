@@ -1,7 +1,8 @@
 """Shared paths and page builders for the tour checks. Run everything from the repo root."""
 import json, pathlib, subprocess
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-SRC, BUILD, TOOLS = ROOT / 'tour' / 'index.html', ROOT / 'build', ROOT / 'tools'
+BUILD, TOOLS = ROOT / 'build', ROOT / 'tools'
+import sys; sys.path.insert(0, str(TOOLS)); from build import build as build_tour
 THREE = TOOLS / 'node_modules' / 'three' / 'build' / 'three.min.js'
 CDN = 'https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js'
 FONTS = '<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">'
@@ -12,7 +13,7 @@ def build_test():
     if not THREE.exists():
         subprocess.run(['npm', 'install', '--silent', '--prefix', str(TOOLS)], check=True)
     BUILD.mkdir(exist_ok=True)
-    s = SRC.read_text().replace(CDN, str(THREE)).replace(FONTS, '')
+    s = build_tour().read_text().replace(CDN, str(THREE)).replace(FONTS, '')
     (BUILD / 'test.html').write_text(s)
     return BUILD / 'test.html'
 

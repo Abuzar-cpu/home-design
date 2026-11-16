@@ -1,7 +1,12 @@
 # House 3D tour
 
 Interactive Three.js walkthrough of Reis's two-storey house (Baku), built from his floor-plan photos for buyers.
-Everything is one self-contained file: `tour/index.html` (three.js r149 from the jsDelivr CDN, procedural textures, no assets).
+The published tour is one self-contained page (three.js r149 from the jsDelivr CDN, procedural textures, no assets), built from `src/`:
+- `src/index.template.html` page shell and UI markup, `src/style.css` UI styles
+- `src/js/NN-*.js` the scene by area: `0x` setup/textures/materials/language/helpers, `1x` walls/floors/exterior/stair, `20` furniture pieces, `3x` ground-floor rooms, `4x` upper-floor rooms, `5x` lighting/time of day/rooms list, `6x` player/views/input/guided tour/step lights/loop
+- The js files are joined in file-name order into ONE classic `<script>`: they share one scope, so a file can use anything defined in an earlier one. Keep that order when adding a file.
+- `python3 tools/build.py` writes `build/index.html` (git-ignored). Every tool builds first, so just edit `src/` and run the checks.
+- Use `trail ask` / `trail skeleton src/js/<file>` to find code instead of reading whole files.
 
 ## How Reis works with this project
 - **Copy first.** Every change goes to the *Working Copy* artifact. The *public* artifact is only updated when he says "publish".
@@ -13,11 +18,11 @@ Everything is one self-contained file: `tour/index.html` (three.js r149 from the
 | What | Slug | Notes |
 |---|---|---|
 | Public tour | `b59b1dc7-6508-44b1-bab9-aca7d9fc5149` | title "Ground Floor 3D Tour", shared publicly: republish with `shared_live: "public"` and `artifact_title` |
-| Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `tour/index.html`) |
+| Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
 | Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
 
-Publish flow: edit `tour/index.html` → `python3 tools/check.py` → publish `tour/index.html` to the working copy.
-When he says publish: copy the live public page into the backup artifact, run `python3 tools/publish_prep.py`, publish `build/public.html` to the public artifact, then `list_files` both to confirm the sha256.
+Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit and push.
+When he says publish: copy the live public page into the backup artifact, publish `build/public.html` to the public artifact, then `list_files` both to confirm the sha256.
 
 ## Checks (run from the repo root; output is only what changed)
 - `python3 tools/check.py` — furniture fit (overlaps, door swings, windows, wall cut-ins, 60 cm reachability), 17 walk tests, full guided-tour collision run.
@@ -26,7 +31,7 @@ When he says publish: copy the live public page into the backup artifact, run `p
 - Walk tests live in `tools/walk.py` (`tests=[...]`); add one when a door or passage changes.
 - Uses Playwright with `/usr/bin/google-chrome` (swiftshader). `tools/common.py` builds `build/test.html` with local three.js (`npm install --prefix tools` if missing).
 
-## Model conventions (inside `tour/index.html`)
+## Model conventions (in `src/js/`)
 - Metres. x 0–8.6 (gridlines 1→5), z 0–11.9 (rear wall A at z 0 → front F at 11.9; porch/balcony to 13.6). Ceiling H 2.8, upper floor at y 3.1, 18 risers.
 - Exterior walls 0.4 m, interior 0.2 m. `wall(axis, t0, t1, a0, a1, ops)`: axis 'x' runs along x and is t0..t1 thick in z; ops are `win(a0,a1,out,{sill,head,frost})`, `door(a0,a1,hinge,swing)`, `{kind:'cased'}` openings.
 - Upper floor is built with `PARENT = upG; YOFF = 3.1` (y values inside stay floor-relative).

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Ground Floor 3D Tour Working Copy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+<style>
+/*@STYLE@*/</style>
+</head>
+<body class="walk">
+<canvas id="c" tabindex="0" aria-label="3D walkthrough of the ground floor"></canvas>
+
+<div class="hud" id="top">
+  <div class="sheet">
+    <h1 id="lvlName">Ground floor</h1>
+    <p>8.6 × 11.9 m · walls 400 / 200 mm · ceiling 2.8 m</p>
+  </div>
+  <div class="btns"><button id="langBtn" type="button" lang="az">Azərbaycanca</button><button id="tourBtn" type="button">Start tour</button><button id="muteBtn" type="button" hidden>Mute music</button><button id="lvlBtn" type="button" hidden>Show upper floor</button><button id="viewBtn" type="button">Dollhouse view</button></div>
+  <div id="styles" role="group" aria-label="Interior style">
+    <button type="button" id="st-modern" data-style="modern" aria-pressed="true">Modern</button>
+    <button type="button" id="st-scandi" data-style="scandi" aria-pressed="false">Scandinavian</button>
+    <button type="button" id="st-lux" data-style="lux" aria-pressed="false">Warm luxury</button>
+    <button type="button" id="st-loft" data-style="loft" aria-pressed="false">Loft</button>
+  </div>
+  <div id="time">
+    <label for="tod">Time</label>
+    <input type="range" id="tod" min="6" max="23" step="0.05" value="15" aria-describedby="todOut">
+    <output id="todOut" for="tod">15:00 · Afternoon</output>
+  </div>
+</div>
+
+<div id="hint">
+  <dl>
+    <div class="k">
+      <dt>Click</dt><dd>look around with the mouse</dd>
+      <dt>W A S D</dt><dd>walk, hold Shift to go faster</dd>
+      <dt>1 2 3 4</dt><dd>change the interior style</dd>
+      <dt>Time</dt><dd>drag the slider from morning to night</dd>
+      <dt>V</dt><dd>switch to the dollhouse view</dd>
+      <dt>Stairs</dt><dd>walk onto them to go up or down</dd>
+      <dt>Start tour</dt><dd>sit back for a guided walk with music</dd>
+    </div>
+    <div class="t">
+      <dt>Left pad</dt><dd>walk</dd>
+      <dt>Drag</dt><dd>look around</dd>
+      <dt>Stairs</dt><dd>walk onto them to go up or down</dd>
+    </div>
+  </dl>
+</div>
+
+<div class="hud" id="bottom"><div id="room"><b>Front yard</b><span>Walk up the steps to the front door</span></div></div>
+<div id="tcard" role="status" aria-live="polite"><b id="tcN"></b><span id="tcS"></span><p id="tcT"></p></div>
+<div id="stick"><div id="knob"></div></div>
+<div id="err" hidden><p>The 3D library did not load. Check your connection and reload the page.</p></div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+//@SCRIPT@
+</script>
+</body>
+</html>

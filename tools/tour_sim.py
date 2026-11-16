@@ -6,7 +6,7 @@ with sync_playwright() as p:
     b = p.chromium.launch(**CHROME); pg = b.new_page(viewport={'width': 1100, 'height': 700}); errs = []
     pg.on('pageerror', lambda e: errs.append(str(e)))
     pg.goto(url(build_test())); pg.wait_for_timeout(4000)
-    pg.click('#tourBtn', no_wait_after=True); pg.wait_for_timeout(800)
+    pg.evaluate("()=>document.getElementById('tourBtn').click()"); pg.wait_for_timeout(800)
     r = pg.evaluate("""()=>{ const P=tour.player, C=tour.colliders, hits=[], stops=[]; let n=0, t=0, last='';
       while(tour.tourState() && n<200000){ tour.tourStep(.05); n++; t+=.05;
         const name=document.getElementById('tcN').textContent; if(document.getElementById('tcard').classList.contains('show') && name!==last){ last=name; stops.push(name+' | '+document.getElementById('tcS').textContent); }
