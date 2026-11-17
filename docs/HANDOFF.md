@@ -51,6 +51,13 @@ This also settles two older open items: the 15 Nov request (remove the wardrobe-
 ### 3.2 Stair look from his reference photo (unanswered)
 He sent a photo of under-stair pull-out storage with an oak handrail and spindles and said "I want the stair like this". The pull-out storage was built and he **rejected** it ("That's not what I wanted"), so it was removed and the reading nook restored. Offered instead: oak handrail and spindles, carpeted steps, white side panel. He hasn't answered. Ask what he liked before building anything stair-related.
 
+### 3.3 Kitchen options A/B/C against the work-zone rules (sketched 17 Nov, awaiting his pick)
+He sent general kitchen rules (work triangle, landing space, dishwasher by the sink, 90 cm clearances) and asked which we had considered. Measured against NKBA: today's island and table leave 0.63–0.76 m on every side (NKBA asks 1.07 m for one cook), the hob sits 0.18 m from the oven tower (needs ≥ 0.30 m), the fridge hinge is 2 cm from the hall wall, and there is no dishwasher or bin. Triangle legs are fine (1.8 / 1.17 / 2.6 m), but the fridge–hob leg crosses the table by ~0.55 m.
+Fixes common to all three options: hob moved to z 9.25–9.85 (0.45 m from the tower, hood and wall cabinets move with it); fridge x 5.3–5.93 (10 cm gap at the wall); sink run x 5.95–7.6 as drawers 0.45 / sink 0.6 (centred under the window, x 6.4–7.0) / 60 cm dishwasher x 7.0–7.6; bin under the sink.
+- **A, as now plus fixes:** island and table unchanged. Aisles 0.63–0.76 m; the open dishwasher door ends 8 cm from the table's chair.
+- **B, small prep island:** island x 6.1–6.68, z 9.02–9.96 (0.58 × 0.94 m), no seats, 0.90 m on all four sides. Meals at the living-room dining table.
+- **C, table instead of an island:** table 0.7 × 1.0 on the hall wall (x 5.2–5.9, z 8.95–9.95), two chairs facing it. Cooking aisle 1.22 m, 0.91 m in front of the fridge, door swing clear.
+
 ## 4. Open items to mention, not to act on unless asked
 - **Builder:** en-suite drain route (3–5 m to existing pipes, likely boxed in downstairs); en-suite extractor fan; no upstairs WC for the baby's and gaming rooms; under-stair pull-outs (if ever revived) need heavy-duty runners.
 - **Plan reading doubts from the first review:** handwritten 1400 bathroom width; a blue pen mark; balcony door shown ~1.0 m (the 800 figure was part of a 3700+900+800 chain); porch drawn with full-depth walls; porch/balcony area labels look overstated; ceiling height 2.8 m is an assumption (shown in the tour); uneven stair goings; the 161 m² total.
