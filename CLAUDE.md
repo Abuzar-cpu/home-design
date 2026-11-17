@@ -1,5 +1,7 @@
 # House 3D tour
 
+**Start here:** read `docs/HANDOFF.md` first. It has the start-of-session checklist, what is live, what is waiting on Reis (with build specs) and what was already decided or rejected.
+
 Interactive Three.js walkthrough of Reis's two-storey house (Baku), built from his floor-plan photos for buyers.
 The published tour is one self-contained page (three.js r149 from the jsDelivr CDN, procedural textures, no assets), built from `src/`:
 - `src/index.template.html` page shell and UI markup, `src/style.css` UI styles
@@ -13,6 +15,7 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 - **Sketch first when he asks for it.** Plan sketches are inline SVG, to scale, with tight gaps flagged.
 - **Before each publish**, overwrite the single backup artifact with the version that is currently public (he wants only the latest backup kept).
 - Flag fit problems, tight gaps (< 0.9 m walkways) and things a builder must confirm, rather than silently working around them.
+- After every change: commit (with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer) and push to `origin main`, then update `docs/HANDOFF.md` if what is live or pending changed.
 
 ## Artifacts
 | What | Slug | Notes |
@@ -41,5 +44,5 @@ When he says publish: copy the live public page into the backup artifact, publis
 
 ## Current layout (Nov 2026)
 - Ground: L-shaped sofa 3.65 m on the living back wall with a short chaise; glass display cabinet beside the TV unit; reading nook under the stairs; kitchen with oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, island 1.0×0.7 with open shelves + 2 stools, table for two 0.5×0.7; kitchen door opens inward; guest room with two single beds, small wardrobe, writing desk.
-- Upper: bedroom with two-door wardrobe facing the door; doorless opening to a walk-in wardrobe (window on the outside wall); en-suite 3.0×2.3 behind it (small frosted window).
+- Upper: bedroom (4.6×4.0, top right) with a two-door wardrobe facing the door; doorless opening to a walk-in wardrobe (window on the outside wall); en-suite 3.0×2.3 at its far end (small frosted window); baby's room 3.0×5.4 at the front left; gaming room front right. A swap of bedroom and baby's room is sketched and pending: see `docs/HANDOFF.md`.
 - Open builder items: en-suite drain route (3–5 m run to existing pipes), en-suite extractor fan, no upstairs WC for the other rooms.
