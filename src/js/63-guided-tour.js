@@ -42,10 +42,11 @@ const ROUTE = [
   [2.6, 5.5, ST('Guest / study', 12, 'Twin guest room with a wardrobe and a writing desk', 1.6, 7.6)], [2.9, 5.25], [4.3, 5.25], [4.3, 4.5],
   [4.45, 3.45, ST('Living room', 31.2, 'Nearly 8 m of open living space with two windows', 2.0, 1.4)], [4.6, 3.3, Object.assign(ST('Dining area', 31.2, 'Seats six beside the rear window', 6.5, 2.2), { s: 'Part of the 31.2 m² living space' })],
   [4.3, 4.5], [4.3, 5.2], [5.3, 5.2], [7.55, 5.2], [7.62, 5.95], [7.55, 6.7], [5.0, 6.7], [4.3, 6.2], [4.25, 5.1], [4.25, 4.2],
-  [4.8, 3.8, ST('Bedroom', 18.4, 'Main bedroom with a walk-in wardrobe and en-suite', 7.2, 2.3)], [4.5, 1.8], [3.0, 1.8],
-  [2.5, 1.6, ST('Clothing room', 9.3, 'Walk-in wardrobe with a window, leading to the en-suite', 1.0, 1.0)], [2.4, 2.6], [2.0, 3.3], [2.0, 4.0],
-  [2.0, 4.6, ST('En-suite', 6.9, 'Walk-in shower, bath and double basin', 2.8, 5.4)], [2.0, 4.0], [2.0, 3.3], [2.4, 2.6], [3.0, 1.8], [4.5, 1.8], [4.25, 4.2], [4.25, 4.9], [4.3, 5.25], [4.3, 10.25], [3.0, 10.25],
-  [2.55, 10.25, ST("Baby's room", 16.2, 'Two windows, a few steps from the main bedroom', 1.7, 8.2)], [4.3, 10.25], [4.3, 8.15], [5.9, 8.15],
+  [4.8, 3.8, ST('Bedroom', 18.4, 'Main bedroom with its own en-suite and walk-in wardrobe', 7.2, 2.3)], [4.3, 1.8], [3.0, 1.8],
+  [2.7, 1.8, ST('En-suite', 6.0, 'Bath with a shower over it, double basin and WC', .9, .8)], [3.0, 1.8], [4.3, 1.8], [4.3, 3.0], [3.0, 3.0],
+  [2.0, 3.6, ST('Walk-in wardrobe', 9.0, 'Wardrobes on both sides, straight off the bedroom', 1.9, 5.4)], [3.0, 3.0], [4.3, 3.0], [4.25, 4.2], [4.25, 4.9], [4.3, 5.25], [4.3, 6.55], [3.0, 6.55],
+  [2.4, 7.4, ST("Baby's room", 8.7, 'Right next to the main suite, with a gate at the stairs', 1.6, 6.1)], [3.0, 6.55], [4.3, 6.55], [4.3, 10.25], [3.0, 10.25],
+  [2.6, 10.1, ST('Study / guest', 8.1, 'Desk by the window and a daybed for guests', 1.2, 9.1)], [3.0, 10.25], [4.3, 10.25], [4.3, 8.15], [5.9, 8.15],
   [5.9, 8.75, ST('Gaming room', 12, 'Set apart from the bedrooms for late nights', 7.4, 9.7)], [5.9, 8.15], [4.3, 8.15], [4.3, 11.0], [4.3, 11.9],
   [4.3, 12.65, ST('Balcony', 14.6, 'Full-width balcony over the front garden', 1.5, 14.5)]
 ];

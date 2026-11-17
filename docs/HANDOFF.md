@@ -9,7 +9,7 @@ Last updated: 17 Nov 2026 (four-room left side sketched).
 1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
 2. Tooling, if this is a fresh machine: `pip install playwright pillow`, Chrome at `/usr/bin/google-chrome` (else `playwright install chromium` and change `CHROME` in `tools/common.py`), `npm install --prefix tools` for the local three.js. Node 18+.
 3. `python3 tools/status.py`, then `list_files` on the working copy and public artifacts. The sha256 values should match §2. If they don't, the working copy was changed outside this repo: read it with `read_artifact` and tell Reis before building on top.
-4. `python3 tools/check.py` should print `fit: 0 new finding(s)`, `walk tests: 17/17 pass` and a tour line with `0 collision frames`.
+4. `python3 tools/check.py` should print `fit: 0 new finding(s)`, `walk tests: 17/17 pass` (18/18 on the proposal branch) and a tour line with `0 collision frames`.
 5. Read **Pending** below. Answer what Reis asks; don't reopen settled items.
 
 ## 2. What is live right now
@@ -19,11 +19,14 @@ Last updated: 17 Nov 2026 (four-room left side sketched).
 | Public tour | `1794766934-ac7a` | same page with the public title; sha256 `c10f3833…c718fe`. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
 | Backup | `1794766924-b2f8` | "Backup 15 Nov (before guest room changes)": the public page before the guest room/kitchen door publish |
 
-Working copy and public are identical: nothing unpublished.
+| Upper-floor proposal | `1794913231-f456` | slug `b1682337-5007-48c2-9a01-405e5885bb49`, "Upper Floor Proposal – 17 Nov": the whole house with §3.1 built, from branch `tour/upper-floor-proposal` (pushed, no pull request: Reis asked for none). Link: https://claude.ai/artifact/Nuby8dQas9Vs2Dje5AytmN |
+
+Working copy and public are identical: nothing unpublished. The proposal is separate, for Reis and his wife to decide on.
 
 ## 3. Pending (waiting on Reis)
 
-### 3.1 Four rooms down the left side, from his own drawing (sketched 17 Nov, awaiting "build it")
+### 3.1 Four rooms down the left side, from his own drawing (built as the proposal artifact 17 Nov, awaiting his decision)
+Built on branch `tour/upper-floor-proposal` and published only to the proposal artifact (§2), not the working copy. If he approves: merge that branch's `src/` and `tools/` changes, publish to the working copy, update §2, move this item to §5. Built with the defaults: pocket door, daybed, second wardrobe run, new study window. Two changes from the sketch: the bedroom dresser became a 20 cm wall shelf under the mirror (a dresser on the front wall left only 0.6 m to reach the far side of the bed), and the baby's-room floor lamp was dropped (it stood in front of the window). The baby gate is drawn closed but is not a collider, so walks and the guided tour pass through it.
 He sent a drawing of the upper floor (`docs/plans/upper-floor-layout-17-nov.png`) and asked to sketch it first, then build it. His drawing is schematic. The sketch keeps the bedroom, hall, stair and gaming room where they are, and splits the left side (x .4–3.4) into four rooms. This **replaces** the bedroom ↔ baby's room swap sketched earlier the same day (that spec is in git history: HANDOFF §3.1 at `66f5a41`).
 
 Build spec (metres, upper floor, x from the outside wall, z from the rear wall):

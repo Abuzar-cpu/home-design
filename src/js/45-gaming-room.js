@@ -23,5 +23,11 @@ cyl(5.66, .48, .5, 10.9, .17, M.woodB, { seg: 28 }); cyl(5.66, 0, .48, 10.9, .02
 [.5, 1.0, 1.5].forEach((y, i) => { box(5.2, 5.46, y, y + .03, 10.25, 11.3, M.woodA, { cast: false }); if (i < 2) books(5.24, 5.42, y + .03, 10.3, 10.75, 90 + i, true); cyl(5.33, y + .03, y + .17, 11.0 - i * .1, .045, i % 2 ? M.accent1 : M.ceramicAlt, { cast: false }); box(5.27, 5.39, y + .03, y + .15, 11.12, 11.24, i ? M.accent3 : M.accent2, { cast: false }); });
 art('z', 5.2, 1, 8.85, 9.45, 1.2, 2.0, 15); art('z', 8.2, -1, 10.45, 11.25, 1.2, 2.0, 16);
 curtains('x', 11.5, -1, 5.9, 7.5);
+// acoustic panels: oak slats on dark felt, above the desk and beside the screen
+function acoustic(axis, face, dir, a0, a1, y0, y1) {
+  const B = (A0, A1, Y0, Y1, d0, d1, m) => axis === 'x' ? box(A0, A1, Y0, Y1, face + dir * d0, face + dir * d1, m, { cast: false }) : box(face + dir * d0, face + dir * d1, Y0, Y1, A0, A1, m, { cast: false });
+  B(a0, a1, y0, y1, 0, .018, M.kick); for (let a = a0 + .012; a + .026 <= a1; a += .05) B(a, a + .026, y0 + .01, y1 - .01, .018, .04, M.woodA);
+}
+[[8.45, 8.95], [9.0, 9.5], [9.55, 10.05]].forEach(q => acoustic('z', 8.2, -1, q[0], q[1], 1.6, 2.5)); acoustic('x', 7.5, 1, 5.55, 6.15, .9, 2.4);
 [[6.2, 8.6], [7.0, 9.6], [6.4, 10.8]].forEach(q => downlight(q[0], q[1])); fill(6.6, 2.3, 9.5, .55, 7);
 

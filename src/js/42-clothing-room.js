@@ -1,4 +1,4 @@
-/* -------------------------------------------------- clothing room 3.0 x 5.5 */
+/* ----------------------------------------------- walk-in wardrobe 3.0 x 3.0 */
 function wardrobe(axis, a0, a1, back, dir, seed) {     // open wardrobe run with a hanging rail, shelves and shoe ledge
   const dp = .56, B = (A0, A1, y0, y1, d0, d1, m, o) => axis === 'x' ? box(A0, A1, y0, y1, back + dir * d0, back + dir * d1, m, o) : box(back + dir * d0, back + dir * d1, y0, y1, A0, A1, m, o);
   const r = rng(seed), cols = [M.accent1, M.accent2, M.accent3, M.linen, M.kick, M.cushion, M.sofa, M.paper, M.towel], nc = { cast: false };
@@ -13,12 +13,8 @@ function wardrobe(axis, a0, a1, back, dir, seed) {     // open wardrobe run with
     let b = s0; while (b < s1 - .3) { const bw = .28 + r() * .12; B(b, b + bw, 1.95, 2.1 + r() * .1, .08, .46, r() > .5 ? M.ceramic : M.cushion, nc); b += bw + .06; } }
   if (axis === 'x') solid(a0, a1, Math.min(back, back + dir * dp), Math.max(back, back + dir * dp), 2.3); else solid(Math.min(back, back + dir * dp), Math.max(back, back + dir * dp), a0, a1, 2.3);
 }
-// walk-in wardrobe at the back, lit by the window; the en-suite is through the door at the far end
-wardrobe('x', .4, 3.4, .4, 1, 71); wardrobe('z', 2.35, 3.48, 3.4, -1, 72);
-box(1.1, 2.7, 0, .012, 1.15, 3.25, M.runner, { cast: false });
-box(1.42, 1.98, .1, .86, 1.72, 2.88, M.woodA); box(1.4, 2.0, .86, .9, 1.7, 2.9, M.counter); box(1.47, 1.93, 0, .1, 1.77, 2.83, M.kick, { cast: false }); [.36, .62].forEach(y => box(1.979, 1.981, y, y + .004, 1.75, 2.85, M.kick, { cast: false })); solid(1.4, 2.0, 1.7, 2.9, .9);
-box(1.55, 1.85, .9, .915, 1.85, 2.2, M.metalAccent, { cast: false }); [[1.62, 1.95], [1.72, 2.05], [1.8, 1.93]].forEach((q, i) => cyl(q[0], .915, 1.0 + i * .03, q[1], .022, i % 2 ? M.glassObj : M.ceramicAlt, { cast: false })); vase(1.7, .9, 2.68, .2, M.ceramic, true); bookStack(1.7, .9, 2.42, 2, 74);
-box(.5, 1.3, .05, 2.05, 3.47, 3.5, M.frameArt, { cast: false }); box(.54, 1.26, .09, 2.01, 3.462, 3.47, M.mirror, { cast: false });
-curtains('z', .4, 1, 1.6, 3.2, 1.0, 3.48);
-[[1.9, 1.4], [1.9, 2.9]].forEach(q => downlight(q[0], q[1])); fill(1.9, 2.3, 2.0, .45, 5);
-
+// walk-in wardrobe between the en-suite and the baby's room, off the bedroom through a doorless opening: no window, no island
+wardrobe('z', 2.55, 5.45, .4, 1, 71); wardrobe('z', 3.5, 5.45, 3.4, -1, 72);
+box(1.25, 2.55, 0, .012, 2.8, 5.25, M.runner, { cast: false });
+box(1.5, 2.3, .05, 2.05, 5.47, 5.5, M.frameArt, { cast: false }); box(1.54, 2.26, .09, 2.01, 5.462, 5.47, M.mirror, { cast: false });
+[[1.9, 3.3], [1.9, 4.7]].forEach(q => downlight(q[0], q[1])); fill(1.9, 2.3, 4.0, .45, 5);

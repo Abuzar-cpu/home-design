@@ -2,12 +2,13 @@
 PARENT = upG; YOFF = 3.1; CEILG = roofTop; CY = 3.1;
 wall('x', 0, .4, 0, 8.6, [win(5.8, 7.4, -1)]);
 wall('x', 11.5, 11.9, 0, 8.6, [win(1.1, 2.7, 1), door(3.9, 4.7, 'a0', 1, { glass: true }), win(5.9, 7.5, 1)]);   // balcony door at the hall end
-wall('z', 0, .4, .4, 11.5, [win(1.6, 3.2, -1), win(4.5, 5.1, -1, { sill: 1.3, head: 2.1, frost: true }), win(6.4, 8.0, -1)]);
+wall('z', 0, .4, .4, 11.5, [win(.55, .95, -1, { sill: 1.7, head: 2.1, frost: true }), win(6.4, 8.0, -1), win(9.4, 11.0, -1)]);   // en-suite vent, baby's room, study (new opening, builder to confirm)
 wall('z', 8.2, 8.6, .4, 11.5, []);
 wall('x', 4.4, 4.6, 3.6, 8.2, [door(3.8, 4.7, 'a0', -1)]);                                                       // bedroom / hall + stair
-wall('z', 3.4, 3.6, .4, 11.5, [{ a0: 1.35, a1: 2.25, sill: 0, head: 2.1, kind: 'cased' }, door(9.8, 10.7, 'a1', -1)]);   // doorless bedroom-wardrobe opening, baby's door
-wall('x', 3.5, 3.6, .4, 3.4, [door(1.6, 2.4, 'a0', 1)]);                                                          // wardrobe / en-suite partition
-wall('x', 5.9, 6.1, .4, 3.4, []);                                                                                 // clothing / baby's room
+wall('z', 3.4, 3.6, .4, 11.5, [{ a0: 1.4, a1: 2.2, sill: 0, head: 2.1, kind: 'cased' }, { a0: 2.6, a1: 3.4, sill: 0, head: 2.1, kind: 'cased' }, door(6.1, 7.0, 'a1', -1), door(9.8, 10.7, 'a1', -1)]);   // en-suite pocket door and doorless wardrobe opening off the bedroom; baby's and study doors off the hall
+wall('x', 2.4, 2.5, .4, 3.4, []);                                                                                 // en-suite / walk-in wardrobe partition
+wall('x', 5.5, 5.7, .4, 3.4, []);                                                                                 // wardrobe / baby's room
+wall('x', 8.6, 8.8, .4, 3.4, []);                                                                                 // baby's room / study, on top of the ground-floor wall
 wall('z', 5.0, 5.2, 7.3, 11.5, [door(7.7, 8.6, 'a0', 1)]);                                                       // hall / gaming room
 wall('x', 7.3, 7.5, 5.2, 8.2, []);                                                                                // stair / gaming room
 [[0, 8.6, 0, 4.6], [0, 5.2, 4.6, 7.3], [8.2, 8.6, 4.6, 7.3], [0, 8.6, 7.3, 11.9]].forEach(c => floorPlane(c[0], c[1], c[2], c[3], .002, M.floor, 2.4));

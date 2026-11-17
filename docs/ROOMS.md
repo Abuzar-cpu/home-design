@@ -20,7 +20,7 @@ Reis's photos of the paper plans. Dimensions on them are in millimetres.
 ## Where the tour differs from the paper plans
 - Ground floor: kitchen and guest/study swapped (Reis's first change).
 - Stair: flipped so it starts near the living-room door; a reading nook uses the space under it.
-- Upper floor: the clothing room (3.0 × 5.5 m on paper) is split into a walk-in wardrobe and an en-suite; its door to the hall is removed and a doorless opening joins it to the bedroom; a small frosted window added for the en-suite.
+- Upper floor: the clothing room and the baby's room on paper (3.0 × 5.5 and 3.0 × 5.4 m) become an en-suite, a walk-in wardrobe, a baby's room and a study/guest room; the en-suite (pocket door) and the wardrobe (doorless opening) open off the bedroom, and the clothing room's hall door is gone. The outside-wall window at z 1.6–3.2 is removed; a 40 × 40 cm frosted en-suite vent and a study window (z 9.4–11.0) are added. Baby gate at the stair top. (Proposal from his 17 Nov drawing, HANDOFF §3.1.)
 - The hall ends in a door to the balcony (Reis's note on the upper plan).
 - Doubts about reading the plan (handwritten widths, balcony door, area labels) are listed in `HANDOFF.md` §4.
 
@@ -48,9 +48,10 @@ Sizes are clear inside dimensions as labelled in the tour. The x and z columns g
 | Room | Size | Area | x (m) | z (m) |
 |---|---|---|---|---|
 | Bedroom | 4.6 × 4.0 m | 18.4 m² | 3.6–8.2 | .4–4.5 |
-| Clothing room | 3.0 × 3.1 m | 9.3 m² | .4–3.5 | .4–3.55 |
-| En-suite | 3.0 × 2.3 m | 6.9 m² | .4–3.5 | 3.55–6.0 |
-| Baby's room | 3.0 × 5.4 m | 16.2 m² | .4–3.5 | 6.0–11.5 |
+| En-suite | 3.0 × 2.0 m | 6.0 m² | .4–3.5 | .4–2.45 |
+| Walk-in wardrobe | 3.0 × 3.0 m | 9.0 m² | .4–3.5 | 2.45–5.6 |
+| Baby's room | 3.0 × 2.9 m | 8.7 m² | .4–3.5 | 5.6–8.7 |
+| Study / guest | 3.0 × 2.7 m | 8.1 m² | .4–3.5 | 8.7–11.5 |
 | Gaming room | 3.0 × 4.0 m | 12.0 m² | 5.1–8.2 | 7.4–11.5 |
 | Stair | 3.0 × 2.7 m, 18 risers | – | 5.1–8.2 | 4.5–7.4 |
 | Upper hall | 1.4 × 6.9 m | 9.7 m² | 3.5–5.1 | 4.5–11.7 |

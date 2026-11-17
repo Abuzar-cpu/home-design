@@ -25,12 +25,13 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 | Public tour | `b59b1dc7-6508-44b1-bab9-aca7d9fc5149` | title "Ground Floor 3D Tour", shared publicly: republish with `shared_live: "public"` and `artifact_title` |
 | Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
 | Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
+| Upper-floor proposal | `b1682337-5007-48c2-9a01-405e5885bb49` | title "Upper Floor Proposal – 17 Nov": HANDOFF §3.1 built for Reis to share and decide; not the working copy |
 
 Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit on a branch → open a pull request.
 When he says publish: copy the live public page into the backup artifact, publish `build/public.html` to the public artifact, then `list_files` both to confirm the sha256.
 
 ## Checks (run from the repo root; output is only what changed)
-- `python3 tools/check.py` — furniture fit (overlaps, door swings, windows, wall cut-ins, 60 cm reachability), 17 walk tests, full guided-tour collision run.
+- `python3 tools/check.py` — furniture fit (overlaps, door swings, windows, wall cut-ins, 60 cm reachability), 17 walk tests (18 on the proposal branch), full guided-tour collision run.
 - `python3 tools/check.py --accept` — record current fit findings as known (only after reviewing them).
 - `python3 tools/render.py build/x.png "modern,15,x,z,yaw,pitch,y" ...` — 1–4 shots in one image; `"doll,1,tx,tz,dist"` for a top view.
 - Walk tests live in `tools/walk.py` (`tests=[...]`); add one when a door or passage changes.
@@ -48,5 +49,5 @@ When he says publish: copy the live public page into the backup artifact, publis
 
 ## Current layout (Nov 2026)
 - Ground: L-shaped sofa 3.65 m on the living back wall with a short chaise; glass display cabinet beside the TV unit; reading nook under the stairs; kitchen with oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, island 1.0×0.7 with open shelves + 2 stools, table for two 0.5×0.7; kitchen door opens inward; guest room with two single beds, small wardrobe, writing desk.
-- Upper: bedroom (4.6×4.0, top right) with a two-door wardrobe facing the door; doorless opening to a walk-in wardrobe (window on the outside wall); en-suite 3.0×2.3 at its far end (small frosted window); baby's room 3.0×5.4 at the front left; gaming room front right. A new left side from his own drawing (en-suite, walk-in wardrobe, baby's room, study/guest) is sketched and pending: see `docs/HANDOFF.md` §3.1.
+- Upper: bedroom (4.6×4.0, top right) with a two-door wardrobe facing the door; doorless opening to a walk-in wardrobe (window on the outside wall); en-suite 3.0×2.3 at its far end (small frosted window); baby's room 3.0×5.4 at the front left; gaming room front right. A new left side from his own drawing (en-suite, walk-in wardrobe, baby's room, study/guest) is built as a separate proposal artifact and pending his decision: see `docs/HANDOFF.md` §3.1.
 - Open builder items: en-suite drain route (3–5 m run to existing pipes), en-suite extractor fan, no upstairs WC for the other rooms.
