@@ -1,6 +1,7 @@
 # House 3D tour
 
 **Start here:** read `docs/HANDOFF.md` first. It has the start-of-session checklist, what is live, what is waiting on Reis (with build specs) and what was already decided or rejected.
+**Before you finish:** update the notes as `docs/MAINTAINING.md` says (which file, when, how), then commit and push.
 
 Interactive Three.js walkthrough of Reis's two-storey house (Baku), built from his floor-plan photos for buyers.
 The published tour is one self-contained page (three.js r149 from the jsDelivr CDN, procedural textures, no assets), built from `src/`:
@@ -15,7 +16,7 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 - **Sketch first when he asks for it.** Plan sketches are inline SVG, to scale, with tight gaps flagged.
 - **Before each publish**, overwrite the single backup artifact with the version that is currently public (he wants only the latest backup kept).
 - Flag fit problems, tight gaps (< 0.9 m walkways) and things a builder must confirm, rather than silently working around them.
-- After every change: commit (with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer) and push to `origin main`, then update `docs/HANDOFF.md` if what is live or pending changed.
+- After every change: update the notes (`docs/MAINTAINING.md` has the table of what to update when), commit with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer, and push to `origin main`.
 
 ## Artifacts
 | What | Slug | Notes |
@@ -32,6 +33,7 @@ When he says publish: copy the live public page into the backup artifact, publis
 - `python3 tools/check.py --accept` — record current fit findings as known (only after reviewing them).
 - `python3 tools/render.py build/x.png "modern,15,x,z,yaw,pitch,y" ...` — 1–4 shots in one image; `"doll,1,tx,tz,dist"` for a top view.
 - Walk tests live in `tools/walk.py` (`tests=[...]`); add one when a door or passage changes.
+- `python3 tools/status.py` — commit plus the sha256 of the built working-copy and public pages; compare with `list_files` on the artifacts.
 - Uses Playwright with `/usr/bin/google-chrome` (swiftshader). `tools/common.py` builds `build/test.html` with local three.js (`npm install --prefix tools` if missing).
 
 ## Model conventions (in `src/js/`)

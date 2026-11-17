@@ -1,21 +1,22 @@
 # Handoff: where the house tour stands
 
 Read this at the start of a session, after `CLAUDE.md`. It holds what is live, what is waiting on Reis, and what was already decided or rejected, so nothing gets redone or re-asked.
+Keep it current: `docs/MAINTAINING.md` says which section to update for each kind of change.
 
 Last updated: 17 Nov 2026.
 
 ## 1. Start-of-session checklist (about 2 minutes)
 1. `git pull`, then `trail build` (refreshes the code map; the cache is git-ignored).
 2. Tooling, if this is a fresh machine: `pip install playwright pillow`, Chrome at `/usr/bin/google-chrome` (else `playwright install chromium` and change `CHROME` in `tools/common.py`), `npm install --prefix tools` for the local three.js. Node 18+.
-3. `python3 tools/build.py && sha256sum build/index.html`, then `list_files` on the working copy artifact. The sha256 values should match. If they don't, the working copy was changed outside this repo: read it with `read_artifact` and tell Reis before building on top.
+3. `python3 tools/status.py`, then `list_files` on the working copy and public artifacts. The sha256 values should match §2. If they don't, the working copy was changed outside this repo: read it with `read_artifact` and tell Reis before building on top.
 4. `python3 tools/check.py` should print `fit: 0 new finding(s)`, `walk tests: 17/17 pass` and a tour line with `0 collision frames`.
 5. Read **Pending** below. Answer what Reis asks; don't reopen settled items.
 
 ## 2. What is live right now
 | | Version | Content |
 |---|---|---|
-| Working copy | `1794766798-59c7` | same page as `main` at commit `374123f` (sha256 `2e3fb10c…e54450`) |
-| Public tour | `1794766934-ac7a` | same page, public title. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
+| Working copy | `1794766798-59c7` | built from `src/` as of commit `374123f` (no tour changes since); sha256 `2e3fb10c…e54450` |
+| Public tour | `1794766934-ac7a` | same page with the public title; sha256 `c10f3833…c718fe`. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
 | Backup | `1794766924-b2f8` | "Backup 15 Nov (before guest room changes)": the public page before the guest room/kitchen door publish |
 
 Working copy and public are identical: nothing unpublished.
