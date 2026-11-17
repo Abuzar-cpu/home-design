@@ -22,5 +22,6 @@ else:
     acc = set(acc_f.read_text().splitlines()) if acc_f.exists() else set()
     new = [l for l in dict.fromkeys(found) if l not in acc]
     print(f'fit: {len(new)} new finding(s)' + ('' if new else ' (all known)')); [print('  ' + l) for l in new]
+print(run([str(T / 'rooms.py'), '--check']).strip())
 if '--fit-only' not in sys.argv:
     print(run([str(T / 'walk.py')]).strip()); print(run([str(T / 'tour_sim.py')]).strip())

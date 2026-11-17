@@ -9,6 +9,7 @@ The notes in this repo are how the next session picks up without re-reading old 
 | `docs/HANDOFF.md` | Session state: what is live (versions, sha256), what is pending (with build specs), builder/plan items, decisions not to re-ask, working style | Every session that changes something |
 | `docs/MAINTAINING.md` | This guide | When the way of working changes |
 | `README.md` | What the project is, for someone opening it on GitHub | Only when a visible feature is added or removed |
+| `docs/ROOMS.md` + `docs/plans/` | Reis's plan photos, how the plan maps to the model, where the tour differs from the paper plan, and the room-size table | Table: run `python3 tools/rooms.py` whenever `rooms[]` changes. Text: when a room is added, split, merged or swapped, or he sends a new plan photo |
 | `.trail/learnings/` | Gotchas that cost time (written with `trail note`) | When you hit one |
 | `tools/walk.py` (`tests=[...]`) | Walk-through tests for doors and passages | When a door, opening or passage moves |
 | `tools/fit/accepted.txt` | Fit findings that were reviewed and are intentional | Only via `python3 tools/check.py --accept`, after reading every new finding |
@@ -27,6 +28,8 @@ The notes in this repo are how the next session picks up without re-reading old 
 | New helper, new `src/js` file, new style, new material, new convention | `CLAUDE.md` "Model conventions" (and the file list at the top if a file was added). Keep the `NN-` numbering so the build order stays right. |
 | New tool or check, or a tool's usage changed | `CLAUDE.md` "Checks" and, if it's part of the start routine, HANDOFF §1. |
 | Artifact slug changes (new backup, new public page) | `CLAUDE.md` artifact table and HANDOFF §2. |
+| A room's size, name or position changed (`rooms[]`) | `python3 tools/rooms.py`; and the "differs from the paper plans" list in `docs/ROOMS.md` if it now departs from his plans. |
+| He sends a new or corrected plan photo | Look at it first (no personal details), save it in `docs/plans/` with a descriptive name, list it in `docs/ROOMS.md`. |
 | A door, opening or passage moved | Add or adjust a test in `tools/walk.py`; keep the count in `CLAUDE.md` and HANDOFF §1 right. |
 | You lost time to something non-obvious (tool quirk, hidden coupling) | `trail note --title "<few words>" --touches "<files>" -m "<what happened, what works>"`. It lands in `.trail/learnings/`; commit it with the change. |
 

@@ -5,6 +5,7 @@ An interactive 3D walkthrough of a two-storey house in Baku, built with Three.js
 - **Live tour:** https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt
 - **Source:** `src/` (page shell, styles, and the scene split by area in `src/js/`)
 - **Build:** `python3 tools/build.py` → `build/index.html`, a single self-contained page
+- **Plans and room sizes:** `docs/ROOMS.md`, with the original plan photos in `docs/plans/`
 - **Checks:** `python3 tools/check.py` (furniture fit, walk tests, guided-tour collisions)
 
 Working on this with Claude? `CLAUDE.md` has the conventions and `docs/HANDOFF.md` has the current state and what's pending.
