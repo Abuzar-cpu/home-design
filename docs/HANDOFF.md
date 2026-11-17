@@ -6,7 +6,7 @@ Keep it current: `docs/MAINTAINING.md` says which section to update for each kin
 Last updated: 17 Nov 2026.
 
 ## 1. Start-of-session checklist (about 2 minutes)
-1. `git pull`, then `trail build` (refreshes the code map; the cache is git-ignored).
+1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
 2. Tooling, if this is a fresh machine: `pip install playwright pillow`, Chrome at `/usr/bin/google-chrome` (else `playwright install chromium` and change `CHROME` in `tools/common.py`), `npm install --prefix tools` for the local three.js. Node 18+.
 3. `python3 tools/status.py`, then `list_files` on the working copy and public artifacts. The sha256 values should match §2. If they don't, the working copy was changed outside this repo: read it with `read_artifact` and tell Reis before building on top.
 4. `python3 tools/check.py` should print `fit: 0 new finding(s)`, `walk tests: 17/17 pass` and a tour line with `0 collision frames`.
@@ -62,4 +62,4 @@ He sent a photo of under-stair pull-out storage with an oak handrail and spindle
 - Short messages, sometimes with typos. "Copy" = working copy; "publish" = push to the public link; "sketch first" = an inline SVG plan to scale, nothing built until he approves.
 - He wants risks and tight spots stated plainly (walkways under 0.9 m, things that need a builder), and he decides. When a request is ambiguous, sketch the options (A/B) rather than guessing.
 - After building: one or two renders (`tools/render.py`) are enough; don't send four unless asked. Batch small changes into one build-check-publish round to save tokens.
-- Every git commit ends with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer (plus the session link line when the session provides one). Push to `origin main` after each change.
+- Every git commit ends with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer (plus the session link line when the session provides one). Changes go to a branch and a pull request; Reis merges them himself.

@@ -45,4 +45,8 @@ The notes in this repo are how the next session picks up without re-reading old 
 3. `python3 tools/status.py`, then update HANDOFF §2 with the printed values and the artifact versions.
 4. Update the other notes per the table above, and the "Last updated" date.
 5. Commit: imperative subject under ~60 characters; body says what changed for Reis and why; end with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer (plus the session link line when the session gives one).
-6. `git push origin main`, then `git ls-remote origin refs/heads/main` to confirm GitHub has the commit.
+6. Work on a branch, never on `main`: `git switch -c <kind>/<short-name>` at the start (kinds: `tour/` for changes to the house, `docs/`, `tools/`). Push it with `git push -u origin <branch>`.
+7. Open a pull request. `gh pr create` doesn't work in these sessions (no GraphQL), so use the REST API:
+   `gh api repos/Abuzar-cpu/home-design/pulls -f base=main -f head=<branch> -f title="<subject>" -f body="<what changed for Reis, what to check, and the session's PR attribution lines>"`
+   Give Reis the PR link and stop. He merges it; don't merge it yourself.
+8. If the working copy artifact was updated, say so in the PR: the working copy then shows the change before `main` does, until he merges.

@@ -1,7 +1,7 @@
 # House 3D tour
 
 **Start here:** read `docs/HANDOFF.md` first. It has the start-of-session checklist, what is live, what is waiting on Reis (with build specs) and what was already decided or rejected.
-**Before you finish:** update the notes as `docs/MAINTAINING.md` says (which file, when, how), then commit and push.
+**Before you finish:** update the notes as `docs/MAINTAINING.md` says (which file, when, how), commit on a branch and open a pull request. Reis merges; never push to `main`.
 
 Interactive Three.js walkthrough of Reis's two-storey house (Baku), built from his floor-plan photos for buyers.
 The published tour is one self-contained page (three.js r149 from the jsDelivr CDN, procedural textures, no assets), built from `src/`:
@@ -16,7 +16,7 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 - **Sketch first when he asks for it.** Plan sketches are inline SVG, to scale, with tight gaps flagged.
 - **Before each publish**, overwrite the single backup artifact with the version that is currently public (he wants only the latest backup kept).
 - Flag fit problems, tight gaps (< 0.9 m walkways) and things a builder must confirm, rather than silently working around them.
-- After every change: update the notes (`docs/MAINTAINING.md` has the table of what to update when), commit with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer, and push to `origin main`.
+- After every change: update the notes (`docs/MAINTAINING.md` has the table of what to update when), commit on a branch with the `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer, push the branch and open a pull request. **Reis reviews and merges; never push to `main`.**
 
 ## Artifacts
 | What | Slug | Notes |
@@ -25,7 +25,7 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 | Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
 | Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
 
-Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit and push.
+Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit on a branch → open a pull request.
 When he says publish: copy the live public page into the backup artifact, publish `build/public.html` to the public artifact, then `list_files` both to confirm the sha256.
 
 ## Checks (run from the repo root; output is only what changed)
