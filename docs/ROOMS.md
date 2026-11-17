@@ -9,6 +9,7 @@ Reis's photos of the paper plans. Dimensions on them are in millimetres.
 | [`plans/upper-floor.jpg`](plans/upper-floor.jpg) | Upper floor ("2-ci mərtəbə") |
 | [`plans/upper-floor-labelled.png`](plans/upper-floor-labelled.png) | Upper floor with Reis's room names: clothing room, bedroom, baby's room, gaming room |
 | [`plans/kitchen-layout.jpg`](plans/kitchen-layout.jpg) | His own kitchen layout (15 Nov 2026), built as drawn apart from the changes in HANDOFF §5 |
+| [`plans/upper-floor-layout-17-nov.png`](plans/upper-floor-layout-17-nov.png) | His own upper-floor layout (17 Nov 2026): en-suite, walk-in wardrobe, baby's room and study/guest down the left side, baby gate at the stair. Schematic, not to scale; sketched to scale in HANDOFF §3.1, not built yet |
 
 ## How the plan maps to the model
 - Plan gridlines 1 → 5 run across the house: model **x**, 0 at the outside wall at gridline 1, 8.6 at gridline 5.

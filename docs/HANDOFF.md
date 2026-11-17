@@ -3,7 +3,7 @@
 Read this at the start of a session, after `CLAUDE.md`. It holds what is live, what is waiting on Reis, and what was already decided or rejected, so nothing gets redone or re-asked.
 Keep it current: `docs/MAINTAINING.md` says which section to update for each kind of change.
 
-Last updated: 17 Nov 2026.
+Last updated: 17 Nov 2026 (four-room left side sketched).
 
 ## 1. Start-of-session checklist (about 2 minutes)
 1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
@@ -23,20 +23,27 @@ Working copy and public are identical: nothing unpublished.
 
 ## 3. Pending (waiting on Reis)
 
-### 3.1 Swap master bedroom and baby's room (sketched 17 Nov, awaiting "build it")
-A plain swap would leave the walk-in wardrobe and en-suite opening off the baby's room, so the sketch also flips the suite. Build spec (metres, upper floor, x from the outside wall, z from the rear wall):
+### 3.1 Four rooms down the left side, from his own drawing (sketched 17 Nov, awaiting "build it")
+He sent a drawing of the upper floor (`docs/plans/upper-floor-layout-17-nov.png`) and asked to sketch it first, then build it. His drawing is schematic. The sketch keeps the bedroom, hall, stair and gaming room where they are, and splits the left side (x .4–3.4) into four rooms. This **replaces** the bedroom ↔ baby's room swap sketched earlier the same day (that spec is in git history: HANDOFF §3.1 at `66f5a41`).
 
-- **En-suite moves to the back corner**, x .4–3.4, z .4–2.7 (3.0 × 2.3): bath along the rear wall (x .45–2.05, z .45–1.2), walk-in shower in the hall-side corner (glass at x ≈2.25, z .4–1.05), wall-hung WC on the outside wall (z 1.75–2.25), double vanity with lit mirror on the hall-side wall (z 1.4–2.55). Vent window 40 × 40 cm on the outside wall at z 1.3–1.7, top at 2.1 m, frosted.
-- **Partition** at z 2.7–2.8 with the en-suite door at x 1.6–2.4, opening into the en-suite.
-- **Walk-in wardrobe in the middle**, z 2.8–5.9, **no window, no island**: wardrobe runs along the outside wall (x .4–.96) and the hall-side wall (x 2.84–3.4), 3.1 m each, 1.88 m clear between. Downlights and shelf LEDs.
-- **Wall** at z 5.9–6.1 with a doorless cased opening at x 1.45–2.35 into the new bedroom.
-- **New master bedroom**, x .4–3.4, z 6.1–11.5 (3.0 × 5.4, 16.2 m²): bed head on the outside wall, bed x .4–2.5, z 8.3–9.9 (0.9 m left past its foot); nightstands z 7.8–8.25 and 9.95–10.4; dresser on the back wall at x .45–1.35; reading chair by the front window. Keeps its hall door (z 9.8–10.7, swings in; clears the bed corner) and both windows (outside wall z 6.4–8.0, front x 1.1–2.7).
-- **Baby's room** in the old bedroom, x 3.6–8.2, z .4–4.4 (18.4 m²): wall up the doorless opening (wall x 3.4–3.6, z 1.35–2.25). Keep the two-door wardrobe (x 3.6–4.6, z .4–1.0). Crib on the right wall (x 7.5–8.2, z 1.0–2.3), changing dresser on the left wall (x 3.6–4.1, z 2.0–3.2), nursing chair by the rear window. Hall door x 3.8–4.7 stays.
-- **Remove** the outside-wall windows `win(1.6, 3.2, -1)` and `win(4.5, 5.1, …frost)` in `src/js/40-upper-floor.js`.
-- Update `rooms[]` labels/m²/dollhouse targets, the tour `ROUTE` stops and tips (+ `AZ` strings), and the walk tests `bedroom-wardrobe opening` and `en-suite door` in `tools/walk.py`.
-- Tell Reis: the en-suite now sits above the living room, so the drain route changes; the builder must confirm it.
+Build spec (metres, upper floor, x from the outside wall, z from the rear wall):
+- **En-suite** in the back corner, z .4–2.4 (3.0 × 2.0, 6.0 m²): bath x .45–2.1, z .45–1.2 with a shower over it and a glass screen along z 1.2 (x .45–1.25); wall-hung WC on the rear wall, centre x 2.75 (z .4–.95); double vanity with lit mirror on the outside wall, x .4–.9, z 1.3–2.4. Vent window 40 × 40 cm on the outside wall at z .55–.95, sill 1.7, head 2.1, frosted (his drawing shows a full window; kept the small vent he asked for on 15 Nov). Entry **from the bedroom**: pocket door in the wall x 3.4–3.6 at z 1.4–2.2, sliding into the wall toward z .6. No separate walk-in shower: at 3.0 × 2.0 it won't fit with a 0.9 m walkway.
+- **Partition** z 2.4–2.5.
+- **Walk-in wardrobe** z 2.5–5.5 (3.0 × 3.0, 9.0 m²), no window, no island: wardrobe run on the outside wall (x .4–.96, z 2.55–5.45). Optional second run on the hall-side wall (x 2.84–3.4, z 3.5–5.45, 1.88 m clear between). Doorless cased opening from the bedroom at z 2.6–3.4. It stops at 3.4 because the bedroom door, open, reaches z 3.5 at x 3.8.
+- **Wall** z 5.5–5.7.
+- **Baby's room** z 5.7–8.6 (3.0 × 2.9, 8.7 m²): new hall door at z 6.1–7.0, hinge at 7.0, swings in (opposite the stair top). Crib x 1.0–2.3, z 5.75–6.45, kept out of the window bay; changing dresser on the hall-side wall, x 2.9–3.4, z 7.3–8.3; round nursing chair, 0.7 m, centred at x 1.0, z 8.1 by the window. Window z 6.4–8.0 stays.
+- **Wall** z 8.6–8.8, on top of the ground-floor wall at the same place.
+- **Study / guest** z 8.8–11.5 (3.0 × 2.7, 8.1 m²): desk on the baby's-room wall, x .45–1.95, z 8.8–9.4, chair at x .9; door z 9.8–10.7 (today's baby's-room door, unchanged); front window x 1.1–2.7 stays; **new** outside-wall window z 9.4–11.0 (not on the paper plan). Optional daybed 0.9 × 1.9 on the front wall, x .45–2.35, z 10.55–11.45.
+- **Bedroom** unchanged, except the dresser and round mirror move from the left wall (now two openings) to the front wall, x 4.9–6.0, z 3.95–4.4, clear of the door swing; the floor lamp moves with it.
+- **Windows** in `src/js/40-upper-floor.js`: remove `win(1.6, 3.2, -1)` and `win(4.5, 5.1, …frost)`; add the vent and the study window.
+- **Hall:** screw-fixed baby gate across the stair top, x 5.0–5.2, z 6.1–7.3 (1.2 m), opening into the hall; the glass rail z 4.6–6.1 and the balcony door stay (his drawing doesn't show the balcony door).
+- **Gaming:** furniture unchanged, add acoustic panels on the walls. Door stays at z 7.7–8.6 (his drawing has it a little further along).
+- Update `rooms[]` (then `python3 tools/rooms.py`), the "differs from the paper plans" list in `docs/ROOMS.md`, the `ROUTE` stops and tips with `AZ` strings ("Study / guest" upstairs is new), and the walk tests `bedroom-wardrobe opening`, `en-suite door` and `baby door`; add `study door` (18 tests, so update the count in `CLAUDE.md` and §1).
 
-This also settles two older open items: the 15 Nov request (remove the wardrobe-room window, wardrobes instead; en-suite window → small vent only) and the island question (no island, because you walk through the middle to the en-suite).
+Told Reis: the new study window and the moved vent change the facade, so the builder must confirm; the en-suite now sits fully over the living room, about 3 m further from the downstairs bathroom, so the drain route changes (builder); noise from the gaming room reaches the baby's room across the hall through the door, so a solid-core door with seals matters more than the panels; the baby's room shrinks from 16.2 to 8.7 m².
+Open questions with defaults: pocket door on the en-suite (or fully open as drawn); daybed in the study; second wardrobe run; keep the new study window.
+
+This also settles two older open items: the 15 Nov request (remove the wardrobe-room window, wardrobes instead; en-suite window → small vent only) and the island question (no island).
 
 ### 3.2 Stair look from his reference photo (unanswered)
 He sent a photo of under-stair pull-out storage with an oak handrail and spindles and said "I want the stair like this". The pull-out storage was built and he **rejected** it ("That's not what I wanted"), so it was removed and the reading nook restored. Offered instead: oak handrail and spindles, carpeted steps, white side panel. He hasn't answered. Ask what he liked before building anything stair-related.
