@@ -35,7 +35,7 @@ muteBtn.addEventListener('click', () => { music.muted = !music.muted; musicGain(
 // route: points are [x, z]; a point with a stop pauses there, turns to look at "look" and shows the card
 const ST = (n, m2, tip, lx, lz) => ({ n, s: m2.toFixed(1) + ' m²', tip, look: [lx, lz] });
 const ROUTE = [
-  [10.4, 12.65], [8.4, 12.65], [5.3, 12.65], [4.3, 12.6, ST('Porch', 8.55, 'Covered entry with room for two chairs', 2.0, 12.6)], [4.3, 11.7],
+  [10.4, 12.65], [8.4, 12.65], [5.3, 12.65], [4.3, 12.6, ST('Porch', 3.9, 'Glazed entry with a storage room beside it', 2.0, 12.6)], [4.3, 11.7],
   [4.3, 10.7, ST('Hall', 9.7, 'One central hall reaches every room directly', 4.3, 6)], [4.3, 11.0], [3.0, 11.0], [1.62, 10.95, ST('Bathroom', 4.3, 'Walk-in shower with a daylight window', .9, 9.3)], [3.0, 11.0], [2.8, 11.0],
   [2.8, 10.05, ST('WC', 1.8, 'Separate guest WC off its own lobby', 2.8, 8.8)], [2.8, 11.0], [4.3, 11.0], [4.3, 8.15], [5.5, 8.15],
   [5.8, 8.3, ST('Kitchen', 12, 'Island with a table for two and a sink under the front window', 7.2, 10.2)], [5.5, 8.15], [4.3, 8.15], [4.3, 5.25], [2.9, 5.25],

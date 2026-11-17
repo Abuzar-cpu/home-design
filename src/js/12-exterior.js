@@ -3,9 +3,10 @@ box(0, 5.7, GROUND, -.006, 11.9, 13.6, M.plinth); solid(0, 5.7, 11.9, 13.6, 0, G
 floorPlane(0, 5.7, 11.9, 13.6, 0, M.stoneFloor, 1.2);
 for (let k = 1; k <= 8; k++) box(5.7 + (k - 1) * .3, 5.7 + k * .3, GROUND, -k * RISE, 11.9, 13.4, M.stone);
 [[0, .4, 0], [2.9, 3.1, 0], [5.7, 5.9, GROUND], [8.2, 8.6, GROUND]].forEach(c => box(c[0], c[1], c[2], H, 13.4, 13.6, M.wall, { solid: true }));
-[[.4, 2.9], [3.1, 5.7]].forEach(s => { box(s[0], s[1], .06, .95, 13.49, 13.51, M.glass, { cast: false, recv: false }); box(s[0], s[1], .95, .99, 13.47, 13.53, M.metal); });
-box(.04, .06, .06, .95, 11.9, 13.4, M.glass, { cast: false, recv: false }); box(.02, .08, .95, .99, 11.9, 13.4, M.metal);
-solid(.4, 5.7, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0);
+wall('x', 13.4, 13.6, .4, 2.9, []);                                       // storage front wall
+wall('x', 13.4, 13.6, 3.1, 5.7, [win(3.1, 5.7, 1)]);                      // porch: one window the full length of its front wall
+wall('z', 0, .2, 11.9, 13.4, []);                                         // storage side wall
+wall('z', 2.9, 3.1, 11.9, 13.4, [door(12.05, 12.85, 'a1', -1)]);          // storage / porch, door opens into the storage
 slant(5.9, -RISE + .95, 8.1, GROUND + .95, 13.45, M.metal);
 for (let k = 0; k < 5; k++) { const x = 5.95 + k * .53; box(x - .012, x + .012, floorH(x, 12.5), -RISE + .95 - (x - 5.9) / 2.2 * (8 * RISE), 13.44, 13.46, M.metal, { cast: false }); }
 solid(5.9, 8.2, 13.4, 13.5, 1.0, GROUND);

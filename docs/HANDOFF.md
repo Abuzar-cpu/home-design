@@ -19,7 +19,7 @@ Last updated: 17 Nov 2026 (four-room left side sketched).
 | Public tour | `1794766934-ac7a` | same page with the public title; sha256 `c10f3833…c718fe`. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
 | Backup | `1794766924-b2f8` | "Backup 15 Nov (before guest room changes)": the public page before the guest room/kitchen door publish |
 
-| Upper-floor proposal | `1794913231-f456` | slug `b1682337-5007-48c2-9a01-405e5885bb49`, "Upper Floor Proposal – 17 Nov": the whole house with §3.1 built, from branch `tour/upper-floor-proposal` (pushed, no pull request: Reis asked for none). Link: https://claude.ai/artifact/Nuby8dQas9Vs2Dje5AytmN |
+| Upper-floor proposal | `1794929937-ada5` | slug `b1682337-5007-48c2-9a01-405e5885bb49`, "Upper Floor Proposal – 17 Nov": the whole house with §3.1 built, from branch `tour/upper-floor-proposal` (pushed, no pull request: Reis asked for none). He has shared it **publicly**: republish with `shared_live: "public"` and `artifact_title`. Also carries the porch/storage change (§3.4). Link: https://claude.ai/artifact/Nuby8dQas9Vs2Dje5AytmN |
 
 Working copy and public are identical: nothing unpublished. The proposal is separate, for Reis and his wife to decide on.
 
@@ -58,9 +58,16 @@ Fixes common to all three options: hob moved to z 9.25–9.85 (0.45 m from the t
 - **B, small prep island:** island x 6.1–6.68, z 9.02–9.96 (0.58 × 0.94 m), no seats, 0.90 m on all four sides. Meals at the living-room dining table.
 - **C, table instead of an island:** table 0.7 × 1.0 on the hall wall (x 5.2–5.9, z 8.95–9.95), two chairs facing it. Cooking aisle 1.22 m, 0.91 m in front of the fridge, door swing clear.
 
+### 3.4 Storage separated from the porch, full-length porch window (built into the proposal artifact 17 Nov)
+He sent the ground-floor plan with the left part of the porch strip labelled "Storage" (`docs/plans/ground-floor-storage-17-nov.jpg`) and asked to separate it from the porch and make the porch window the full length of its wall. Built in `src/js/12-exterior.js` and `36-porch.js`:
+- **Storage** x .2–2.9, z 11.9–13.4 (2.5 × 1.5 m on the plan): solid walls replace the glass rails (side wall x 0–.2, front wall x .4–2.9), dividing wall x 2.9–3.1 with a door at z 12.05–12.85 opening into the storage. Open shelving on the house wall and the side wall. No window (none was asked for).
+- **Porch** x 3.1–5.7 (2.6 × 1.5 m): front wall with one window the full 2.6 m length (sill .9, head 2.3, standard frame with mullions); the east side stays open to the entrance steps. The two lounge chairs and side table are gone; a 1.2 m bench under the window leaves 1.08 m to walk to the front door; plant moved beside the lantern so the storage door has a clear 60 cm approach.
+- `rooms[]`: Storage 3.8 m², Porch 3.9 m²; tour stop tip "Glazed entry with a storage room beside it"; walk test `storage door` (19 tests).
+- Not confirmed with him: his plan marks small symbols on the storage's side wall (maybe a side door or window). A side door would open about 1.5 m above the garden, so the door is from the porch.
+
 ## 4. Open items to mention, not to act on unless asked
 - **Builder:** en-suite drain route (3–5 m to existing pipes, likely boxed in downstairs); en-suite extractor fan; no upstairs WC for the baby's and gaming rooms; under-stair pull-outs (if ever revived) need heavy-duty runners.
-- **Plan reading doubts from the first review:** handwritten 1400 bathroom width; a blue pen mark; balcony door shown ~1.0 m (the 800 figure was part of a 3700+900+800 chain); porch drawn with full-depth walls; porch/balcony area labels look overstated; ceiling height 2.8 m is an assumption (shown in the tour); uneven stair goings; the 161 m² total.
+- **Plan reading doubts from the first review:** handwritten 1400 bathroom width; a blue pen mark; balcony door shown ~1.0 m (the 800 figure was part of a 3700+900+800 chain); porch drawn with full-depth walls (resolved 17 Nov: the left part is a storage room, §3.4); porch/balcony area labels look overstated; ceiling height 2.8 m is an assumption (shown in the tour); uneven stair goings; the 161 m² total.
 - **Performance ideas offered, not requested:** draw only the current floor, merge static meshes, throttle shadow refreshes.
 
 ## 5. Decided, so don't re-ask
