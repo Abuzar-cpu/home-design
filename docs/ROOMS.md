@@ -9,8 +9,8 @@ Reis's photos of the paper plans. Dimensions on them are in millimetres.
 | [`plans/upper-floor.jpg`](plans/upper-floor.jpg) | Upper floor ("2-ci mərtəbə") |
 | [`plans/upper-floor-labelled.png`](plans/upper-floor-labelled.png) | Upper floor with Reis's room names: clothing room, bedroom, baby's room, gaming room |
 | [`plans/kitchen-layout.jpg`](plans/kitchen-layout.jpg) | His own kitchen layout (15 Nov 2026), built as drawn apart from the changes in HANDOFF §5 |
-| [`plans/upper-floor-layout-17-nov.png`](plans/upper-floor-layout-17-nov.png) | His own upper-floor layout (17 Nov 2026): en-suite, walk-in wardrobe, baby's room and study/guest down the left side, baby gate at the stair. Schematic, not to scale; sketched to scale in HANDOFF §3.1, not built yet |
-| [`plans/ground-floor-storage-17-nov.jpg`](plans/ground-floor-storage-17-nov.jpg) | Ground-floor plan photo (17 Nov 2026) with his "Storage" label on the left part of the porch strip (2500 storage + 2600 porch); built into the proposal, HANDOFF §3.4 |
+| [`plans/upper-floor-layout-17-nov.png`](plans/upper-floor-layout-17-nov.png) | His own upper-floor layout (17 Nov 2026): en-suite, walk-in wardrobe, baby's room and study/guest down the left side, baby gate at the stair. Schematic, not to scale; built and published 17 Nov |
+| [`plans/ground-floor-storage-17-nov.jpg`](plans/ground-floor-storage-17-nov.jpg) | Ground-floor plan photo (17 Nov 2026) with his "Storage" label on the left part of the porch strip (2500 storage + 2600 porch); built and published 17 Nov |
 
 ## How the plan maps to the model
 - Plan gridlines 1 → 5 run across the house: model **x**, 0 at the outside wall at gridline 1, 8.6 at gridline 5.
@@ -21,8 +21,8 @@ Reis's photos of the paper plans. Dimensions on them are in millimetres.
 ## Where the tour differs from the paper plans
 - Ground floor: kitchen and guest/study swapped (Reis's first change).
 - Stair: flipped so it starts near the living-room door; a reading nook uses the space under it.
-- Upper floor: the clothing room and the baby's room on paper (3.0 × 5.5 and 3.0 × 5.4 m) become an en-suite, a walk-in wardrobe, a baby's room and a study/guest room; the en-suite (pocket door) and the wardrobe (doorless opening) open off the bedroom, and the clothing room's hall door is gone. The outside-wall window at z 1.6–3.2 is removed; a 40 × 40 cm frosted en-suite vent and a study window (z 9.4–11.0) are added. Baby gate at the stair top. (Proposal from his 17 Nov drawing, HANDOFF §3.1.)
-- Porch strip: the left 2.5 m is an enclosed storage room and the porch's front wall is one full-length window, instead of open glass rails (proposal, HANDOFF §3.4).
+- Upper floor: the clothing room and the baby's room on paper (3.0 × 5.5 and 3.0 × 5.4 m) become an en-suite, a walk-in wardrobe, a baby's room and a study/guest room; the en-suite (pocket door) and the wardrobe (doorless opening) open off the bedroom, and the clothing room's hall door is gone. The outside-wall window at z 1.6–3.2 is removed; a 40 × 40 cm frosted en-suite vent and a study window (z 9.4–11.0) are added. Baby gate at the stair top. (From his 17 Nov drawing, published 17 Nov.)
+- Porch strip: the left 2.5 m is an enclosed storage room and the porch's front wall is one full-length window, instead of open glass rails (published 17 Nov).
 - The hall ends in a door to the balcony (Reis's note on the upper plan).
 - Doubts about reading the plan (handwritten widths, balcony door, area labels) are listed in `HANDOFF.md` §4.
 

@@ -25,13 +25,15 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 | Public tour | `b59b1dc7-6508-44b1-bab9-aca7d9fc5149` | title "Ground Floor 3D Tour", shared publicly: republish with `shared_live: "public"` and `artifact_title` |
 | Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
 | Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
-| Upper-floor proposal | `b1682337-5007-48c2-9a01-405e5885bb49` | title "Upper Floor Proposal – 17 Nov": HANDOFF §3.1 upper floor + §3.4 porch/storage, for Reis to share and decide; not the working copy. Shared publicly: republish with `shared_live: "public"` and `artifact_title` |
+| Upper-floor proposal | `b1682337-5007-48c2-9a01-405e5885bb49` | title "Upper Floor Proposal – 17 Nov": same content as the public tour since 17 Nov; he shared its link publicly, so update it only if he asks (`shared_live: "public"`, `artifact_title`) |
+
+Since 17 Nov the live pages are built from branch `tour/upper-floor-proposal`; `main` is behind until Reis merges it (see `docs/HANDOFF.md` §2).
 
 Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit on a branch → open a pull request.
 When he says publish: copy the live public page into the backup artifact, publish `build/public.html` to the public artifact, then `list_files` both to confirm the sha256.
 
 ## Checks (run from the repo root; output is only what changed)
-- `python3 tools/check.py` — furniture fit (overlaps, door swings, windows, wall cut-ins, 60 cm reachability), 17 walk tests (19 on the proposal branch), full guided-tour collision run.
+- `python3 tools/check.py` — furniture fit (overlaps, door swings, windows, wall cut-ins, 60 cm reachability), 19 walk tests (17 on `main`), full guided-tour collision run.
 - `python3 tools/check.py --accept` — record current fit findings as known (only after reviewing them).
 - `python3 tools/render.py build/x.png "modern,15,x,z,yaw,pitch,y" ...` — 1–4 shots in one image; `"doll,1,tx,tz,dist"` for a top view.
 - Walk tests live in `tools/walk.py` (`tests=[...]`); add one when a door or passage changes.
@@ -48,6 +50,6 @@ When he says publish: copy the live public page into the backup artifact, publis
 - Rooms list `rooms[]` (labels, m², dollhouse targets), tour `ROUTE` with `ST(name, m², tip, lookX, lookZ)`; every new label/tip needs an Azerbaijani entry in the `AZ` dictionary.
 
 ## Current layout (Nov 2026)
-- Ground: L-shaped sofa 3.65 m on the living back wall with a short chaise; glass display cabinet beside the TV unit; reading nook under the stairs; kitchen with oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, island 1.0×0.7 with open shelves + 2 stools, table for two 0.5×0.7; kitchen door opens inward; guest room with two single beds, small wardrobe, writing desk.
-- Upper: bedroom (4.6×4.0, top right) with a two-door wardrobe facing the door; doorless opening to a walk-in wardrobe (window on the outside wall); en-suite 3.0×2.3 at its far end (small frosted window); baby's room 3.0×5.4 at the front left; gaming room front right. A new left side from his own drawing (en-suite, walk-in wardrobe, baby's room, study/guest) is built as a separate proposal artifact and pending his decision: see `docs/HANDOFF.md` §3.1.
-- Open builder items: en-suite drain route (3–5 m run to existing pipes), en-suite extractor fan, no upstairs WC for the other rooms.
+- Ground: L-shaped sofa 3.65 m on the living back wall with a short chaise; glass display cabinet beside the TV unit; reading nook under the stairs; kitchen with oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, island 1.0×0.7 with open shelves + 2 stools, table for two 0.5×0.7; kitchen door opens inward; guest room with two single beds, small wardrobe, writing desk; porch split into an enclosed storage room (2.5 m, door from the porch) and the porch itself with a full-length front window and a bench.
+- Upper: bedroom (4.6×4.0, top right) with a two-door wardrobe facing the door and a wall shelf under a round mirror; down the left side, en-suite 3.0×2.0 (pocket door from the bedroom, bath with shower over it, frosted vent), walk-in wardrobe 3.0×3.0 (doorless opening from the bedroom), baby's room 3.0×2.9 and study/guest 3.0×2.7 (daybed); baby gate at the stair top; gaming room front right with acoustic panels.
+- Open builder items: en-suite drain route (now over the living room, about 3 m further from the downstairs bathroom), en-suite extractor fan, new study window and en-suite vent openings, solid-core gaming-room door, no upstairs WC for the other rooms.
