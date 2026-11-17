@@ -5,4 +5,5 @@ tools/fit/geo.json
 tools/fit/check.html
 __pycache__/
 *.png
+!docs/plans/*.png
 .claude/settings.local.json

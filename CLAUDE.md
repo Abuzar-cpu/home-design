@@ -4,6 +4,7 @@
 **Before you finish:** update the notes as `docs/MAINTAINING.md` says (which file, when, how), commit on a branch and open a pull request. Reis merges; never push to `main`.
 
 Interactive Three.js walkthrough of Reis's two-storey house (Baku), built from his floor-plan photos for buyers.
+The plan photos and every room's size are in `docs/ROOMS.md` (plans in `docs/plans/`).
 The published tour is one self-contained page (three.js r149 from the jsDelivr CDN, procedural textures, no assets), built from `src/`:
 - `src/index.template.html` page shell and UI markup, `src/style.css` UI styles
 - `src/js/NN-*.js` the scene by area: `0x` setup/textures/materials/language/helpers, `1x` walls/floors/exterior/stair, `20` furniture pieces, `3x` ground-floor rooms, `4x` upper-floor rooms, `5x` lighting/time of day/rooms list, `6x` player/views/input/guided tour/step lights/loop
@@ -33,6 +34,7 @@ When he says publish: copy the live public page into the backup artifact, publis
 - `python3 tools/check.py --accept` — record current fit findings as known (only after reviewing them).
 - `python3 tools/render.py build/x.png "modern,15,x,z,yaw,pitch,y" ...` — 1–4 shots in one image; `"doll,1,tx,tz,dist"` for a top view.
 - Walk tests live in `tools/walk.py` (`tests=[...]`); add one when a door or passage changes.
+- `python3 tools/rooms.py` — rewrites the room-size table in `docs/ROOMS.md` from `rooms[]`; `check.py` fails if it's stale.
 - `python3 tools/status.py` — commit plus the sha256 of the built working-copy and public pages; compare with `list_files` on the artifacts.
 - Uses Playwright with `/usr/bin/google-chrome` (swiftshader). `tools/common.py` builds `build/test.html` with local three.js (`npm install --prefix tools` if missing).
 
