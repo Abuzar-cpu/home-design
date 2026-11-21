@@ -1,16 +1,20 @@
 /* ----------------------------------------------------------- WC 1.2 x 1.5 */
+// tiles up to 1.2 m
 tiled('x', 8.8, 1, 2.2, 3.4, [], M.tileWall, 1.2, 1.2);
 tiled('z', 2.2, 1, 8.8, 10.3, [], M.tileWall, 1.2, 1.2);
 tiled('z', 3.4, -1, 8.8, 10.3, [], M.tileWall, 1.2, 1.2);
+// boxed-in cistern with a shelf on top, wall-hung toilet
 box(2.2, 3.4, 0, 1.1, 8.8, 8.95, M.tileWall);
 box(2.2, 3.4, 1.1, 1.13, 8.8, 8.97, M.counter, { cast: false });
 soft(2.62, 2.98, 0.1, 0.43, 8.95, 9.48, M.white, 0.04);
 box(2.72, 2.88, 0.95, 0.97, 8.95, 8.96, M.steel, { cast: false });
 solid(2.62, 2.98, 8.8, 9.48, 1.1);
+// small basin with tap and mirror
 soft(2.21, 2.48, 0.76, 0.87, 9.62, 10.02, M.white, 0.03);
 cyl(2.27, 0.87, 0.98, 9.82, 0.01, M.metalAccent);
 solid(2.2, 2.48, 9.62, 10.02, 0.9, 0.7);
 box(2.205, 2.215, 1.25, 1.8, 9.6, 10.04, M.mirror, { cast: false });
+// vase, toilet roll, picture and ceiling light
 vase(2.45, 1.13, 8.88, 0.16, M.ceramicAlt, true);
 cyl(3.2, 1.13, 1.23, 8.88, 0.035, M.paper, { cast: false });
 art('z', 3.4, -1, 9.05, 9.5, 1.35, 1.95, 7);

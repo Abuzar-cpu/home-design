@@ -3,7 +3,7 @@
 An interactive 3D walkthrough of a two-storey house in Baku, built with Three.js from the owner's floor plans. Walk through it in first person (WASD + mouse), switch to a dollhouse view, change the furnishing style (Modern, Scandinavian, Warm luxury, Loft), drag the time of day, switch English/Azerbaijani, or take the guided tour.
 
 - **Live tour:** https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt
-- **Source:** `src/` (page shell, styles, and the scene split by area in `src/js/`)
+- **Source:** `src/` (page shell, styles, and the scene split by area in `src/js/`); `docs/CODE.md` explains the code and how to add things
 - **Build:** `python3 tools/build.py` → `build/index.html`, a single self-contained page
 - **Plans and room sizes:** `docs/ROOMS.md`, with the original plan photos in `docs/plans/`
 - **Checks:** `python3 tools/check.py` (furniture fit, walk tests, guided-tour collisions)

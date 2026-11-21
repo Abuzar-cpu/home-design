@@ -1,4 +1,6 @@
 /* --------------------------------------------------------------- language */
+// Azerbaijani for every English string the page shows. Keys are the exact English text (room names,
+// tips, buttons, and the page's own text nodes), so a new label or tip needs an entry here.
 const AZ = {
   'Ground floor': 'Birinci mərtəbə',
   'Upper floor': 'İkinci mərtəbə',
@@ -86,6 +88,7 @@ const AZ = {
   'About 161 m² inside, over two floors': 'İki mərtəbədə təxminən 161 m² daxili sahə',
   'Plus the full-width balcony and the covered porch': 'Üstəlik bütün en boyu balkon və örtülü artırma'
 };
+// current language: saved choice, else the browser language
 let lang = 'en';
 try {
   const sv = localStorage.getItem('tour-lang');

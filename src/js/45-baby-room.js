@@ -1,4 +1,5 @@
 /* ----------------------------------------------------- baby's room 3.0 x 2.9 */
+// round rug
 cyl(1.75, 0, 0.014, 7.3, 0.85, M.rugGuest, { seg: 48, cast: false });
 (function () {
   // crib against the wardrobe wall, out of the window bay
@@ -34,10 +35,12 @@ cyl(1.75, 0, 0.014, 7.3, 0.85, M.rugGuest, { seg: 48, cast: false });
   soft(x0 + 0.03, x1 - 0.03, 0.34, 0.46, z0 + 0.03, z1 - 0.03, M.linen, 0.04);
   soft(x0 + 0.5, x1 - 0.06, 0.45, 0.5, z0 + 0.06, z1 - 0.06, M.accent2, 0.02);
   pillow(x0 + 0.2, 0.5, zc, 0.24, 0.08, 0.34, M.linen);
+  // teddy bear
   sph(1.95, 0.56, zc, 0.07, 0.07, 0.07, M.woodB);
   sph(1.95, 0.65, zc, 0.05, 0.05, 0.05, M.woodB);
   sph(1.95, 0.7, zc - 0.04, 0.02, 0.02, 0.02, M.woodB, { cast: false });
   sph(1.95, 0.7, zc + 0.04, 0.02, 0.02, 0.02, M.woodB, { cast: false });
+  // mobile hanging over the crib
   box(1.64, 1.66, 0.9, 1.75, z0 + 0.01, z0 + 0.03, W, { cast: false });
   box(1.64, 1.66, 1.74, 1.76, z0 + 0.01, zc + 0.05, W, { cast: false });
   [
@@ -76,12 +79,14 @@ legs(0.56, 1.22, 7.81, 8.47, 0.14);
 solid(0.5, 1.28, 7.75, 8.53, 0.9);
 soft(1.5, 1.95, 0.04, 0.36, 7.91, 8.35, M.cushion, 0.08);
 solid(1.5, 1.95, 7.91, 8.35, 0.42);
+// toy blocks on the rug
 [
   [1.7, 7.05, M.accent3],
   [1.95, 7.25, M.accent2],
   [1.78, 7.35, M.ceramic]
 ].forEach(q => box(q[0] - 0.06, q[0] + 0.06, 0.014, 0.134, q[1] - 0.06, q[1] + 0.06, q[2], { cast: false }));
 box(1.86, 1.98, 0.134, 0.254, 7.13, 7.25, M.accent1, { cast: false });
+// plant, curtains, ceiling lights and fill
 plant(2.6, 8.35, 0.8, 'tree');
 curtains('z', 0.4, 1, 6.4, 8.0, 5.72, 8.58);
 [
@@ -127,6 +132,7 @@ pillow(1.4, 0.62, 11.12, 0.4, 0.3, 0.12, M.cushion, { rx: 0.3 });
 soft(1.6, 2.2, 0.48, 0.52, 10.6, 11.2, M.accent1, 0.02);
 solid(0.45, 2.35, 10.55, 11.4, 0.85);
 curtains('x', 11.5, -1, 1.1, 2.7, 0.42, 3.38);
+// ceiling lights and fill
 [
   [1.9, 9.7],
   [1.9, 10.9]

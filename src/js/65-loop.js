@@ -1,4 +1,5 @@
 /* ------------------------------------------------------------------- loop */
+// Match the renderer and camera to the window size.
 function resize() {
   const w = window.innerWidth,
     h = window.innerHeight;
@@ -12,6 +13,7 @@ resize();
 let last = performance.now(),
   lastRoom = null;
 const ease = t => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+// Floor name and room name in the corner, updated as you walk.
 function hud() {
   const plv = levelOf(player.y);
   if (mode === 'walk' && !trans && plv !== actLv) applyVis(false);
@@ -62,6 +64,7 @@ function quality(raw) {
     renderer.shadowMap.needsUpdate = true;
   }
 }
+// Animation frame: move the player or the tour, update lights and the camera, render.
 function tick(now) {
   const raw = (now - last) / 1000,
     dt = Math.max(0, Math.min(0.05, raw));
@@ -107,6 +110,7 @@ function tick(now) {
   requestAnimationFrame(tick);
 }
 const langBtn = document.getElementById('langBtn');
+// Switch the page to language l ('en' or 'az') and remember it.
 function applyLang(l) {
   lang = l;
   document.documentElement.lang = l;

@@ -6,15 +6,18 @@ let mode = 'walk',
 const keys = {},
   joy = { x: 0, y: 0 };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+// Ground height outside the stair: the floor, the porch, a step of the entrance stair, or the garden.
 function groundH(x, z) {
   if (x > 0 && x < 8.6 && z > 0 && z < 11.9) return 0;
   if (x >= 0 && x < 5.7 && z >= 11.9 && z < 13.6) return 0;
   if (x >= 5.7 && x < 8.1 && z >= 11.9 && z < 13.4) return -(Math.floor((x - 5.7) / 0.3) + 1) * RISE;
   return GROUND;
 }
+// Inside the stairwell opening of the upper floor.
 function inVoid(x, z) {
   return x > 5.2 && x < 8.2 && z > 4.6 && z < 7.3;
 }
+// Tread height of the stair at (x, z): first flight, winders, second flight.
 function stairH(x, z) {
   // tread height under a point in the stairwell
   if (!inVoid(x, z)) return null;
@@ -34,6 +37,7 @@ function floorH(x, z, cy) {
   return best;
 }
 const levelOf = y => (y > 1.55 ? 2 : 1);
+// Push the walker at (x, z), feet at fy, out of every collider it overlaps (3 passes).
 function resolve(x, z, fy) {
   for (let it = 0; it < 3; it++)
     for (let i = 0; i < colliders.length; i++) {
@@ -63,6 +67,7 @@ function resolve(x, z, fy) {
     }
   return [x, z];
 }
+// Move the walker for dt seconds from the keys / joystick: walk, collide, follow stairs and floors.
 function stepPlayer(dt) {
   let f = (keys.KeyW || keys.ArrowUp ? 1 : 0) - (keys.KeyS || keys.ArrowDown ? 1 : 0) - joy.y;
   let s = (keys.KeyD || keys.ArrowRight ? 1 : 0) - (keys.KeyA || keys.ArrowLeft ? 1 : 0) + joy.x;

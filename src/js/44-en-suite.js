@@ -50,6 +50,7 @@ soft(1.45, 1.95, 0.7, 1.32, 2.31, 2.36, M.towel, 0.02, { cast: false });
 soft(1.05, 1.85, 0.004, 0.022, 1.25, 1.7, M.mat, 0.008, { cast: false });
 box(2.3, 2.55, CY + H - 0.016, CY + H - 0.002, 1.85, 2.1, M.white, { parent: CEILG, cast: false });
 box(2.33, 2.52, CY + H - 0.02, CY + H - 0.016, 1.88, 2.07, M.kick, { parent: CEILG, cast: false });
+// ceiling lights and fill
 [
   [1.4, 1.5],
   [2.7, 1.7]

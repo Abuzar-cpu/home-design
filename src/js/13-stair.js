@@ -7,6 +7,7 @@ for (let i = 1; i <= 7; i++) {
   box(x0, x1, 0, i * SH - 0.035, 4.6, 5.8, M.wall);
   box(x0 - 0.02, x1, i * SH - 0.035, i * SH, 4.6, 5.82, M.woodA);
 }
+// winders: three steps fanning round the turning point (plan polygons)
 [
   [
     [7, 5.95],
@@ -35,12 +36,14 @@ for (let i = 1; i <= 7; i++) {
   prism(pts, 0, top - 0.035, M.wall);
   prism(pts, top - 0.035, top, M.woodA);
 });
+// second flight: six steps back toward the hall
 for (let j = 12; j <= 17; j++) {
   const x1 = 7.0 - (j - 12) * 0.3,
     x0 = x1 - 0.3;
   box(x0, x1, j * SH - 0.26, j * SH - 0.035, 6.1, 7.3, M.wall);
   box(x0, x1 + 0.02, j * SH - 0.035, j * SH, 6.08, 7.3, M.woodA);
 }
+// handrails, balusters on both flights and the newel post at the turn
 slant(5.2, SH + 0.92, 7.0, 8 * SH + 0.92, 5.83, M.metal);
 slant(7.0, 11 * SH + 0.92, 5.2, 18 * SH + 0.92, 6.07, M.metal);
 for (let i = 1; i <= 7; i++) {

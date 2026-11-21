@@ -15,12 +15,14 @@ window.addEventListener('blur', () => {
   for (const k in keys) keys[k] = false;
 });
 const locked = () => document.pointerLockElement === canvas;
+// Capture the mouse for looking around (desktop walk view).
 function tryLock() {
   try {
     const p = canvas.requestPointerLock();
     if (p && p.catch) p.catch(() => {});
   } catch (e) {}
 }
+// Turn the walker by a mouse or touch drag of dx, dy pixels.
 function look(dx, dy, s) {
   if (tour) return;
   spin = false;
@@ -72,6 +74,7 @@ const ray = new THREE.Raycaster(),
   ndc = new THREE.Vector2(),
   hit = new THREE.Vector3(),
   floorPl = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+// End of a touch or click: a short tap in the dollhouse jumps to the room under it.
 function pointerEnd(e) {
   const had = ptrs.delete(e.pointerId);
   pinch = 0;

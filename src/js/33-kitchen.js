@@ -37,6 +37,7 @@
   [0.46, 1.15, 1.62].forEach(y => box(7.596, 7.6, y, y + 0.004, 8.2, 8.8, M.kick, nc));
   soft(7.535, 7.56, 0.72, 1.07, 8.36, 8.54, M.towel, 0.01, nc);
   solid(7.6, 8.2, 8.2, 8.8, 2.2);
+  // base units along the rest of the outside wall, counter and upstand
   [
     [8.8, 9.3],
     [9.3, 9.8],
@@ -109,12 +110,14 @@
     for (let i = 0; i < 6; i++)
       leaf(x, 0.99, 11.62, i * 1.1, 0.6 + (i % 3) * 0.25, 0.12, 0.05, i % 2 ? M.plant : M.plantDark);
   });
+  // coffee machine, kettle and two bottles on the stair-wall run
   box(6.5, 6.78, 0.9, 1.22, 7.6, 7.84, M.kick);
   box(6.57, 6.71, 0.98, 1.0, 7.84, 7.88, M.steel, nc);
   cyl(7.1, 0.9, 1.12, 7.75, 0.075, M.steel, { rTop: 0.06 });
   cyl(7.1, 1.12, 1.15, 7.75, 0.02, M.kick, nc);
   cyl(7.5, 0.9, 1.06, 7.7, 0.03, M.glassObj, nc);
   cyl(7.62, 0.9, 1.1, 7.72, 0.028, M.glassDark, nc);
+  // utensil pot and chopping boards beside the hob
   cyl(8.02, 0.9, 1.04, 10.0, 0.055, M.ceramic);
   [
     [8.0, 9.98],
@@ -133,6 +136,7 @@
   [0.38, 0.62].forEach(y => box(6.4, 6.8, y, y + 0.025, 8.79, 9.72, M.woodB, nc));
   box(6.4, 6.8, 0.13, 0.86, 9.245, 9.265, M.woodB, nc);
   box(6.785, 6.795, 0.845, 0.855, 8.82, 9.7, M.led, nc);
+  // on the open shelves: towels, a pot, plates and bowls, cookbooks and jars
   soft(6.46, 6.76, 0.13, 0.34, 8.84, 9.2, M.towel, 0.02, nc);
   cyl(6.6, 0.13, 0.31, 9.5, 0.14, M.steel, nc);
   cyl(6.6, 0.31, 0.32, 9.5, 0.145, M.steel, nc);
@@ -150,6 +154,7 @@
     cyl(6.6, 0.645, 0.7 + i * 0.02, z, 0.042, [M.accent1, M.paper, M.woodB][i], nc);
     cyl(6.6, 0.79, 0.805, z, 0.05, M.woodB, nc);
   });
+  // fruit bowl on the island
   cyl(6.48, 0.9, 1.0, 9.05, 0.12, M.ceramic, { rTop: 0.17 });
   [
     [6.43, 9.02, M.accent2],
@@ -158,6 +163,7 @@
     [6.5, 9.05, M.accent3]
   ].forEach(q => sph(q[0], 1.03, q[1], 0.045, 0.045, 0.045, q[2], nc));
   solid(6.1, 6.82, 8.75, 9.75, 0.9);
+  // two stools on the hall side of the island
   [9.0, 9.5].forEach(z => {
     cyl(6.02, 0, 0.02, z, 0.18, M.metal, nc);
     cyl(6.02, 0.02, 0.6, z, 0.022, M.metal, nc);
@@ -170,6 +176,7 @@
   [6.14, 6.76].forEach(x => cyl(x, 0, 0.71, 10.225, 0.018, M.metal, nc));
   chair(6.07, 9.97, 'e');
   chair(6.83, 9.97, 'w');
+  // plates, glasses and a vase on the table
   [6.27, 6.63].forEach(x => {
     cyl(x, 0.75, 0.758, 9.97, 0.1, M.ceramic, nc);
   });
@@ -188,6 +195,7 @@
     halo(6.45, 1.54, z, 0.8);
     cyl(6.45, 1.74, H, z, 0.005, M.metal, { parent: roof, cast: false });
   });
+  // picture, ceiling lights and fill
   art('z', 5.2, 1, 9.35, 10.05, 1.15, 1.42 + 0.6, 8);
   [
     [5.8, 8.3],

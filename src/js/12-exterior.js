@@ -1,8 +1,11 @@
 /* ------------------------------------------------ porch, steps, exterior */
+// porch floor: plinth down to the garden, its collider and stone paving
 box(0, 5.7, GROUND, -0.006, 11.9, 13.6, M.plinth);
 solid(0, 5.7, 11.9, 13.6, 0, GROUND);
 floorPlane(0, 5.7, 11.9, 13.6, 0, M.stoneFloor, 1.2);
+// entrance steps up the side of the porch (8 treads, 9 risers)
 for (let k = 1; k <= 8; k++) box(5.7 + (k - 1) * 0.3, 5.7 + k * 0.3, GROUND, -k * RISE, 11.9, 13.4, M.stone);
+// plinth walls under the porch
 [
   [0, 0.4, 0],
   [2.9, 3.1, 0],
@@ -13,6 +16,7 @@ wall('x', 13.4, 13.6, 0.4, 2.9, []); // storage front wall
 wall('x', 13.4, 13.6, 3.1, 5.7, [win(3.1, 5.7, 1)]); // porch: one window the full length of its front wall
 wall('z', 0, 0.2, 11.9, 13.4, []); // storage side wall
 wall('z', 2.9, 3.1, 11.9, 13.4, [door(12.05, 12.85, 'a1', -1)]); // storage / porch, door opens into the storage
+// handrail and balusters on the entrance steps
 slant(5.9, -RISE + 0.95, 8.1, GROUND + 0.95, 13.45, M.metal);
 for (let k = 0; k < 5; k++) {
   const x = 5.95 + k * 0.53;

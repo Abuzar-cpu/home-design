@@ -4,6 +4,7 @@ const softX = (cx, cy, cz, w, h, t, mat, rz) =>
     corner: 0.07,
     rz: rz
   }); // cushion standing against an east or west wall
+// rug; bed with its head on the right wall: frame, mattress, duvet, throw, headboard and pillows
 box(5.1, 8.05, 0, 0.014, 0.95, 3.85, M.rugLiving, { cast: false });
 box(6.12, 8.12, 0.12, 0.3, 1.48, 3.32, M.woodA);
 legs(6.2, 8.05, 1.55, 3.25, 0.12, M.woodA, 0.03);
@@ -18,6 +19,7 @@ softX(7.74, 0.86, 1.98, 0.5, 0.44, 0.15, M.accent1, -0.34);
 softX(7.74, 0.86, 2.82, 0.5, 0.44, 0.15, M.accent2, -0.34);
 softX(7.6, 0.78, 2.4, 0.56, 0.26, 0.13, M.accent3, -0.4);
 solid(6.1, 8.2, 1.46, 3.34, 1.3);
+// two nightstands with lamps
 [
   [0.98, 1.42],
   [3.38, 3.82]
@@ -28,8 +30,10 @@ solid(6.1, 8.2, 1.46, 3.34, 1.3);
   tableLamp(7.98, 0.52, (s[0] + s[1]) / 2, 1.0, i ? M.ceramicAlt : M.ceramic);
   solid(7.75, 8.2, s[0], s[1], 0.52);
 });
+// books and a vase on the nightstands
 bookStack(7.86, 0.52, 1.12, 2, 61);
 vase(7.86, 0.52, 3.7, 0.14, M.ceramic, true);
+// bench at the foot of the bed
 soft(5.72, 6.06, 0.36, 0.45, 1.7, 3.1, M.cushion, 0.03);
 legs(5.77, 6.01, 1.76, 3.04, 0.36, M.metal, 0.015);
 solid(5.72, 6.06, 1.7, 3.1, 0.45);
@@ -63,11 +67,13 @@ box(4.096, 4.104, 0.1, 2.18, 0.97, 0.99, M.kick, { cast: false });
   [0.99, 1.31].forEach(y => box(x - 0.005, x + 0.005, y - 0.01, y + 0.01, 1.0, 1.015, M.metalAccent, { cast: false }));
 });
 solid(3.6, 4.6, 0.4, 1.0, 2.2);
+// floor lamp, plant, curtains and pictures
 floorLamp(5.3, 0.66);
 plant(7.85, 0.68, 0.85, 'tree');
 curtains('x', 0.4, 1, 5.8, 7.4);
 art('z', 8.2, -1, 1.75, 3.05, 1.5, 2.25, 10);
 art('x', 4.4, -1, 6.7, 7.6, 1.2, 2.0, 12);
+// ceiling lights and fill
 [
   [4.6, 1.2],
   [4.6, 3.2],

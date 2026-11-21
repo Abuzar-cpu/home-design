@@ -1,4 +1,5 @@
 /* ------------------------------------------------- guest / study 3.0 x 4.0 */
+// rug between the beds
 box(0.9, 2.9, 0, 0.014, 6.0, 8.0, M.rugGuest, { cast: false });
 // two single beds, heads on the bathroom-side wall, one shared nightstand between them
 [
@@ -18,6 +19,7 @@ box(0.9, 2.9, 0, 0.014, 6.0, 8.0, M.rugGuest, { cast: false });
   pillow(c, 0.82, 8.16, 0.44, 0.42, 0.14, q[1], { rx: 0.34 });
   solid(x, x + 0.9, 6.5, 8.6, 1.2);
 });
+// shared nightstand between the beds
 box(1.69, 2.11, 0.1, 0.5, 8.17, 8.58, M.woodA);
 legs(1.74, 2.06, 8.22, 8.53, 0.1, M.metal, 0.015);
 box(1.73, 2.07, 0.3, 0.304, 8.165, 8.17, M.kick, { cast: false });
@@ -50,6 +52,7 @@ bookStack(1.92, 0.755, 4.84, 2, 33);
 box(1.35, 2.5, 1.5, 1.525, 4.6, 4.84, M.woodA);
 books(1.4, 2.05, 1.525, 4.64, 4.8, 31);
 cyl(2.28, 1.525, 1.64, 4.72, 0.06, M.ceramicAlt, { rTop: 0.08 });
+// pictures, curtains and lights
 art('x', 8.6, -1, 1.45, 2.35, 1.45, 2.1, 5);
 art('z', 3.4, -1, 6.4, 7.2, 1.2, 1.95, 6);
 curtains('z', 0.4, 1, 6.4, 8.0);

@@ -3,13 +3,13 @@
 Read this at the start of a session, after `CLAUDE.md`. It holds what is live, what is waiting on Reis, and what was already decided or rejected, so nothing gets redone or re-asked.
 Keep it current: `docs/MAINTAINING.md` says which section to update for each kind of change.
 
-Last updated: 17 Nov 2026 (four-room left side sketched).
+Last updated: 21 Nov 2026 (code refactor for readability, no visible change).
 
 ## 1. Start-of-session checklist (about 2 minutes)
 1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
-2. Tooling, if this is a fresh machine: `pip install playwright pillow`, Chrome at `/usr/bin/google-chrome` (else `playwright install chromium` and change `CHROME` in `tools/common.py`), `npm install --prefix tools` for the local three.js. Node 18+.
+2. Tooling, if this is a fresh machine: `pip install -r tools/requirements.txt` (on a Mac, into a venv: `python3 -m venv .venv && .venv/bin/pip install -r tools/requirements.txt`, then run the tools with `.venv/bin/python`). Chrome at `/usr/bin/google-chrome` or the macOS app (else set `CHROME=/path/to/chrome`). `npm install --prefix tools` for the local three.js and Prettier. Node 18+.
 3. `python3 tools/status.py`, then `list_files` on the working copy and public artifacts. The sha256 values should match §2. If they don't, the working copy was changed outside this repo: read it with `read_artifact` and tell Reis before building on top.
-4. `python3 tools/check.py` should print `fit: 0 new finding(s)`, `walk tests: 17/17 pass` (18/18 on the proposal branch) and a tour line with `0 collision frames`.
+4. `python3 tools/check.py` should print `fit: 0 new finding(s)`, `walk tests: 17/17 pass` (19/19 on the proposal branch) and a tour line with `0 collision frames`.
 5. Read **Pending** below. Answer what Reis asks; don't reopen settled items.
 
 ## 2. What is live right now
@@ -20,7 +20,7 @@ Last updated: 17 Nov 2026 (four-room left side sketched).
 | Backup | `1794941634-29a2` | "Backup 17 Nov (before the new upper floor and porch storage)": the public page before this publish, rebuilt from `main` at `66f5a41` (sha256 `c10f3833…c718fe`, same as it was live) |
 | Upper-floor proposal | `1794929937-ada5` | slug `b1682337-5007-48c2-9a01-405e5885bb49`: same content as the public tour since 17 Nov. He shared its link publicly, so it stays; update it only if he asks (republish with `shared_live: "public"` and `artifact_title` "Upper Floor Proposal – 17 Nov"). Link: https://claude.ai/artifact/Nuby8dQas9Vs2Dje5AytmN |
 
-Working copy and public are identical: nothing unpublished. **`main` is behind:** the published code is on branch `tour/upper-floor-proposal` (no pull request: on 17 Nov Reis asked for none). Start from that branch, or ask him whether to open the pull request.
+Working copy and public are identical: nothing unpublished. Since the 21 Nov refactor (branch `tools/readable-refactor`, PR into `tour/upper-floor-proposal`), the page built from `src/` is formatted differently, so its sha256 no longer matches the live pages (`f33f3010…f2bb67` working copy, `9f47e7aa…c93453b` public), though `tools/fingerprint.py` shows the scene is identical. The values match again after the next publish. **`main` is behind:** the published code is on branch `tour/upper-floor-proposal` (no pull request: on 17 Nov Reis asked for none). Start from that branch, or ask him whether to open the pull request.
 
 ## 3. Pending (waiting on Reis)
 

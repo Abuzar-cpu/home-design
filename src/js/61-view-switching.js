@@ -5,12 +5,14 @@ const P = new THREE.Vector3(),
   tmpE = new THREE.Euler(0, 0, 0, 'YXZ'),
   tgt = new THREE.Vector3(),
   upv = new THREE.Vector3();
+// Camera at the walker's eyes.
 function walkPose() {
   P.set(player.x, player.y + EYE, player.z);
   tmpE.set(player.pitch, player.yaw, 0, 'YXZ');
   Q.setFromEuler(tmpE);
   return 68;
 }
+// Camera orbiting the dollhouse (orbit.az / pol / dist around tx, tz).
 function dollPose() {
   const sp = Math.sin(orbit.pol),
     cp = Math.cos(orbit.pol),
@@ -24,6 +26,7 @@ function dollPose() {
   Q.setFromRotationMatrix(tmpM);
   return 40;
 }
+// Dollhouse distance that fits the whole floor in the window.
 function fitDoll() {
   if (orbit.zoomed) return;
   const t = Math.tan((20 * Math.PI) / 180);
@@ -54,6 +57,7 @@ function applyVis(asDoll) {
   lvlName.textContent = tr(lv === 2 ? 'Upper floor' : 'Ground floor');
   renderer.shadowMap.needsUpdate = true;
 }
+// Show floor l (1 or 2) in the dollhouse view.
 function setDollLevel(l) {
   dollLv = l;
   if (mode === 'doll') {
@@ -65,6 +69,7 @@ lvlBtn.addEventListener('click', () => {
   setDollLevel(dollLv === 2 ? 1 : 2);
   lvlBtn.blur();
 });
+// Switch between 'walk' and 'doll' with an animated camera move.
 function setMode(m) {
   if (m === mode) return;
   mode = m;
@@ -92,6 +97,7 @@ btn.addEventListener('click', () => {
   setMode(mode === 'walk' ? 'doll' : 'walk');
   btn.blur();
 });
+// Walk view at room r's spot (r.at), from a tap on its dollhouse label.
 function jumpTo(r) {
   player.x = r.at[0];
   player.z = r.at[1];

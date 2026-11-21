@@ -1,4 +1,5 @@
 /* ----------------------------------------------------- upper hall 1.4 x 6.9 */
+// runner; console table with a lamp, vase and books, two poufs under it
 box(3.92, 4.68, 0, 0.012, 6.2, 11.0, M.runner, { cast: false });
 box(4.72, 5.0, 0.78, 0.81, 9.1, 10.3, M.woodB);
 legs(4.76, 4.96, 9.15, 10.25, 0.78, M.metal, 0.012);
@@ -9,6 +10,7 @@ vase(4.86, 0.81, 10.05, 0.22, M.ceramic, true);
 bookStack(4.86, 0.81, 9.68, 2, 95);
 cyl(4.86, 0.22, 0.44, 9.45, 0.1, M.woodB, { rTop: 0.12 });
 cyl(4.86, 0.22, 0.44, 9.95, 0.1, M.woodB, { rTop: 0.12 });
+// pictures
 art('z', 5.0, -1, 9.3, 10.1, 1.15, 1.95, 17);
 art('z', 3.6, 1, 7.35, 8.05, 1.2, 2.0, 18);
 art('z', 3.6, 1, 8.45, 9.15, 1.2, 2.0, 19);
@@ -26,6 +28,7 @@ art('z', 3.6, 1, 8.45, 9.15, 1.2, 2.0, 19);
     box(x - 0.008, x + 0.008, 0.06, 0.76, z - 0.008, z + 0.008, W, { cast: false });
   box(x - 0.025, x + 0.025, 0.68, 0.76, (z0 + z1) / 2 - 0.05, (z0 + z1) / 2 + 0.05, M.metalAccent, { cast: false });
 })();
+// plants, ceiling lights and fill
 plant(4.82, 11.15, 0.8, 'snake');
 plant(4.82, 8.85, 0.75, 'bush');
 [5.6, 7.6, 9.4, 11.0].forEach(z => downlight(4.3, z));

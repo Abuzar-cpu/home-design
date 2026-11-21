@@ -1,4 +1,5 @@
 /* ------------------------------------------------------ furniture pieces */
+// Four square legs under the corners of x0..x1 by z0..z1, from y0 (default 0) up to h; t = half-thickness (default 2 cm).
 function legs(x0, x1, z0, z1, h, mat, t, y0) {
   t = t || 0.02;
   [
@@ -33,6 +34,7 @@ function chair(cx, cz, face) {
     box(x - 0.016, x + 0.016, 0, back ? 0.6 : 0.42, z - 0.016, z + 0.016, M.chairFrame, { cast: false });
   });
 }
+// One leaf from (x, y, z): heading a (radians), tilted up by tilt, L long, Wd wide.
 function leaf(x, y, z, a, tilt, L, Wd, mat, parent) {
   const m = new THREE.Mesh(sphG, mat);
   m.scale.set(L / 2, 0.008 + L * 0.03, Wd / 2);
@@ -42,6 +44,8 @@ function leaf(x, y, z, a, tilt, L, Wd, mat, parent) {
   m.castShadow = true;
   (parent || PARENT).add(m);
 }
+// Potted plant at (x, z) standing on y0 (default 0), scaled by k. kind: 'tree', 'snake' or anything else for a
+// bush. Adds a collider unless noCollide.
 function plant(x, z, k, kind, y0, noCollide) {
   y0 = y0 || 0;
   const r = rng(Math.round(x * 31 + z * 17 + 5)),
@@ -110,10 +114,12 @@ function stems(x, y, z, k, n) {
     PARENT.add(g);
   }
 }
+// Vase h tall standing on y, optionally with a few stems.
 function vase(x, y, z, h, mat, withStems) {
   cyl(x, y, y + h, z, h * 0.28, mat, { rTop: h * 0.16 });
   if (withStems) stems(x, y + h * 0.9, z, h * 3.2);
 }
+// Table lamp standing on a surface at height y, scaled by k; glows at night.
 function tableLamp(x, y, z, k, baseMat) {
   cyl(x, y, y + 0.2 * k, z, 0.055 * k, baseMat || M.ceramic, { rTop: 0.035 * k });
   cyl(x, y + 0.2 * k, y + 0.3 * k, z, 0.006, M.metalAccent, { cast: false });
@@ -121,6 +127,7 @@ function tableLamp(x, y, z, k, baseMat) {
   s.receiveShadow = false;
   halo(x, y + 0.37 * k, z, 1.0 * k);
 }
+// Floor lamp at (x, z), 1.78 m, with a collider.
 function floorLamp(x, z) {
   cyl(x, 0, 0.025, z, 0.14, M.metal);
   cyl(x, 0.025, 1.5, z, 0.011, M.metal);
@@ -129,6 +136,7 @@ function floorLamp(x, z) {
   halo(x, 1.63, z, 1.5);
   solid(x - 0.14, x + 0.14, z - 0.14, z + 0.14, 1.7);
 }
+// Framed picture on a wall face (axis and face as for vpanel), a0..a1 by y0..y1; i picks the artwork.
 function art(axis, face, dir, a0, a1, y0, y1, i) {
   const f1 = face + dir * 0.028,
     mat = new THREE.MeshStandardMaterial({ roughness: 0.9, envMapIntensity: 0.25 });
@@ -139,6 +147,7 @@ function art(axis, face, dir, a0, a1, y0, y1, i) {
   p.geometry.attributes.uv.set([0, 0, 1, 0, 1, 1, 0, 1]);
   p.receiveShadow = false;
 }
+// Curtain folds either side of the window a0..a1 on a wall face, with a rail; lo..hi clip them at room corners.
 function curtains(axis, face, dir, a0, a1, lo, hi) {
   lo = lo === undefined ? -1e9 : lo;
   hi = hi === undefined ? 1e9 : hi; // fabric folds either side of a window
@@ -177,6 +186,7 @@ function books(x0, x1, y, z0, z1, seed, alongZ) {
     a += w + 0.003;
   }
 }
+// n books lying in a pile on a surface at height y.
 function bookStack(x, y, z, n, seed) {
   const r = rng(seed),
     cols = [M.accent2, M.accent3, M.paper, M.accent1];
@@ -201,11 +211,13 @@ function placeSetting(x, z, side) {
   cyl(x + 0.15, 0.765, 0.82, gz, 0.004, M.glassObj, { cast: false });
   cyl(x + 0.15, 0.82, 0.9, gz, 0.028, M.glassObj, { rTop: 0.038, cast: false });
 }
+// Recessed ceiling spot at (x, z) on the current floor (part of the ceiling group, hidden in the dollhouse).
 function downlight(x, z) {
   const d = cyl(x, CY + H - 0.012, CY + H - 0.002, z, 0.06, M.led, { parent: CEILG, cast: false });
   d.receiveShadow = false;
   halo(x, CY + H - 0.04, z, 0.5, CEILG);
 }
+// Point light that lifts a room: intensity i (scaled by time of day), reach dist (default 8 m).
 function fill(x, y, z, i, dist) {
   const l = new THREE.PointLight(0xffe6c4, i, dist || 8, 1.6);
   l.userData.base = i;

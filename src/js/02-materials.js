@@ -1,5 +1,8 @@
 /* -------------------------------------------------------------- materials */
+// Every material by name. mk() creates one; the styles in STY below recolour them in place.
 const M = {};
+// Material M[n]: colour c, roughness r, metalness m. ud (userData): texture scale s in metres, grain, map,
+// bump and bs (bump scale), env (reflection strength).
 function mk(n, c, r, m, ud) {
   const mat = new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m || 0 });
   mat.userData = Object.assign({ r: r, m: m || 0, env: 0.4 }, ud || {});
@@ -69,6 +72,9 @@ M.glow.emissiveIntensity = 1.35;
 mk('slat', 0xffffff, 0.7, 0, { map: 'slat' });
 ['rugLiving', 'rugDining', 'rugGuest', 'runner'].forEach(n => mk(n, 0xffffff, 1));
 
+// The four interior styles. For each: hash = its name in the URL (#modern ...), fill = colour of the room
+// fill lights, exp = exposure, and m = per-material overrides { name: [colour, { map: texture name, ... }] }
+// applied by applyStyle(). Pieces that only exist in one style go in SG.<style> (00-setup.js).
 const STY = {
   modern: {
     hash: 'modern',
@@ -257,6 +263,7 @@ const haloMat = new THREE.SpriteMaterial({
   opacity: 0,
   fog: false
 });
+// Soft glow sprite at (x, y, z), sc wide: shown around lamps at night.
 function halo(x, y, z, sc, parent) {
   const sp = new THREE.Sprite(haloMat);
   sp.scale.set(sc, sc, 1);
@@ -265,6 +272,7 @@ function halo(x, y, z, sc, parent) {
 }
 let sunReady = false;
 let style = null;
+// Switch to style k: recolour every material, swap textures, show that style's SG group.
 function applyStyle(k) {
   if (!STY[k] || k === style) return;
   style = k;

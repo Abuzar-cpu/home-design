@@ -30,6 +30,7 @@ const smooth = (a, b, x) => {
     return t * t * (3 - 2 * t);
   },
   mix = (a, b, t) => a + (b - a) * t;
+// Sky gradient, sun and ambient colours at key times of day; applyTime() blends between them.
 const SKY = {
   day: [
     [95, 155, 214],
@@ -77,6 +78,7 @@ let timeCur = 15,
 const todOut = document.getElementById('todOut'),
   tod = document.getElementById('tod'),
   rgb = c => 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+// Set sun position, sky, light colours and lamp brightness for the time on the slider (timeCur, hours).
 function applyTime() {
   const t = timeCur,
     a = ((t - 6) / 13.5) * Math.PI,

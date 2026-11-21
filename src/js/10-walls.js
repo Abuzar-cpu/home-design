@@ -1,5 +1,6 @@
 /* ------------------------------------------------- walls, doors, windows */
-function windowUnit(axis, t0, t1, p, y0, parent, ghost) {
+// Frame, glass, sill and reveal for one window op (from win()) in a wall. Called by wall().
+function windowUnit(axis, t0, t1, p, y0, parent) {
   const c = p.out < 0 ? t0 + 0.12 : t1 - 0.12,
     d = 0.035,
     fw = 0.05,
@@ -16,16 +17,17 @@ function windowUnit(axis, t0, t1, p, y0, parent, ghost) {
   bar(s, s + fw, b, t);
   bar(e - fw, e, b, t);
   if (e - s > 1.2) bar((s + e) / 2 - fw / 2, (s + e) / 2 + fw / 2, b, t);
-  const gm = ghost ? M.glassDark : p.frost ? M.glassFrost : M.glass,
+  const gm = p.frost ? M.glassFrost : M.glass,
     go = { parent, cast: false, recv: false };
   if (axis === 'x') box(s + fw, e - fw, b + fw, t - fw, c - 0.006, c + 0.006, gm, go);
   else box(c - 0.006, c + 0.006, b + fw, t - fw, s + fw, e - fw, gm, go);
-  if (!ghost && p.sill > 0) {
+  if (p.sill > 0) {
     const inner = p.out < 0 ? t1 + 0.03 : t0 - 0.03;
     if (axis === 'x') box(s - 0.02, e + 0.02, b, b + 0.025, c, inner, M.trim, { parent });
     else box(c, inner, b, b + 0.025, s - 0.02, e + 0.02, M.trim, { parent });
   }
 }
+// Door or opening lining (jambs and head) for an op in a wall. Called by wall() and doorUnit().
 function lining(axis, t0, t1, p, parent, mat) {
   const j = 0.03,
     e = 0.015,
@@ -38,6 +40,7 @@ function lining(axis, t0, t1, p, parent, mat) {
   mk2(p.a1 - j, p.a1, 0, hd);
   mk2(p.a0, p.a1, hd - j, hd);
 }
+// Door leaf, handle and lining for one door op (from door()). Called by wall().
 function doorUnit(axis, t0, t1, p, parent) {
   lining(axis, t0, t1, p, parent, p.front ? M.winFrame : M.trim);
   if (p.bifold) {
@@ -78,7 +81,10 @@ function doorUnit(axis, t0, t1, p, parent) {
     else box(hf - 0.06, hf + 0.06, 1.0, 1.03, s, s + 0.03, M.metalAccent, { parent, cast: false });
   });
 }
-// axis 'x': wall runs along x and is t0..t1 thick in z. axis 'z': runs along z, t0..t1 thick in x.
+// A wall from a0 to a1 with its openings. axis 'x': runs along x and is t0..t1 thick in z.
+// axis 'z': runs along z, t0..t1 thick in x. ops: win(), door() and cased openings (below).
+// o: { y0: base height, parent }.
+// Exterior walls are 0.4 m thick, interior 0.2 m.
 function wall(axis, t0, t1, a0, a1, ops, o) {
   o = o || {};
   const y0 = o.y0 || 0,
@@ -89,17 +95,21 @@ function wall(axis, t0, t1, a0, a1, ops, o) {
       X1 = axis === 'x' ? q[1] : t1,
       Z0 = axis === 'x' ? t0 : q[0],
       Z1 = axis === 'x' ? t1 : q[1];
-    box(X0, X1, y0 + q[2], y0 + q[3], Z0, Z1, M.wall, { parent, solid: !o.ghost });
-    if (q[2] === 0 && !o.ghost)
-      box(X0 - 0.012, X1 + 0.012, 0, 0.08, Z0 - 0.012, Z1 + 0.012, M.trim, { parent, cast: false });
+    box(X0, X1, y0 + q[2], y0 + q[3], Z0, Z1, M.wall, { parent, solid: true });
+    if (q[2] === 0) box(X0 - 0.012, X1 + 0.012, 0, 0.08, Z0 - 0.012, Z1 + 0.012, M.trim, { parent, cast: false });
   });
   (ops || []).forEach(p => {
-    if (p.kind === 'window') windowUnit(axis, t0, t1, p, y0, parent, o.ghost);
+    if (p.kind === 'window') windowUnit(axis, t0, t1, p, y0, parent);
     else if (p.kind === 'door') doorUnit(axis, t0, t1, p, parent);
     else if (p.kind === 'cased') lining(axis, t0, t1, p, parent, M.trim);
   });
 }
+// Window op for wall(): a0..a1 along the wall, out = side the outside is on (-1 toward t0, +1 toward t1).
+// extra: { sill (default 0.9), head (default 2.3), frost: frosted glass }.
 const win = (a0, a1, out, extra) => Object.assign({ a0, a1, sill: 0.9, head: 2.3, kind: 'window', out }, extra || {});
+// Door op for wall(): a0..a1 along the wall, hinge = 'a0' or 'a1' end, swing = side the leaf opens into
+// (-1 toward t0, +1 toward t1). extra: { head (default 2.1), front: entrance door, glass, bifold }.
+// A doorless opening is { a0, a1, sill: 0, head, kind: 'cased' }.
 const door = (a0, a1, hinge, swing, extra) =>
   Object.assign({ a0, a1, sill: 0, head: 2.1, kind: 'door', hinge, swing }, extra || {});
 

@@ -1,6 +1,7 @@
 /* ----------------------------------------------- walk-in wardrobe 3.0 x 3.0 */
+// Open wardrobe run a0..a1 along a wall at back (axis as for wall()), facing dir (+1 or -1): hanging rail,
+// shelves every third bay, shoe ledge and boxes on top; seed varies the clothes.
 function wardrobe(axis, a0, a1, back, dir, seed) {
-  // open wardrobe run with a hanging rail, shelves and shoe ledge
   const dp = 0.56,
     B = (A0, A1, y0, y1, d0, d1, m, o) =>
       axis === 'x'
@@ -63,9 +64,11 @@ function wardrobe(axis, a0, a1, back, dir, seed) {
 // walk-in wardrobe between the en-suite and the baby's room, off the bedroom through a doorless opening: no window, no island
 wardrobe('z', 2.55, 5.45, 0.4, 1, 71);
 wardrobe('z', 3.5, 5.45, 3.4, -1, 72);
+// runner and a full-length mirror on the end wall
 box(1.25, 2.55, 0, 0.012, 2.8, 5.25, M.runner, { cast: false });
 box(1.5, 2.3, 0.05, 2.05, 5.47, 5.5, M.frameArt, { cast: false });
 box(1.54, 2.26, 0.09, 2.01, 5.462, 5.47, M.mirror, { cast: false });
+// ceiling lights and fill
 [
   [1.9, 3.3],
   [1.9, 4.7]

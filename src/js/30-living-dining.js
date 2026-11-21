@@ -1,4 +1,5 @@
 /* ----------------------------------------------- living + dining 7.8 x 4.0 */
+// rug under the sofa and coffee table
 box(0.7, 3.75, 0, 0.014, 1.1, 3.8, M.rugLiving, { cast: false });
 // L-shaped sofa: 3.65 m along the back wall with a short chaise end on the dining side
 soft(0.55, 4.2, 0.13, 0.44, 0.46, 1.42, M.sofa, 0.04);
@@ -78,6 +79,7 @@ box(1.46, 2.54, 0.1, 0.125, 1.96, 2.44, M.woodA, { parent: SG.loft, cast: false 
   box(q[0] - 0.02, q[0] + 0.02, 0, 0.375, q[1] - 0.02, q[1] + 0.02, M.metal, { parent: SG.loft, cast: false })
 );
 solid(1.4, 2.6, 1.9, 2.5, 0.42);
+// tray, candle, vase and books on the coffee table
 box(2.01, 2.31, 0.42, 0.432, 2.07, 2.33, M.metalAccent, { cast: false });
 cyl(2.08, 0.432, 0.52, 2.15, 0.035, M.paper, { cast: false });
 cyl(2.08, 0.52, 0.535, 2.15, 0.003, M.kick, { cast: false });
@@ -143,11 +145,13 @@ cyl(2.78, 0.646, 0.72, 4.2, 0.05, M.ceramicAlt, { rTop: 0.03 });
   cyl(3.15, 1.83, 1.93, 4.16, 0.045, M.metalAccent, { cast: false });
   solid(x0, x1, z0, z1, H);
 })();
+// pictures over the sofa, plant in the corner, curtains at the side window
 art('x', 0.4, 1, 1.25, 2.1, 1.22, 2.06, 0);
 art('x', 0.4, 1, 2.3, 3.15, 1.22, 2.06, 1);
 plant(4.95, 0.85, 0.9, 'tree');
 curtains('z', 0.4, 1, 1.6, 3.2);
 // dining
+// dining table for six: rug, top, legs, chairs and place settings
 box(5.0, 7.8, 0, 0.014, 1.25, 3.35, M.rugDining, { cast: false });
 soft(5.5, 7.3, 0.715, 0.76, 1.85, 2.75, M.woodB, 0.012, { corner: 0.03 });
 [
@@ -163,6 +167,7 @@ soft(5.5, 7.3, 0.715, 0.76, 1.85, 2.75, M.woodB, 0.012, { corner: 0.03 });
   placeSetting(x, 2.54, 1);
 });
 solid(5.5, 7.3, 1.4, 3.2, 0.86);
+// table runner, vase and two candles
 soft(5.65, 7.15, 0.76, 0.766, 2.24, 2.36, M.curtain, 0.003, { cast: false });
 vase(6.4, 0.766, 2.3, 0.24, M.ceramic, true);
 [6.12, 6.68].forEach(x => {
@@ -220,6 +225,7 @@ cyl(6.5, 0.926, 0.96, 4.2, 0.09, M.ceramicAlt, { rTop: 0.12 });
 art('x', 4.4, -1, 6.05, 6.95, 1.2, 2.05, 2);
 plant(7.82, 0.82, 1.15, 'snake');
 curtains('x', 0.4, 1, 5.8, 7.4);
+// ceiling lights and room fill
 [
   [1.6, 1.5],
   [1.6, 3.3],

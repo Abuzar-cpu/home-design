@@ -1,4 +1,5 @@
 /* --------------------------------------------------------------- textures */
+// Seeded random numbers in 0..1, so every procedural texture and prop comes out the same on every load.
 function rng(seed) {
   let s = seed >>> 0;
   return function () {
@@ -8,6 +9,7 @@ function rng(seed) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+// Canvas texture w x h px drawn by draw(g, w, h); clamp = no repeat (gradients, sprites).
 function tex(w, h, draw, clamp) {
   const c = document.createElement('canvas');
   c.width = w;
@@ -19,6 +21,7 @@ function tex(w, h, draw, clamp) {
   t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
   return t;
 }
+// n soft blotches of random size on a texture canvas (stone, plaster, fabric variation).
 function clouds(g, r, w, h, n, rmin, rmax, a) {
   for (let k = 0; k < n; k++) {
     const x = r() * w,
@@ -42,6 +45,7 @@ function veinPath(g, pts) {
   for (let i = 1; i < pts.length - 1; i++)
     g.quadraticCurveTo(pts[i][0], pts[i][1], (pts[i][0] + pts[i + 1][0]) / 2, (pts[i][1] + pts[i + 1][1]) / 2);
 }
+// n marble veins in the colours cols.
 function veins(g, r, w, h, n, cols, wmax) {
   for (let i = 0; i < n; i++) {
     const pts = [];
@@ -189,6 +193,7 @@ function marble(o) {
     veins(g, r, w, h, o.veins, o.cols, o.wmax);
   });
 }
+// terrazzo: chips of stone in a cement ground.
 function terrazzo(o) {
   return tex(1024, 1024, (g, w, h) => {
     const r = rng(o.seed);
@@ -223,6 +228,7 @@ function terrazzo(o) {
     g.globalAlpha = 1;
   });
 }
+// Rug pattern for a style (modern, scandi, lux, loft) and room kind; T('rug_<style>_<kind>') caches it.
 function rugTex(style, kind) {
   const P = {
     modern: {
@@ -361,6 +367,7 @@ function rugTex(style, kind) {
   );
 }
 const artCache = {};
+// Generated abstract artwork i, in the palette of a style (pictures hung with art()).
 function artTex(style, i) {
   const key = style + i;
   if (artCache[key]) return artCache[key];
@@ -449,6 +456,7 @@ function artTex(style, i) {
     true
   ));
 }
+// Texture generators by name, built on first use through T(name). Each comment gives its real-world scale.
 const GEN = {
   // exposed brick, 1024 px = 1.2 m: 240 mm module, 75 mm courses
   brick: () => {
@@ -610,6 +618,7 @@ const GEN = {
     })
 };
 const TX = {};
+// The texture called n, generated once (GEN[n] or a rug), then shared.
 function T(n) {
   if (!TX[n]) TX[n] = n.indexOf('rug_') === 0 ? rugTex(n.split('_')[1], n.split('_')[2]) : GEN[n]();
   return TX[n];

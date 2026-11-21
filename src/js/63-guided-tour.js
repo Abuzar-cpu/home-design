@@ -11,6 +11,7 @@ const CHORDS = [
   ],
   BELLS = [72, 74, 76, 79, 81, 84],
   hz = m => 440 * Math.pow(2, (m - 69) / 12);
+// One synthesised note: frequency f at time t, with attack and release, for the tour music.
 function tone(f, t, dur, type, peak, att, rel) {
   const c = music.ctx,
     o = c.createOscillator(),
@@ -26,6 +27,7 @@ function tone(f, t, dur, type, peak, att, rel) {
   o.start(t);
   o.stop(t + dur + 0.05);
 }
+// Queue the next bars of the generated tour music.
 function musicSched() {
   const c = music.ctx;
   if (!c || !music.on) return;
@@ -197,6 +199,7 @@ let tour = null,
   cardTimer = 0;
 const STOP_T = 12; // seconds at each stop: 1.5 to face the view, about 10 for the full turn
 let cardArgs = null;
+// Room card during the tour: name, area and tip (in the current language).
 function showCard(n, s2, tip) {
   cardArgs = [n, s2, tip];
   tcN.textContent = tr(n);
@@ -204,6 +207,7 @@ function showCard(n, s2, tip) {
   tcT.textContent = tr(tip);
   tcard.classList.add('show');
 }
+// Start the guided tour from the front yard (ROUTE), with music.
 function startTour() {
   if (document.pointerLockElement) document.exitPointerLock();
   clearTimeout(cardTimer);
@@ -221,6 +225,7 @@ function startTour() {
   else applyVis(false);
   musicStart();
 }
+// Stop the tour; done = it reached the end (then it ends in the dollhouse view).
 function endTour(done) {
   if (!tour) return;
   tour = null;
@@ -242,6 +247,7 @@ function endTour(done) {
     }, 12000);
   } else musicStop();
 }
+// Advance the tour by dt seconds: walk the route, pause and turn at each stop.
 function tourStep(dt) {
   const T = tour,
     turn = (want, rate) => {

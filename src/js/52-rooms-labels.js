@@ -1,4 +1,7 @@
 /* ------------------------------------------------------ rooms and labels */
+// Every room: n = name (also its AZ key), d = size text, lv: 2 on the upper floor, x0..x1 / z0..z1 its
+// extent (the hud shows the room you stand in, tools/rooms.py writes docs/ROOMS.md from these),
+// at = [x, z, yaw] where tapping its dollhouse label puts you, lw = label width.
 const rooms = [
   {
     n: 'Living + dining',
@@ -138,6 +141,7 @@ const rooms = [
     lw: 2.4
   }
 ];
+// The room containing (x, z) on floor lv, or undefined.
 const roomAt = (x, z, lv) => rooms.find(r => (r.lv || 1) === lv && x >= r.x0 && x < r.x1 && z >= r.z0 && z < r.z1);
 rooms.forEach(r => {
   const c = document.createElement('canvas');

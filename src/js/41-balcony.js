@@ -1,4 +1,5 @@
 /* ------------------------------------------------------- balcony furniture */
+// lounge chair (a sofa when wide): frame, back, arms, seat and back cushions, a pillow
 function lounge(x0, x1, z0, z1) {
   box(x0, x1, 0.22, 0.27, z0, z1, M.woodA);
   legs(x0 + 0.04, x1 - 0.04, z0 + 0.04, z1 - 0.04, 0.22, M.woodA, 0.025);
@@ -9,6 +10,7 @@ function lounge(x0, x1, z0, z1) {
   soft(x0 + 0.06, x1 - 0.06, 0.36, 0.7, z0 + 0.05, z0 + 0.17, M.cushion, 0.05);
   pillow((x0 + x1) / 2, 0.52, z0 + 0.25, Math.min(0.34, x1 - x0 - 0.2), 0.3, 0.11, M.accent1, { rx: -0.3 });
 }
+// two lounge chairs with a round side table between them
 lounge(0.95, 1.62, 11.95, 12.65);
 lounge(2.08, 2.75, 11.95, 12.65);
 cyl(1.85, 0.4, 0.425, 12.3, 0.2, M.counter, { seg: 28 });
@@ -16,10 +18,12 @@ cyl(1.85, 0, 0.4, 12.3, 0.02, M.metal);
 cyl(1.85, 0, 0.02, 12.3, 0.13, M.metal);
 vase(1.85, 0.425, 12.3, 0.16, M.ceramicAlt, true);
 solid(0.95, 2.75, 11.95, 12.65, 0.7);
+// lounge sofa on the right
 lounge(5.7, 7.5, 11.95, 12.75);
 pillow(6.1, 0.52, 12.22, 0.34, 0.3, 0.11, M.accent2, { rx: -0.3 });
 pillow(7.1, 0.52, 12.22, 0.34, 0.3, 0.11, M.accent3, { rx: -0.3 });
 solid(5.7, 7.5, 11.95, 12.75, 0.7);
+// plants and a floor lantern
 plant(0.45, 12.25, 1.1, 'tree');
 plant(8.12, 12.25, 1.0, 'snake');
 plant(4.95, 12.2, 0.8, 'bush');

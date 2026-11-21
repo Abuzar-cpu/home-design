@@ -51,8 +51,8 @@ window.__chk = { colliders, DOORS, OPENS, WINS };
     DOORS.push({ axis, t0, t1, a0: p.a0, a1: p.a1, hinge: p.hinge, swing: p.swing, Y: YOFF, front: !!p.front, glass: !!p.glass, bifold: !!p.bifold });
     return door0.apply(this, arguments);
   };
-  windowUnit = function (axis, t0, t1, p, y0, parent, ghost) {
-    if (!ghost) WINS.push({ axis, t0, t1, a0: p.a0, a1: p.a1, sill: p.sill, head: p.head, out: p.out, Y: YOFF });
+  windowUnit = function (axis, t0, t1, p) {
+    WINS.push({ axis, t0, t1, a0: p.a0, a1: p.a1, sill: p.sill, head: p.head, out: p.out, Y: YOFF });
     return win0.apply(this, arguments);
   };
   lining = function (axis, t0, t1, p) {
