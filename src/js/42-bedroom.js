@@ -1,0 +1,77 @@
+/* -------------------------------------------------------- bedroom 4.6 x 4.0 */
+const softX = (cx, cy, cz, w, h, t, mat, rz) =>
+  soft(cx - t / 2, cx + t / 2, cy - h / 2, cy + h / 2, cz - w / 2, cz + w / 2, mat, t / 2 - 0.004, {
+    corner: 0.07,
+    rz: rz
+  }); // cushion standing against an east or west wall
+box(5.1, 8.05, 0, 0.014, 0.95, 3.85, M.rugLiving, { cast: false });
+box(6.12, 8.12, 0.12, 0.3, 1.48, 3.32, M.woodA);
+legs(6.2, 8.05, 1.55, 3.25, 0.12, M.woodA, 0.03);
+soft(6.15, 8.1, 0.28, 0.52, 1.5, 3.3, M.linen, 0.05);
+soft(6.13, 7.5, 0.46, 0.64, 1.46, 3.34, M.linen, 0.06);
+soft(7.32, 7.54, 0.62, 0.685, 1.46, 3.34, M.linen, 0.03);
+soft(6.1, 6.7, 0.62, 0.69, 1.44, 3.36, M.accent3, 0.03);
+soft(8.08, 8.2, 0.1, 1.3, 1.3, 3.5, M.headboard, 0.05);
+softX(7.92, 0.9, 1.95, 0.7, 0.44, 0.18, M.linen, -0.28);
+softX(7.92, 0.9, 2.85, 0.7, 0.44, 0.18, M.linen, -0.28);
+softX(7.74, 0.86, 1.98, 0.5, 0.44, 0.15, M.accent1, -0.34);
+softX(7.74, 0.86, 2.82, 0.5, 0.44, 0.15, M.accent2, -0.34);
+softX(7.6, 0.78, 2.4, 0.56, 0.26, 0.13, M.accent3, -0.4);
+solid(6.1, 8.2, 1.46, 3.34, 1.3);
+[
+  [0.98, 1.42],
+  [3.38, 3.82]
+].forEach((s, i) => {
+  box(7.75, 8.2, 0.1, 0.52, s[0], s[1], M.woodA);
+  legs(7.8, 8.15, s[0] + 0.05, s[1] - 0.05, 0.1, M.metal, 0.015);
+  box(7.745, 7.75, 0.3, 0.304, s[0] + 0.04, s[1] - 0.04, M.kick, { cast: false });
+  tableLamp(7.98, 0.52, (s[0] + s[1]) / 2, 1.0, i ? M.ceramicAlt : M.ceramic);
+  solid(7.75, 8.2, s[0], s[1], 0.52);
+});
+bookStack(7.86, 0.52, 1.12, 2, 61);
+vase(7.86, 0.52, 3.7, 0.14, M.ceramic, true);
+soft(5.72, 6.06, 0.36, 0.45, 1.7, 3.1, M.cushion, 0.03);
+legs(5.77, 6.01, 1.76, 3.04, 0.36, M.metal, 0.015);
+solid(5.72, 6.06, 1.7, 3.1, 0.45);
+// round mirror over a 20 cm wall shelf on the front wall beside the door (a full dresser here left only 0.6 m to reach the far side of the bed)
+box(4.95, 5.75, 0.76, 0.8, 4.2, 4.4, M.woodA);
+box(5.0, 5.04, 0.62, 0.76, 4.36, 4.4, M.metal, { cast: false });
+box(5.66, 5.7, 0.62, 0.76, 4.36, 4.4, M.metal, { cast: false });
+solid(4.95, 5.75, 4.2, 4.4, 0.8, 0.62);
+tableLamp(5.08, 0.8, 4.3, 0.75, M.ceramicAlt);
+bookStack(5.6, 0.8, 4.3, 2, 62);
+(function () {
+  const mm = new THREE.Mesh(new THREE.CircleGeometry(0.36, 40), M.mirror);
+  mm.rotation.y = Math.PI;
+  mm.position.set(5.35, 1.5, 4.39);
+  upG.add(mm);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.365, 0.014, 8, 48), M.metal);
+  ring.rotation.y = Math.PI;
+  ring.position.set(5.35, 1.5, 4.388);
+  upG.add(ring);
+})();
+// two-door wardrobe on the back wall, facing the bedroom door (1.0 m wide, 0.6 m deep, 2.2 m tall)
+box(3.6, 4.6, 0.08, 2.2, 0.4, 0.98, M.woodA);
+box(3.64, 4.56, 0, 0.08, 0.42, 0.94, M.kick, { cast: false });
+[
+  [3.605, 4.096],
+  [4.104, 4.595]
+].forEach(d => box(d[0], d[1], 0.1, 2.18, 0.98, 1.0, M.woodA));
+box(4.096, 4.104, 0.1, 2.18, 0.97, 0.99, M.kick, { cast: false });
+[4.06, 4.14].forEach(x => {
+  box(x - 0.007, x + 0.007, 0.95, 1.35, 1.0, 1.025, M.metalAccent, { cast: false });
+  [0.99, 1.31].forEach(y => box(x - 0.005, x + 0.005, y - 0.01, y + 0.01, 1.0, 1.015, M.metalAccent, { cast: false }));
+});
+solid(3.6, 4.6, 0.4, 1.0, 2.2);
+floorLamp(5.3, 0.66);
+plant(7.85, 0.68, 0.85, 'tree');
+curtains('x', 0.4, 1, 5.8, 7.4);
+art('z', 8.2, -1, 1.75, 3.05, 1.5, 2.25, 10);
+art('x', 4.4, -1, 6.7, 7.6, 1.2, 2.0, 12);
+[
+  [4.6, 1.2],
+  [4.6, 3.2],
+  [6.6, 0.9],
+  [6.6, 3.8]
+].forEach(q => downlight(q[0], q[1]));
+fill(5.6, 2.3, 2.4, 0.6);

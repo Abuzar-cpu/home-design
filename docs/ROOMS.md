@@ -34,9 +34,9 @@ Sizes are clear inside dimensions as labelled in the tour. The x and z columns g
 
 | Room | Size | Area | x (m) | z (m) |
 |---|---|---|---|---|
-| Living + dining | 7.8 × 4.0 m | 31.2 m² | .4–8.2 | .4–4.5 |
-| Guest / study | 3.0 × 4.0 m | 12.0 m² | .4–3.5 | 4.5–8.7 |
-| Bathroom | 1.6 × 2.7 m | 4.3 m² | .4–2.1 | 8.7–11.5 |
+| Living + dining | 7.8 × 4.0 m | 31.2 m² | 0.4–8.2 | 0.4–4.5 |
+| Guest / study | 3.0 × 4.0 m | 12.0 m² | 0.4–3.5 | 4.5–8.7 |
+| Bathroom | 1.6 × 2.7 m | 4.3 m² | 0.4–2.1 | 8.7–11.5 |
 | WC | 1.2 × 1.5 m | – | 2.1–3.4 | 8.7–10.4 |
 | Lobby | 1.2 × 1.0 m | – | 2.1–3.5 | 10.4–11.5 |
 | Kitchen | 3.0 × 4.0 m | 12.0 m² | 5.1–8.2 | 7.4–11.5 |
@@ -50,11 +50,11 @@ Sizes are clear inside dimensions as labelled in the tour. The x and z columns g
 
 | Room | Size | Area | x (m) | z (m) |
 |---|---|---|---|---|
-| Bedroom | 4.6 × 4.0 m | 18.4 m² | 3.6–8.2 | .4–4.5 |
-| En-suite | 3.0 × 2.0 m | 6.0 m² | .4–3.5 | .4–2.45 |
-| Walk-in wardrobe | 3.0 × 3.0 m | 9.0 m² | .4–3.5 | 2.45–5.6 |
-| Baby's room | 3.0 × 2.9 m | 8.7 m² | .4–3.5 | 5.6–8.7 |
-| Study / guest | 3.0 × 2.7 m | 8.1 m² | .4–3.5 | 8.7–11.5 |
+| Bedroom | 4.6 × 4.0 m | 18.4 m² | 3.6–8.2 | 0.4–4.5 |
+| En-suite | 3.0 × 2.0 m | 6.0 m² | 0.4–3.5 | 0.4–2.45 |
+| Walk-in wardrobe | 3.0 × 3.0 m | 9.0 m² | 0.4–3.5 | 2.45–5.6 |
+| Baby's room | 3.0 × 2.9 m | 8.7 m² | 0.4–3.5 | 5.6–8.7 |
+| Study / guest | 3.0 × 2.7 m | 8.1 m² | 0.4–3.5 | 8.7–11.5 |
 | Gaming room | 3.0 × 4.0 m | 12.0 m² | 5.1–8.2 | 7.4–11.5 |
 | Stair | 3.0 × 2.7 m, 18 risers | – | 5.1–8.2 | 4.5–7.4 |
 | Upper hall | 1.4 × 6.9 m | 9.7 m² | 3.5–5.1 | 4.5–11.7 |

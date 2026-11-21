@@ -1,22 +1,10 @@
-0.04 m :: L: box(3.48, 3.52, .01, 2.065, .62, 1.52, M.door); box(3.465, 3.535, .95, 1.1, 1.49, 1.51, M.metalAccent, { cast:
-0.04 m at x 3.48-3.52 z 0.62-1.52 :: L: box(3.48, 3.52, .01, 2.065, .62, 1.52, M.door); box(3.465, 3.535, .95, 1.1, 1.49, 1.51, M.metalAccent, { cast: false });
-0.1 0.2 L: solid(.4, 5.7, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0);
-0.1 0.2 L: solid(.4, 8.2, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0); solid(8.5, 8.65, 11.9, 13.6, 1.0);
-0.2 0.18 L: solid(.4, 5.7, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0);
-0.2 0.18 L: solid(.4, 8.2, 13.42, 13.6, 1.0); solid(-.05, .1, 11.9, 13.6, 1.0); solid(8.5, 8.65, 11.9, 13.6, 1.0);
-L: solid(5.3, 6.45, 6.82, 7.3, .92);
-L: solid(6.1, 7.0, 6.1, 7.3, 1.9); solid(5.2, 7.0, 5.82, 6.08, 4.3);   // low-headroom end of the nook under the
-L: solid(6.45, 7.0, 5.8, 7.3, 1.78);
-door x-wall 10.3 span 2.4-3.2 floor 1, side -1: 0.28 m away, overlaps width by 0.08 :: L: soft(2.21, 2.48, .76, .87, 9.62, 10.02, M.white, .03); cyl(2.27, .87, .98, 9.82, .01, M.me
-door x-wall 11.5 span 3.9-4.7 floor 2, side -1: 0.19 m away, overlaps width by 0.04 :: L: plant(4.82, 11.15, .8, 'snake'); plant(4.82, 8.85, .75, 'bush');
-overlap 0.35 x 0.48
-overlap 0.55 x 0.26
-overlap 0.55 x 1.20
-window x-wall 5.9-7.5 L: top 3.98 m, 0.10 m from glass, covers 1.60 m :: L: pillow(6.3, .78, 10.88, .42, .4, .13, M.accent1, { rx: .3 }); pillow(7.3, .78, 10.88, .42, .4, .13, M.ac
-window z-wall 1.6-3.2 L: top 4.03 m, 0.00 m from glass, covers 0.80 m :: L: box(.4, .88, .5, .82, 1.32, 2.38, M.woodA); box(.4, .9, .82, .85, 1.3, 2.4, M.counter); solid(.4, .9, 1.
-window z-wall 1.6-3.2 L: top 5.40 m, 0.00 m from glass, covers 0.65 m :: L: wardrobe('z', 2.55, 5.45, .4, 1, 71); wardrobe('z', 3.5, 5.45, 3.4, -1, 72);
-window z-wall 6.4-8 L: top 1.20 m, 0.15 m from glass, covers 1.50 m :: L: solid(x, x + .9, 6.5, 8.6, 1.2); });
-window z-wall 6.4-8 L: top 4.00 m, 0.10 m from glass, covers 0.25 m :: L: soft(.5, 1.28, .14, .42, 7.75, 8.53, M.accent1, .05); soft(.5, .74, .36, .92, 7.75, 8.53, M.accent1, .06);
-window z-wall 6.4-8 floor 1: top 1.20 m, 0.15 m from glass, covers 1.50 m :: L: solid(x, x + .9, 6.5, 8.6, 1.2); });
-window z-wall 9.2-9.8 L: top 3.86 m, 0.05 m from glass, covers 0.20 m :: L: box(.45, 1.95, .72, .755, 8.82, 9.4, M.woodB); legs(.5, 1.9, 8.87, 9.35, .72, M.metal); solid(.45, 1.95,
-window z-wall 9.2-9.8 L: top 3.92 m, 0.00 m from glass, covers 0.25 m :: L: box(.41, .75, .04, .82, 9.55, 10.45, M.woodA); [.3, .56].forEach(y => box(.42, .75, y, y + .02, 9.57, 10
+cut-in: 0.04 m into a wall :: src/js/44-en-suite.js: box(3.48, 3.52, 0.01, 2.065, 0.62, 1.52, M.door);
+door x-wall 10.3 span 2.4-3.2 floor 1, side -1: 0.28 m away, overlaps width by 0.08 :: src/js/35-wc.js: solid(2.2, 2.48, 9.62, 10.02, 0.9, 0.7);
+door x-wall 11.5 span 3.9-4.7 floor 2, side -1: 0.19 m away, overlaps width by 0.04 :: src/js/47-upper-hall.js: plant(4.82, 11.15, 0.8, 'snake');
+overlap 0.35 x 0.48 m :: src/js/13-stair.js: solid(6.1, 7.0, 6.1, 7.3, 1.9); :: src/js/32-hall.js: solid(5.3, 6.45, 6.82, 7.3, 0.92);
+overlap 0.55 x 0.26 m :: src/js/13-stair.js: solid(5.2, 7.0, 5.82, 6.08, 4.3); // low-headroom end of the nook under the upper flight, and the rail between the fligh :: src/js/32-hall.js: solid(6.45, 7.0, 5.8, 7.3, 1.78)
+overlap 0.55 x 1.20 m :: src/js/13-stair.js: solid(6.1, 7.0, 6.1, 7.3, 1.9); :: src/js/32-hall.js: solid(6.45, 7.0, 5.8, 7.3, 1.78);
+wall: furniture 0.1 x 0.2 m inside a wall :: src/js/40-upper-floor.js: solid(-0.05, 0.1, 11.9, 13.6, 1.0);
+wall: furniture 0.1 x 0.2 m inside a wall :: src/js/40-upper-floor.js: solid(8.5, 8.65, 11.9, 13.6, 1.0);
+wall: furniture 0.2 x 0.18 m inside a wall :: src/js/40-upper-floor.js: solid(0.4, 8.2, 13.42, 13.6, 1.0);
+window z-wall 6.4-8 floor 1: top 1.20 m, 0.15 m from glass, covers 1.50 m :: src/js/31-guest-study.js: solid(x, x + 0.9, 6.5, 8.6, 1.2);

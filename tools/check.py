@@ -11,10 +11,8 @@ def run(args, cwd=None):
 dump = run(['dump.py'], FIT)
 if dump.strip(): print(dump)
 found = []
-for script in ('analyze.py', 'analyze2.py', 'walkcheck.py'):
-    for l in run([script], FIT).splitlines():
-        if l.startswith('===') or not l.strip() or l.rstrip().endswith('-> clear'): continue
-        found.append(re.sub(r'L\d+:', 'L:', l.strip())[:180])
+for l in run(['fit.py'], FIT).splitlines():
+    if l.strip(): found.append(re.sub(r'(\.js):\d+:', r'\1:', l.strip())[:220])  # line numbers drift, so they are not part of the key
 acc_f = FIT / 'accepted.txt'
 if '--accept' in sys.argv:
     acc_f.write_text('\n'.join(sorted(set(found))) + '\n'); print(f'accepted {len(set(found))} fit findings')
