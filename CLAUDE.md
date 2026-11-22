@@ -7,8 +7,10 @@ Interactive Three.js walkthrough of Reis's two-storey house (Baku), built from h
 The plan photos and every room's size are in `docs/ROOMS.md` (plans in `docs/plans/`).
 The published tour is one self-contained page (three.js r149 from the jsDelivr CDN, procedural textures, no assets), built from `src/`:
 - `src/index.template.html` page shell and UI markup, `src/style.css` UI styles
-- `src/js/NN-*.js` the scene by area: `0x` setup/textures/materials/language/helpers, `1x` walls/floors/exterior/stair, `20` furniture pieces, `3x` ground-floor rooms, `4x` upper-floor rooms, `5x` lighting/time of day/rooms list, `6x` player/views/input/guided tour/step lights/loop
-- The js files are joined in file-name order into ONE classic `<script>`: they share one scope, so a file can use anything defined in an earlier one. Keep that order when adding a file.
+- `src/js/NN-*.js` the scene by area: `0x` setup/textures/materials/language/helpers, `1x` walls/floors/exterior/stair, `20` furniture pieces, `3x` ground-floor rooms, `40` upper-floor walls, `41`–`47` balcony and upper-floor rooms, `5x` lighting/time of day/rooms list, `6x` player/views/input/guided tour/step lights/loop
+- The js files are joined in file-name order into ONE classic `<script>` (`tools/build.py` adds the wrapping function): they share one scope, so a file can use anything defined in an earlier one. Keep that order when adding a file.
+- **`docs/CODE.md`** explains how the code fits together and has recipes for adding furniture, rooms, doors, tour stops, translations and style-specific pieces.
+- `src/js` and `src/style.css` are Prettier-formatted (`npm run format --prefix tools`); every helper has a comment giving its arguments, and every piece of furniture has a comment saying what it is.
 - `python3 tools/build.py` writes `build/index.html` (git-ignored). Every tool builds first, so just edit `src/` and run the checks.
 - Use `trail ask` / `trail skeleton src/js/<file>` to find code instead of reading whole files.
 
@@ -39,13 +41,14 @@ When he says publish: copy the live public page into the backup artifact, publis
 - Walk tests live in `tools/walk.py` (`tests=[...]`); add one when a door or passage changes.
 - `python3 tools/rooms.py` — rewrites the room-size table in `docs/ROOMS.md` from `rooms[]`; `check.py` fails if it's stale.
 - `python3 tools/status.py` — commit plus the sha256 of the built working-copy and public pages; compare with `list_files` on the artifacts.
-- Uses Playwright with `/usr/bin/google-chrome` (swiftshader). `tools/common.py` builds `build/test.html` with local three.js (`npm install --prefix tools` if missing).
+- `python3 tools/fingerprint.py --save` / `--diff` — hash of everything the page builds (all four styles); for refactors that must change nothing visible, `--diff` has to print `identical`.
+- Uses Playwright with Chrome (`/usr/bin/google-chrome` or the macOS app; `$CHROME` overrides), swiftshader. Python packages: `pip install -r tools/requirements.txt` (on a Mac, into a venv: `python3 -m venv .venv`, then run the tools with `.venv/bin/python`). `tools/common.py` builds `build/test.html` with local three.js (`npm install --prefix tools` if missing).
 
 ## Model conventions (in `src/js/`)
 - Metres. x 0–8.6 (gridlines 1→5), z 0–11.9 (rear wall A at z 0 → front F at 11.9; porch/balcony to 13.6). Ceiling H 2.8, upper floor at y 3.1, 18 risers.
 - Exterior walls 0.4 m, interior 0.2 m. `wall(axis, t0, t1, a0, a1, ops)`: axis 'x' runs along x and is t0..t1 thick in z; ops are `win(a0,a1,out,{sill,head,frost})`, `door(a0,a1,hinge,swing)`, `{kind:'cased'}` openings.
-- Upper floor is built with `PARENT = upG; YOFF = 3.1` (y values inside stay floor-relative).
-- Helpers: `box`, `soft` (rounded), `cyl`, `sph`, `solid(x0,x1,z0,z1,y1)` collider, `wardrobe(axis,a0,a1,back,dir,seed)`, `chair(cx,cz,face)`, `curtains`, `plant`, `art`, `downlight`, `fill`.
+- `useFloor(2)` (in `40-upper-floor.js`) builds into the upper floor at `UPPER_Y` = 3.1, with y values inside staying floor-relative; `useFloor(1)` at the end of `47-upper-hall.js` switches back.
+- Helpers (arguments in the comment above each): `box`, `soft` (rounded), `cyl`, `sph`, `solid(x0,x1,z0,z1,y1)` collider, `wardrobe(axis,a0,a1,back,dir,seed)`, `chair(cx,cz,face)`, `curtains`, `plant`, `art`, `downlight`, `fill`.
 - Materials in `M.*`; four styles in `STY` (modern, scandi, lux, loft) recolour them. Style-specific pieces go in `SG.<style>` groups.
 - Rooms list `rooms[]` (labels, m², dollhouse targets), tour `ROUTE` with `ST(name, m², tip, lookX, lookZ)`; every new label/tip needs an Azerbaijani entry in the `AZ` dictionary.
 

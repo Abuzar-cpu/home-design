@@ -1,1 +1,14 @@
-{ "name": "house-tour-tools", "private": true, "dependencies": { "three": "0.149.0" } }
+{
+  "name": "house-tour-tools",
+  "private": true,
+  "dependencies": {
+    "three": "0.149.0"
+  },
+  "devDependencies": {
+    "prettier": "3.3.3"
+  },
+  "scripts": {
+    "format": "prettier --config ../.prettierrc.json --write \"../src/js/*.js\" ../src/style.css",
+    "format:check": "prettier --config ../.prettierrc.json --check \"../src/js/*.js\" ../src/style.css"
+  }
+}

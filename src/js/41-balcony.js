@@ -1,0 +1,32 @@
+/* ------------------------------------------------------- balcony furniture */
+// lounge chair (a sofa when wide): frame, back, arms, seat and back cushions, a pillow
+function lounge(x0, x1, z0, z1) {
+  box(x0, x1, 0.22, 0.27, z0, z1, M.woodA);
+  legs(x0 + 0.04, x1 - 0.04, z0 + 0.04, z1 - 0.04, 0.22, M.woodA, 0.025);
+  box(x0, x1, 0.27, 0.72, z0, z0 + 0.05, M.woodA);
+  box(x0, x0 + 0.05, 0.27, 0.5, z0 + 0.05, z1, M.woodA);
+  box(x1 - 0.05, x1, 0.27, 0.5, z0 + 0.05, z1, M.woodA);
+  soft(x0 + 0.05, x1 - 0.05, 0.27, 0.38, z0 + 0.06, z1, M.cushion, 0.04);
+  soft(x0 + 0.06, x1 - 0.06, 0.36, 0.7, z0 + 0.05, z0 + 0.17, M.cushion, 0.05);
+  pillow((x0 + x1) / 2, 0.52, z0 + 0.25, Math.min(0.34, x1 - x0 - 0.2), 0.3, 0.11, M.accent1, { rx: -0.3 });
+}
+// two lounge chairs with a round side table between them
+lounge(0.95, 1.62, 11.95, 12.65);
+lounge(2.08, 2.75, 11.95, 12.65);
+cyl(1.85, 0.4, 0.425, 12.3, 0.2, M.counter, { seg: 28 });
+cyl(1.85, 0, 0.4, 12.3, 0.02, M.metal);
+cyl(1.85, 0, 0.02, 12.3, 0.13, M.metal);
+vase(1.85, 0.425, 12.3, 0.16, M.ceramicAlt, true);
+solid(0.95, 2.75, 11.95, 12.65, 0.7);
+// lounge sofa on the right
+lounge(5.7, 7.5, 11.95, 12.75);
+pillow(6.1, 0.52, 12.22, 0.34, 0.3, 0.11, M.accent2, { rx: -0.3 });
+pillow(7.1, 0.52, 12.22, 0.34, 0.3, 0.11, M.accent3, { rx: -0.3 });
+solid(5.7, 7.5, 11.95, 12.75, 0.7);
+// plants and a floor lantern
+plant(0.45, 12.25, 1.1, 'tree');
+plant(8.12, 12.25, 1.0, 'snake');
+plant(4.95, 12.2, 0.8, 'bush');
+box(3.3, 3.52, 0, 0.34, 12.02, 12.24, M.metal);
+box(3.33, 3.49, 0.04, 0.3, 12.05, 12.21, M.glow, { cast: false });
+halo(3.41, 0.2, 12.0, 1.1);
