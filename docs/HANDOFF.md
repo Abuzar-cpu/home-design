@@ -15,11 +15,11 @@ Last updated: 21 Nov 2026 (code refactor for readability, no visible change).
 ## 2. What is live right now
 | | Version | Content |
 |---|---|---|
-| Working copy | `1795626325-c51d` | new slug `04962ea6-db9c-49de-923a-cb353b63361c` (recreated 25 Nov); kitchen wall cabinets now in the island's finish (not yet public) |
+| Working copy | `1795626452-fbef` | new slug `04962ea6-db9c-49de-923a-cb353b63361c` (recreated 25 Nov); all kitchen cabinets in the table's wood (not yet public) |
 | Public tour | `1794941693-1b70` | same page with the public title; sha256 `fd1a5366…1728d8`. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
 | Backup | none | deleted by Reis on 24 Nov, along with the proposal page and the old living-room and kitchen design pages; make a new one before the next publish |
 
-Unpublished on the working copy: kitchen wall cabinets switched from `M.cabinetUp` to `M.cabinet` (25 Nov), so all kitchen cabinetry matches the island in every style. Since the 21 Nov refactor (branch `tools/readable-refactor`, PR into `tour/upper-floor-proposal`), the page built from `src/` is formatted differently, so its sha256 no longer matches the live pages (`f33f3010…f2bb67` working copy, `9f47e7aa…c93453b` public), though `tools/fingerprint.py` shows the scene is identical. The values match again after the next publish. **`main` is behind:** the published code is on branch `tour/upper-floor-proposal` (no pull request: on 17 Nov Reis asked for none). Start from that branch, or ask him whether to open the pull request.
+Unpublished on the working copy: every kitchen cabinet (base units, wall cabinets, oven tower, island sides) now uses `M.woodB`, the wood of the table for two, in all styles (25 Nov; Reis rejected matching them to the island's charcoal `M.cabinet` first). Worktops stay `M.counter`. Since the 21 Nov refactor (branch `tools/readable-refactor`, PR into `tour/upper-floor-proposal`), the page built from `src/` is formatted differently, so its sha256 no longer matches the live pages (`f33f3010…f2bb67` working copy, `9f47e7aa…c93453b` public), though `tools/fingerprint.py` shows the scene is identical. The values match again after the next publish. **`main` is behind:** the published code is on branch `tour/upper-floor-proposal` (no pull request: on 17 Nov Reis asked for none). Start from that branch, or ask him whether to open the pull request.
 
 ## 3. Pending (waiting on Reis)
 
