@@ -44,14 +44,44 @@ const GROUPS = [
     { label: 'Linens', keys: ['cushion', 'towel'] },
     { label: 'Pendant glow', keys: ['glow'] },
   ] },
+  { title: 'Room', items: [
+    { label: 'Walls', keys: ['wall'] },
+    { label: 'Ceiling', keys: ['ceil'] },
+    { label: 'Floor tiles', keys: ['tile'] },
+  ] },
 ];
 const curatedKeys = [...new Set(GROUPS.flatMap(g => g.items.flatMap(i => i.keys)))];
 const reverseMap = {}; GROUPS.forEach(g => g.items.forEach(item => item.keys.forEach(k => reverseMap[k] = item)));
 
+/* "Your photo" preset: Reis's reference photo (26 Nov 2026, walnut lowers, cream uppers,
+   travertine-look worktop, dark bronze fittings, cream floor). Built on Warm luxury, which
+   already has the walnut grain on the lower cabinets and the stone texture on the worktop
+   and floor, with these colours on top. The photo is a dim, warm-lit render, so these are
+   the finishes' own colours, not raw pixel samples (those read 30-40% darker). */
+GEN.travertinePhoto = () => marble({ seed: 31, base: '#f4efe7', veins: 5, cols: ['rgba(165,140,110,.22)', 'rgba(190,170,140,.18)'], wmax: 1.4, cloud: .09 });   // honed travertine: soft clouding, faint warm veins (the house's four worktop textures are all bolder)
+const PHOTO = { base: 'lux', colours: {
+  cabinet: '#432d21', cabinetUp: '#ddd3c5', kick: '#231915',
+  counter: '#e6dac8', woodB: '#46301f', woodA: '#3a281e',
+  metalAccent: '#2e2621', metal: '#2a2420', screen: '#0f0d0c',
+  chairSeat: '#d4c6b0', chairFrame: '#432d21',
+  ceramic: '#e9e0d2', ceramicAlt: '#3a2c24', cushion: '#c8b59b', towel: '#c8b59b', glow: '#ffd8a6',
+  wall: '#e9e1d5', ceil: '#f1ebe2', tile: '#ffffff',
+}, finish: { counter: { map: 'travertinePhoto', r: .35 } } };   // applyStyle() puts each style's own map/roughness back when you switch away
+function setCol(k, v) { M[k].color.set(v); if (k === 'glow') M.glow.emissive.set(v); }   // the glow you see is the emissive colour
+function setPreset(k) {
+  style = null;   // applyStyle() skips a switch to the style already active; force it so a preset click always resets
+  if (k === 'photo') {
+    applyStyle(PHOTO.base); Object.keys(PHOTO.colours).forEach(key => setCol(key, PHOTO.colours[key]));
+    Object.keys(PHOTO.finish).forEach(key => { const m = M[key], f = PHOTO.finish[key]; m.map = T(f.map); m.roughness = f.r; m.needsUpdate = true; });
+  }
+  else applyStyle(k);
+  currentPreset = k;
+}
+
 /* capture each preset's own defaults once, before any user edit, so "reset" is exact */
-const DEFAULTS = {};
-['modern', 'scandi', 'lux', 'loft'].forEach(k => { applyStyle(k); DEFAULTS[k] = {}; curatedKeys.forEach(key => DEFAULTS[k][key] = M[key].color.getHex()); });
-applyStyle('modern'); let currentPreset = 'modern';
+const DEFAULTS = {}; let currentPreset;
+['modern', 'scandi', 'lux', 'loft', 'photo'].forEach(k => { setPreset(k); DEFAULTS[k] = {}; curatedKeys.forEach(key => DEFAULTS[k][key] = M[key].color.getHex()); });
+setPreset('photo');
 
 /* ------------------------------------------------------------------- panel UI */
 const groupsEl = document.getElementById('groups');
@@ -62,7 +92,7 @@ GROUPS.forEach(g => {
   g.items.forEach(item => {
     const field = document.createElement('label'); field.className = 'swatch';
     const input = document.createElement('input'); input.type = 'color'; input.value = '#' + M[item.keys[0]].color.getHexString();
-    input.addEventListener('input', () => { item.keys.forEach(k => M[k].color.set(input.value)); });
+    input.addEventListener('input', () => { item.keys.forEach(k => setCol(k, input.value)); });
     const span = document.createElement('span'); span.textContent = item.label;
     field.append(input, span); row.appendChild(field); item._input = input; item._field = field;
   });
@@ -71,10 +101,10 @@ GROUPS.forEach(g => {
 function refreshPanel() { GROUPS.forEach(g => g.items.forEach(item => { item._input.value = '#' + M[item.keys[0]].color.getHexString(); })); }
 
 document.querySelectorAll('#presets button').forEach(b => b.addEventListener('click', () => {
-  applyStyle(b.dataset.style); currentPreset = b.dataset.style; refreshPanel();
+  setPreset(b.dataset.style); refreshPanel();
   document.querySelectorAll('#presets button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
 }));
-document.getElementById('resetBtn').addEventListener('click', () => { curatedKeys.forEach(k => M[k].color.setHex(DEFAULTS[currentPreset][k])); refreshPanel(); });
+document.getElementById('resetBtn').addEventListener('click', () => { curatedKeys.forEach(k => setCol(k, DEFAULTS[currentPreset][k])); refreshPanel(); });
 document.getElementById('copyBtn').addEventListener('click', () => {
   const out = {}; curatedKeys.forEach(k => out[k] = '#' + M[k].color.getHexString());
   const text = JSON.stringify(out, null, 2), pre = document.getElementById('exportOut'), btn = document.getElementById('copyBtn');
