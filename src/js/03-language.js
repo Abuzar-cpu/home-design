@@ -16,7 +16,7 @@ const AZ = {
   '18 risers': '18 pillə', '9 risers up to the porch': 'artırmaya 9 pillə',
   'Covered entry with room for two chairs': 'İki kreslo üçün yeri olan örtülü giriş', 'One central hall reaches every room directly': 'Mərkəzi koridordan bütün otaqlara birbaşa keçid',
   'Walk-in shower with a daylight window': 'Gün işığı düşən pəncərəli duş kabinəsi', 'Separate guest WC off its own lobby': 'Öz ön otağından girişli ayrıca qonaq tualeti',
-  'Island with a table for two and a sink under the front window': 'Mətbəx adası, iki nəfərlik masa və ön pəncərənin altında çanaq', 'Twin guest room with a wardrobe and a writing desk': 'İki ayrı çarpayısı, şkafı və yazı masası olan qonaq otağı',
+  'Walnut and cream kitchen: an island with two stools and a pull-out table, the sink under the front window': 'Qoz və krem rəngli mətbəx: iki oturacaqlı ada, çəkilib açılan masa, ön pəncərənin altında çanaq', 'Twin guest room with a wardrobe and a writing desk': 'İki ayrı çarpayısı, şkafı və yazı masası olan qonaq otağı',
   'Nearly 8 m of open living space with two windows': 'İki pəncərəli, təxminən 8 metrlik açıq qonaq sahəsi', 'Seats six beside the rear window': 'Arxa pəncərənin yanında altı nəfərlik süfrə',
   'Part of the 31.2 m² living space': '31,2 m² qonaq sahəsinin bir hissəsi', 'Main bedroom with a walk-in wardrobe and en-suite': 'Geyim otağı və fərdi hamamı olan əsas yataq otağı', 'Walk-in shower, bath and double basin': 'Açıq duş, vanna və qoşa lavabo',
   'Walk-in wardrobe with a window, leading to the en-suite': 'Fərdi hamama aparan pəncərəli geyim otağı', 'Two windows, a few steps from the main bedroom': 'İki pəncərə, əsas yataq otağından bir neçə addım',

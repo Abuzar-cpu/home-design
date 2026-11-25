@@ -156,6 +156,11 @@ const GEN = {
   counterModern: () => marble({ seed: 21, base: '#f1f0ee', veins: 9, cols: ['rgba(120,124,130,.55)', 'rgba(160,163,168,.45)'], wmax: 2.2, cloud: .03 }),
   counterScandi: () => terrazzo({ seed: 22, base: '#eeebe4', chips: ['#c9b9a2', '#a9b3a4', '#8e8a84', '#d9a98f', '#f8f6f1', '#6f7376'] }),
   counterLux: () => marble({ seed: 23, base: '#f3ede2', veins: 12, cols: ['rgba(168,120,60,.65)', 'rgba(110,90,70,.5)', 'rgba(200,160,95,.55)'], wmax: 5, cloud: .05 }),
+  travertine: () => marble({ seed: 31, base: '#f4efe7', veins: 5, cols: ['rgba(165,140,110,.22)', 'rgba(190,170,140,.18)'], wmax: 1.4, cloud: .09 }),   // kitchen worktop: honed, soft clouding, faint warm veins
+  kitchenFloor: () => tex(1024, 1024, (g, w, h) => {      // kitchen floor: cream porcelain 60 x 120 cm (texture = 1.2 m), thin grout
+    const r = rng(57); g.fillStyle = '#efe9df'; g.fillRect(0, 0, w, h); clouds(g, r, w, h, 340, 25, 125, .025);
+    g.fillStyle = '#d9d0c3'; [0, w / 2].forEach(p => g.fillRect(p - 1.5, 0, 3, h)); g.fillRect(w - 1.5, 0, 1.5, h); g.fillRect(0, 0, w, 1.5); g.fillRect(0, h - 1.5, w, 1.5);
+  }),
   grain: () => tex(512, 512, (g, w, h) => {      // furniture wood, 512 px = 1 m, tinted by the material colour
     const r = rng(3); g.fillStyle = '#f4efe8'; g.fillRect(0, 0, w, h);
     for (let k = 0; k < 300; k++) { g.strokeStyle = 'rgba(70,45,25,' + (0.05 + r() * 0.15) + ')'; g.lineWidth = 0.5 + r() * 1.7; const y0 = r() * h, A = 1 + r() * 5, f = 1 + (r() * 3 | 0), ph = r() * 6.28;
