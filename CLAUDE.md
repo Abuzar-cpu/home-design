@@ -25,9 +25,8 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 | What | Slug | Notes |
 |---|---|---|
 | Public tour | `b59b1dc7-6508-44b1-bab9-aca7d9fc5149` | title "Ground Floor 3D Tour", shared publicly: republish with `shared_live: "public"` and `artifact_title` |
-| Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
-| Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
-| Upper-floor proposal | `b1682337-5007-48c2-9a01-405e5885bb49` | title "Upper Floor Proposal – 17 Nov": same content as the public tour since 17 Nov; he shared its link publicly, so update it only if he asks (`shared_live: "public"`, `artifact_title`) |
+| Working copy | `04962ea6-db9c-49de-923a-cb353b63361c` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`); recreated 25 Nov after the old one was deleted |
+| Backup (latest only) | none right now | Reis deleted it on 24 Nov. Before the next publish, create a new private artifact from the live public page, titled "Ground Floor 3D Tour – Backup <date> (before <change>)", and record its slug here |
 
 Since 17 Nov the live pages are built from branch `tour/upper-floor-proposal`; `main` is behind until Reis merges it (see `docs/HANDOFF.md` §2).
 

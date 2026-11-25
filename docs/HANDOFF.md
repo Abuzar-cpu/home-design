@@ -15,12 +15,11 @@ Last updated: 21 Nov 2026 (code refactor for readability, no visible change).
 ## 2. What is live right now
 | | Version | Content |
 |---|---|---|
-| Working copy | `1794941680-f4f5` | built from `src/` on branch `tour/upper-floor-proposal` at `0b6a885`; sha256 `dfc0cea5…31416f` |
+| Working copy | `1795626325-c51d` | new slug `04962ea6-db9c-49de-923a-cb353b63361c` (recreated 25 Nov); kitchen wall cabinets now in the island's finish (not yet public) |
 | Public tour | `1794941693-1b70` | same page with the public title; sha256 `fd1a5366…1728d8`. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
-| Backup | `1794941634-29a2` | "Backup 17 Nov (before the new upper floor and porch storage)": the public page before this publish, rebuilt from `main` at `66f5a41` (sha256 `c10f3833…c718fe`, same as it was live) |
-| Upper-floor proposal | `1794929937-ada5` | slug `b1682337-5007-48c2-9a01-405e5885bb49`: same content as the public tour since 17 Nov. He shared its link publicly, so it stays; update it only if he asks (republish with `shared_live: "public"` and `artifact_title` "Upper Floor Proposal – 17 Nov"). Link: https://claude.ai/artifact/Nuby8dQas9Vs2Dje5AytmN |
+| Backup | none | deleted by Reis on 24 Nov, along with the proposal page and the old living-room and kitchen design pages; make a new one before the next publish |
 
-Working copy and public are identical: nothing unpublished. Since the 21 Nov refactor (branch `tools/readable-refactor`, PR into `tour/upper-floor-proposal`), the page built from `src/` is formatted differently, so its sha256 no longer matches the live pages (`f33f3010…f2bb67` working copy, `9f47e7aa…c93453b` public), though `tools/fingerprint.py` shows the scene is identical. The values match again after the next publish. **`main` is behind:** the published code is on branch `tour/upper-floor-proposal` (no pull request: on 17 Nov Reis asked for none). Start from that branch, or ask him whether to open the pull request.
+Unpublished on the working copy: kitchen wall cabinets switched from `M.cabinetUp` to `M.cabinet` (25 Nov), so all kitchen cabinetry matches the island in every style. Since the 21 Nov refactor (branch `tools/readable-refactor`, PR into `tour/upper-floor-proposal`), the page built from `src/` is formatted differently, so its sha256 no longer matches the live pages (`f33f3010…f2bb67` working copy, `9f47e7aa…c93453b` public), though `tools/fingerprint.py` shows the scene is identical. The values match again after the next publish. **`main` is behind:** the published code is on branch `tour/upper-floor-proposal` (no pull request: on 17 Nov Reis asked for none). Start from that branch, or ask him whether to open the pull request.
 
 ## 3. Pending (waiting on Reis)
 
