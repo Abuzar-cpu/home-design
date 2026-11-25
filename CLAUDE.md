@@ -23,8 +23,9 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 | What | Slug | Notes |
 |---|---|---|
 | Public tour | `b59b1dc7-6508-44b1-bab9-aca7d9fc5149` | title "Ground Floor 3D Tour", shared publicly: republish with `shared_live: "public"` and `artifact_title` |
-| Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
+| Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` (gone since 26 Nov, see HANDOFF §2) | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
 | Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
+| Kitchen Preview | `b040edb7-12a0-456b-8812-cdc5215173b0` | the photo kitchen build, published here instead of the working copy while the working copy question in HANDOFF §2 is open |
 | Kitchen Colour Studio | `e54df07d-4824-4971-885c-7dffe1c02292` | a standalone furniture-colour picker for the kitchen (see "Object studios" below); not part of the publish flow above |
 
 Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit on a branch → open a pull request.
@@ -51,6 +52,6 @@ A studio is a small standalone page, under `studio/<room>/`, for trying colours 
 - Rooms list `rooms[]` (labels, m², dollhouse targets), tour `ROUTE` with `ST(name, m², tip, lookX, lookZ)`; every new label/tip needs an Azerbaijani entry in the `AZ` dictionary.
 
 ## Current layout (Nov 2026)
-- Ground: L-shaped sofa 3.65 m on the living back wall with a short chaise; glass display cabinet beside the TV unit; reading nook under the stairs; kitchen with oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, island 1.0×0.7 with open shelves + 2 stools, table for two 0.5×0.7; kitchen door opens inward; guest room with two single beds, small wardrobe, writing desk.
+- Ground: L-shaped sofa 3.65 m on the living back wall with a short chaise; glass display cabinet beside the TV unit; reading nook under the stairs; kitchen rebuilt from his reference photo (L of walnut base units on the outside and window walls, cream tall/wall units to the ceiling, travertine worktop, island 1.2×0.7 with 2 stools and a pull-out table, 6 spots + LED strips + lit glass cabinet; its own fixed k* materials); kitchen door opens inward; guest room with two single beds, small wardrobe, writing desk.
 - Upper: bedroom (4.6×4.0, top right) with a two-door wardrobe facing the door; doorless opening to a walk-in wardrobe (window on the outside wall); en-suite 3.0×2.3 at its far end (small frosted window); baby's room 3.0×5.4 at the front left; gaming room front right. A swap of bedroom and baby's room is sketched and pending: see `docs/HANDOFF.md`.
 - Open builder items: en-suite drain route (3–5 m run to existing pipes), en-suite extractor fan, no upstairs WC for the other rooms.

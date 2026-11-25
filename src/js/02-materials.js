@@ -11,6 +11,12 @@ mk('glass', 0xdcecf3, .03, .55, { env: 1.5 }); Object.assign(M.glass, { transpar
 mk('glassFrost', 0xeaf1f3, .6); Object.assign(M.glassFrost, { transparent: true, opacity: .6 });
 mk('glassDark', 0x33434d, .1); Object.assign(M.glassDark, { transparent: true, opacity: .72 });
 mk('glassObj', 0xe8f3f5, .04, 0, { env: 1.2 }); Object.assign(M.glassObj, { transparent: true, opacity: .32 });
+// kitchen only (26 Nov 2026, from Reis's reference photo): fixed, so neither the style switch nor the other rooms change it
+mk('kWalnut', 0x432d21, .55, 0, WOOD); mk('kCream', 0xddd3c5, .5, 0, { env: .5 }); mk('kStone', 0xe6dac8, .35, 0, { s: 2, env: .9 });
+mk('kBronze', 0x2e2621, .35, .7, { env: 1 }); mk('kFloor', 0xffffff, .22, 0, { env: 1 }); mk('kSeat', 0xd4c6b0, 1, 0, FAB);
+mk('kGlass', 0x5c4c3e, .08, .2, { env: 1.2 }); Object.assign(M.kGlass, { transparent: true, opacity: .28 });
+mk('kLed', 0xffffff, 1); M.kLed.emissive.setHex(0xffd8a6); M.kLed.emissiveIntensity = 1.6;   // warm 2700 K strips
+[['kWalnut', 'grain'], ['kStone', 'travertine'], ['kFloor', 'kitchenFloor'], ['kSeat', 'boucle']].forEach(p => { const m = M[p[0]]; m.map = T(p[1]); if (m.userData.bump) m.bumpMap = m.map; });
 // restyled by the style switch
 mk('wall', 0xffffff, .95, 0, { s: 2.4, map: null }); mk('trim', 0xffffff, .95); mk('ceil', 0xffffff, .95);
 mk('floor', 0xffffff, .36, 0, { env: .95 }); mk('tile', 0xffffff, .24, 0, { env: 1 }); mk('tileWall', 0xffffff, .4, 0, { s: 1.2, env: .5 }); mk('stoneFloor', 0xffffff, .85);

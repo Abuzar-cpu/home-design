@@ -3,7 +3,7 @@
 Read this at the start of a session, after `CLAUDE.md`. It holds what is live, what is waiting on Reis, and what was already decided or rejected, so nothing gets redone or re-asked.
 Keep it current: `docs/MAINTAINING.md` says which section to update for each kind of change.
 
-Last updated: 26 Nov 2026.
+Last updated: 26 Nov 2026 (photo kitchen).
 
 ## 1. Start-of-session checklist (about 2 minutes)
 1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
@@ -19,7 +19,7 @@ Last updated: 26 Nov 2026.
 | Public tour | `1794766934-ac7a` | same page with the public title; sha256 `c10f3833…c718fe`. Link Reis shares: https://claude.ai/artifact/PRgJ1V4VBxPi5dmDQ8ZKkt |
 | Backup | `1794766924-b2f8` | "Backup 15 Nov (before guest room changes)": the public page before the guest room/kitchen door publish |
 
-Working copy and public are identical: nothing unpublished.
+**Out of step since 26 Nov (unresolved, ask Reis first):** the working-copy slug above (`1a8fe74b…`, also in `CLAUDE.md`) no longer exists. The artifact titled "Ground Floor 3D Tour Working Copy" is now `04962ea6-db9c-49de-923a-cb353b63361c` (version `1795643470-b370`, sha256 `91c2912a…b896b`, 4,645 lines, last changed 25 Nov 21:51 UTC), and the public page is version `1794941693-1b70`, sha256 `fd1a5366…728d8`. Neither matches anything built from this repo (`main` builds 1,560 lines), so another session changed them outside git. Nothing was overwritten. The photo kitchen (§5) went to a separate **Kitchen Preview** artifact instead: `b040edb7-12a0-456b-8812-cdc5215173b0`, https://claude.ai/artifact/NmLwk7gQZSRbAyskVqRNb9, built from branch `tour/kitchen-photo-build` (sha256 `b3a00d85…b90fc`). Before the next working-copy publish, ask Reis what the live working copy holds and whether to overwrite it (its old versions stay in the artifact's history).
 
 ## 3. Pending (waiting on Reis)
 
@@ -42,6 +42,7 @@ This also settles two older open items: the 15 Nov request (remove the wardrobe-
 He sent a photo of under-stair pull-out storage with an oak handrail and spindles and said "I want the stair like this". The pull-out storage was built and he **rejected** it ("That's not what I wanted"), so it was removed and the reading nook restored. Offered instead: oak handrail and spindles, carpeted steps, white side panel. He hasn't answered. Ask what he liked before building anything stair-related.
 
 ## 4. Open items to mention, not to act on unless asked
+- **Builder (photo kitchen, 26 Nov):** gas hob moves about 35 cm toward the window (now centred at z 9.65), so the gas pipe moves; the hood canopy is 70 cm above the gas hob (confirm with the hob maker, usually 65–75 cm) and needs ducting out through the outside wall or a recirculating filter; integrated 60 cm fridge-freezer needs a socket in the stair-wall corner; new dishwasher next to the sink needs a short water and drain branch, with a 5 cm filler at the corner so its door opens; LED drivers above the wall units and a feed to the glass cabinet, three circuits switched by the door (spots, strips + hood light, glass cabinet); the pull-out table is a joiner item (full-extension runners and two fold-down legs); real travertine stains, so suggest travertine-look quartz or porcelain for the worktop. The tap sits in front of the window with the sill at worktop height (unchanged), so check an inward-opening window clears it.
 - **Builder:** en-suite drain route (3–5 m to existing pipes, likely boxed in downstairs); en-suite extractor fan; no upstairs WC for the baby's and gaming rooms; under-stair pull-outs (if ever revived) need heavy-duty runners.
 - **Plan reading doubts from the first review:** handwritten 1400 bathroom width; a blue pen mark; balcony door shown ~1.0 m (the 800 figure was part of a 3700+900+800 chain); porch drawn with full-depth walls; porch/balcony area labels look overstated; ceiling height 2.8 m is an assumption (shown in the tour); uneven stair goings; the 161 m² total.
 - **Performance ideas offered, not requested:** draw only the current floor, merge static meshes, throttle shadow refreshes.
@@ -55,7 +56,7 @@ He sent a photo of under-stair pull-out storage with an oak handrail and spindle
 - Guided tour with music, a full 360° turn in each room, ends in the dollhouse view.
 - Upper floor: en-suite "option B" (walk-in wardrobe, then en-suite at its far end); clothing room's hall door removed; bedroom armchair replaced by a two-door wardrobe on the back wall facing the bedroom door.
 - Living room: armchair and table lamp removed; L-sofa 3.65 m along the back wall with a short chaise on the dining side; coffee table 1.2 m; floor lamp and plant moved toward dining; glass display cabinet beside the TV unit, slatted panels stop at the TV unit.
-- Kitchen rebuilt from his own drawing: oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, stair-wall cabinets stop 1.05 m short of the door, island 1.0 × 0.7 with open shelves facing the hob and 2 stools, table for two 0.5 × 0.7 on the island's end. Stools/chairs pushed in so the walkway works. Kitchen door opens **into the kitchen** (opening into the hall blocked it).
+- Kitchen rebuilt from his reference photo (26 Nov; replaces the earlier layout from his own drawing): an **L** of handleless walnut base units on the outside wall (tall cream fridge-freezer + tall pantry with the microwave by the stair wall, then the gas hob with the oven under it and 60 cm of worktop either side) and on the front wall (sink under the window, dishwasher, drawers), cream wall units to the ceiling with the hood boxed in, honed travertine worktop and splashback, dark bronze tap and fittings, cream 60 × 120 floor, black-framed lit glass cabinet left of the window. Island 1.2 × 0.7 (travertine top, walnut drawers to the hob side, 18 cm overhang) with 2 stools on the hall side, and a 1.1 × 0.5 dining table that slides out of the island toward the hob, with a chair at each end; the tour shows it pulled out. Lights: 6 warm spots in two rows (one over the island), LED strips under all wall units, hood light, lit glass cabinet; pendants removed. He approved the U from the photo first, then chose the island + pull-out table, which only fits as an L: the hall-wall run was dropped (about 1 m less base storage). Accepted fit findings: with the table out the cooking aisle is 0.5 m, and the stool zone to the hall wall is about 0.55 m with the stools tucked in. Kitchen colours are fixed k* materials, so the style switch doesn't change the kitchen.
 - Guest/study: computer removed, two single beds, small two-door wardrobe, plain writing desk.
 - Backups: keep **only the latest** backup artifact; overwrite it before each publish.
 
