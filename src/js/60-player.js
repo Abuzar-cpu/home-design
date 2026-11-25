@@ -1,16 +1,17 @@
 /* ---------------------------------------------------------------- player */
-const player = { x: 12.6, z: 16.6, y: GROUND, yaw: 0.92, pitch: 0.1 };
+const player = { x: 6.3, z: 19.6, y: GROUND, yaw: 0.2, pitch: 0.1 };
 const orbit = { az: 0, pol: 0.3, dist: 26, tx: 4.3, tz: 6.9, zoomed: false };
 let mode = 'walk',
   trans = null;
 const keys = {},
   joy = { x: 0, y: 0 };
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-// Ground height outside the stair: the floor, the porch, a step of the entrance stair, or the garden.
+// Ground height outside the stair: the floor, the porch and entrance, a tread of the entrance stair, or the garden.
 function groundH(x, z) {
   if (x > 0 && x < 8.6 && z > 0 && z < 11.9) return 0;
-  if (x >= 0 && x < 5.7 && z >= 11.9 && z < 13.6) return 0;
-  if (x >= 5.7 && x < 8.1 && z >= 11.9 && z < 13.4) return -(Math.floor((x - 5.7) / 0.3) + 1) * RISE;
+  if (x >= 0 && x < 8.2 && z >= 11.9 && z < 13.6) return 0;
+  const f = fanH(x, z);
+  if (f !== null) return f;
   return GROUND;
 }
 // Inside the stairwell opening of the upper floor.

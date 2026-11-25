@@ -48,10 +48,9 @@ const AZ = {
   Hall: 'Koridor',
   Storage: 'Anbar',
   Porch: 'Artırma',
-  'Entrance steps': 'Giriş pillələri',
+  'Entrance stair': 'Giriş pilləkəni',
   Bedroom: 'Yataq otağı',
   'Walk-in wardrobe': 'Qarderob otağı',
-  'Study / guest': 'İş / qonaq otağı',
   'En-suite': 'Fərdi hamam',
   "Baby's room": 'Körpə otağı',
   'Gaming room': 'Oyun otağı',
@@ -60,12 +59,12 @@ const AZ = {
   'Living room': 'Qonaq otağı',
   'Dining area': 'Yemək zonası',
   'Front yard': 'Həyət',
-  'Walk up the steps to the front door': 'Pillələrlə giriş qapısına qalxın',
+  'Walk up the curved stair to the front door': 'Əyri pilləkənlə giriş qapısına qalxın',
   'roof off': 'damsız',
   'Drag to turn, pinch or scroll to zoom, tap a room to walk there':
     'Döndərmək üçün sürüşdürün, böyütmək üçün çimdikləyin və ya çarxı fırladın, otağa toxunub ora keçin',
   '18 risers': '18 pillə',
-  '9 risers up to the porch': 'artırmaya 9 pillə',
+  '9 risers, curving up to the porch': 'artırmaya qalxan 9 pilləli əyri pilləkən',
   'Glazed entry with a storage room beside it': 'Yanında anbar otağı olan şüşəli giriş',
   'One central hall reaches every room directly': 'Mərkəzi koridordan bütün otaqlara birbaşa keçid',
   'Walk-in shower with a daylight window': 'Gün işığı düşən pəncərəli duş kabinəsi',
@@ -78,10 +77,10 @@ const AZ = {
   'Part of the 31.2 m² living space': '31,2 m² qonaq sahəsinin bir hissəsi',
   'Main bedroom with its own en-suite and walk-in wardrobe': 'Fərdi hamamı və qarderob otağı olan əsas yataq otağı',
   'Bath with a shower over it, double basin and WC': 'Duşlu vanna, qoşa lavabo və tualet',
-  'Wardrobes on both sides, straight off the bedroom': 'Hər iki tərəfdə şkaflar, birbaşa yataq otağından keçid',
-  'Right next to the main suite, with a gate at the stairs':
-    'Əsas yataq otağının yanında, pilləkəndə qoruyucu qapı ilə',
-  'Desk by the window and a daybed for guests': 'Pəncərə yanında yazı masası və qonaqlar üçün divan-çarpayı',
+  'Wardrobes on three sides with warm LED light, straight off the bedroom':
+    'Üç tərəfdə isti LED işıqlı şkaflar, birbaşa yataq otağından keçid',
+  'One large nursery next to the main suite, with a daybed and a gate at the stairs':
+    'Əsas yataq otağının yanında böyük körpə otağı: divan-çarpayı və pilləkəndə qoruyucu qapı ilə',
   'Set apart from the bedrooms for late nights': 'Gecə oyunları üçün yataq otaqlarından aralı',
   'Full-width balcony over the front garden': 'Ön bağçaya baxan, evin bütün eni boyu balkon',
   'The whole home': 'Bütün ev',
@@ -101,6 +100,6 @@ const fd = d =>
   lang !== 'az'
     ? d
     : d
-        .replace('9 risers up to the porch', AZ['9 risers up to the porch'])
+        .replace('9 risers, curving up to the porch', AZ['9 risers, curving up to the porch'])
         .replace('18 risers', AZ['18 risers'])
         .replace(/(\d)\.(\d)/g, '$1,$2');

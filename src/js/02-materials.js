@@ -17,6 +17,8 @@ const WOOD = { s: 1, grain: true, map: 'grain', bump: true, bs: 0.0025 },
 // fixed
 mk('plinth', 0x8f8a82, 0.95);
 mk('stone', 0xa9a399, 0.9);
+mk('travertine', 0xe4d8c2, 0.7, 0, { env: 0.5 }); // ivory travertine-look stone of the entrance stair
+mk('bronze', 0xb08d5e, 0.3, 1, { env: 1 }); // champagne bronze of the entrance stair handrails
 mk('roofDark', 0x4a4744, 0.9).side = THREE.DoubleSide;
 mk('lawn', 0x8c9c72, 1);
 mk('white', 0xf5f3ef, 0.28, 0, { env: 0.8 });

@@ -1,4 +1,4 @@
-/* ----------------------------------------------- walk-in wardrobe 3.0 x 3.0 */
+/* ----------------------------------------------- walk-in wardrobe 3.0 x 3.4 */
 // Open wardrobe run a0..a1 along a wall at back (axis as for wall()), facing dir (+1 or -1): hanging rail,
 // shelves every third bay, shoe ledge and boxes on top; seed varies the clothes.
 function wardrobe(axis, a0, a1, back, dir, seed) {
@@ -61,16 +61,18 @@ function wardrobe(axis, a0, a1, back, dir, seed) {
   if (axis === 'x') solid(a0, a1, Math.min(back, back + dir * dp), Math.max(back, back + dir * dp), 2.3);
   else solid(Math.min(back, back + dir * dp), Math.max(back, back + dir * dp), a0, a1, 2.3);
 }
-// walk-in wardrobe between the en-suite and the baby's room, off the bedroom through a doorless opening: no window, no island
-wardrobe('z', 2.55, 5.45, 0.4, 1, 71);
-wardrobe('z', 3.5, 5.45, 3.4, -1, 72);
-// runner and a full-length mirror on the end wall
-box(1.25, 2.55, 0, 0.012, 2.8, 5.25, M.runner, { cast: false });
-box(1.5, 2.3, 0.05, 2.05, 5.47, 5.5, M.frameArt, { cast: false });
-box(1.54, 2.26, 0.09, 2.01, 5.462, 5.47, M.mirror, { cast: false });
+// walk-in wardrobe between the en-suite and the baby's room, off the bedroom through a doorless opening:
+// a U of open runs (outside wall, hall wall, end wall) with warm LED strips, no window, no island
+wardrobe('z', 2.75, 6.05, 0.4, 1, 71);
+wardrobe('z', 3.6, 6.05, 3.4, -1, 72);
+wardrobe('x', 0.96, 2.84, 6.1, -1, 73);
+// runner and a full-length mirror on the en-suite partition, facing the runs
+box(1.25, 2.55, 0, 0.012, 2.85, 5.4, M.runner, { cast: false });
+box(1.5, 2.3, 0.05, 2.05, 2.7, 2.73, M.frameArt, { cast: false });
+box(1.54, 2.26, 0.09, 2.01, 2.73, 2.738, M.mirror, { cast: false });
 // ceiling lights and fill
 [
-  [1.9, 3.3],
-  [1.9, 4.7]
+  [1.9, 3.6],
+  [1.9, 5.0]
 ].forEach(q => downlight(q[0], q[1]));
-fill(1.9, 2.3, 4.0, 0.45, 5);
+fill(1.9, 2.3, 4.4, 0.45, 5);

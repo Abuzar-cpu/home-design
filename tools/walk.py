@@ -8,17 +8,16 @@ tests=[('climb', (4.3,5.2,0), [(-PI/2,7),(PI,5),(PI/2,9)], "abs(y-3.1)<0.01 and 
        ('descend', (4.3,6.7,3.1), [(-PI/2,9),(0,5),(PI/2,9)], "abs(y)<0.01 and x<4.2"),
        ('bedroom door', (4.25,5.2,3.1), [(0,6)], "z<4.0 and abs(y-3.1)<.01"),
        ('clothing hall door removed', (4.3,5.25,3.1), [(PI/2,6)], "x>3.55"),
-       ('bedroom-wardrobe opening', (4.3,3.0,3.1), [(PI/2,6)], "x<2.0 and 2.5<z<5.5"),
-       ('en-suite pocket door', (4.3,1.8,3.1), [(PI/2,6)], "x<2.6 and z<2.4"),
-       ('baby door', (4.3,6.55,3.1), [(PI/2,6)], "x<3.0 and 5.7<z<8.6"),
-       ('study door', (4.3,10.25,3.1), [(PI/2,6)], "x<3.0 and z>8.8"),
+       ('bedroom-wardrobe opening', (4.3,3.1,3.1), [(PI/2,6)], "x<2.0 and 2.7<z<6.1"),
+       ('en-suite pocket door', (4.3,1.8,3.1), [(PI/2,6)], "x<2.6 and z<2.6"),
+       ('baby door', (4.3,6.85,3.1), [(PI/2,6)], "x<3.0 and 6.3<z<11.5"),
        ('storage door', (3.6,12.45,0), [(PI/2,6)], "x<2.6"),
        ('gaming door', (4.3,8.15,3.1), [(-PI/2,6)], "x>5.6"),
        ('balcony door', (4.3,11.0,3.1), [(PI,5)], "z>12.5 and abs(y-3.1)<.01"),
        ('guard rail', (4.3,5.2,3.1), [(-PI/2,4)], "x<5.0"),
        ('ground kitchen door', (4.3,8.15,0), [(-PI/2,6)], "x>7.0 and abs(y)<.01"),
        ('front door to living', (4.3,12.6,0), [(0,22)], "z<1.5 and abs(y)<.01"),
-       ('steps to porch', (9.0,12.65,-1.5), [(PI/2,14)], "x<3.2 and abs(y)<.01"),('guest door',(4.3,5.25,0),[(PI/2,8)],"x<2.6"),('bath door',(3.0,11.0,0),[(PI/2,6)],"x<1.9"),('wc door',(2.8,11.0,0),[(0,5)],"z<10.2"),('nook blocked',(4.3,6.7,0),[(-PI/2,4)],"x<5.9")]
+       ('fan stair to porch', (4.6,17.6,-1.5), [(-0.62,0.62),(-0.47,0.83),(0,0.5),(PI/2,0.6)], "x<5.7 and 12.2<z<13.4 and abs(y)<.01"),('fan stair edge blocked', (4.0,15.0,-1.5), [(-PI/2,4)], "abs(y+1.5)<.01"),('guest door',(4.3,5.25,0),[(PI/2,8)],"x<2.6"),('bath door',(3.0,11.0,0),[(PI/2,6)],"x<1.9"),('wc door',(2.8,11.0,0),[(0,5)],"z<10.2"),('nook blocked',(4.3,6.7,0),[(-PI/2,4)],"x<5.9")]
 with sync_playwright() as p:
     b=p.chromium.launch(**CHROME)
     pg=b.new_page(viewport={'width':300,'height':190}); errs=[]

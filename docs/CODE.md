@@ -13,7 +13,7 @@ All files therefore share one scope: a file can use anything an earlier file def
 | `03-language.js` | the Azerbaijani dictionary `AZ`, `tr()` |
 | `04-helpers.js` | geometry helpers: `useFloor`, `box`, `soft`, `pillow`, `solid`, `cyl`, `sph`, `floorPlane`, `vpanel`, `tiled`, `prism`, `slant` |
 | `10-walls.js` | `wall()` with `win()`, `door()` and cased openings; the ground-floor walls |
-| `11`–`13` | floors and ceilings, exterior, porch steps, roof, garden, stair and its step lights |
+| `11`–`13` | floors and ceilings, exterior, porch, fan-shaped entrance stair (`FAN`, `fanH`), roof, garden, stair and its step lights |
 | `20-furniture-pieces.js` | reusable furniture: `legs`, `chair`, `plant`, `vase`, `tableLamp`, `floorLamp`, `art`, `curtains`, `books`, `bookStack`, `placeSetting`, `downlight`, `fill` |
 | `30`–`36` | ground-floor rooms, one file each |
 | `40-upper-floor.js` | `useFloor(2)`, upper-floor walls and floors, balcony rail |

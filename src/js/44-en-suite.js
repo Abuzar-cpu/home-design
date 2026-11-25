@@ -1,10 +1,10 @@
-/* ------------------------------------------------------- en-suite 3.0 x 2.0 */
+/* ------------------------------------------------------- en-suite 3.0 x 2.2 */
 // in the back corner, entered from the bedroom through a pocket door
-floorPlane(0.4, 3.4, 0.4, 2.4, 0.004, M.tile, 1.2);
-tiled('z', 0.4, 1, 0.4, 2.4, [{ a0: 0.55, a1: 0.95, sill: 1.7, head: 2.1 }], M.tileWall, 1.2);
-tiled('z', 3.4, -1, 0.4, 2.4, [{ a0: 1.4, a1: 2.2, sill: 0, head: 2.1 }], M.tileWall, 1.2);
+floorPlane(0.4, 3.4, 0.4, 2.6, 0.004, M.tile, 1.2);
+tiled('z', 0.4, 1, 0.4, 2.6, [{ a0: 0.55, a1: 0.95, sill: 1.7, head: 2.1 }], M.tileWall, 1.2);
+tiled('z', 3.4, -1, 0.4, 2.6, [{ a0: 1.4, a1: 2.2, sill: 0, head: 2.1 }], M.tileWall, 1.2);
 tiled('x', 0.4, 1, 0.4, 3.4, [], M.tileWall, 1.2);
-tiled('x', 2.4, -1, 0.4, 3.4, [], M.tileWall, 1.2);
+tiled('x', 2.6, -1, 0.4, 3.4, [], M.tileWall, 1.2);
 // pocket door, slid almost fully into the wall toward the back
 box(3.48, 3.52, 0.01, 2.065, 0.62, 1.52, M.door);
 box(3.465, 3.535, 0.95, 1.1, 1.49, 1.51, M.metalAccent, { cast: false });
@@ -44,9 +44,9 @@ cyl(0.7, 0.85, 0.93, 1.85, 0.04, M.ceramic, { cast: false });
 for (let i = 0; i < 6; i++)
   leaf(0.7, 0.92, 1.85, i * 1.1, 0.6 + (i % 3) * 0.25, 0.1, 0.045, i % 2 ? M.plant : M.plantDark);
 // towels on the partition, bath mat, extractor fan in the ceiling
-box(1.4, 2.0, 0.9, 0.92, 2.36, 2.38, M.metalAccent, { cast: false });
-box(1.4, 2.0, 1.3, 1.32, 2.36, 2.38, M.metalAccent, { cast: false });
-soft(1.45, 1.95, 0.7, 1.32, 2.31, 2.36, M.towel, 0.02, { cast: false });
+box(1.4, 2.0, 0.9, 0.92, 2.56, 2.58, M.metalAccent, { cast: false });
+box(1.4, 2.0, 1.3, 1.32, 2.56, 2.58, M.metalAccent, { cast: false });
+soft(1.45, 1.95, 0.7, 1.32, 2.51, 2.56, M.towel, 0.02, { cast: false });
 soft(1.05, 1.85, 0.004, 0.022, 1.25, 1.7, M.mat, 0.008, { cast: false });
 box(2.3, 2.55, CY + H - 0.016, CY + H - 0.002, 1.85, 2.1, M.white, { parent: CEILG, cast: false });
 box(2.33, 2.52, CY + H - 0.02, CY + H - 0.016, 1.88, 2.07, M.kick, { parent: CEILG, cast: false });

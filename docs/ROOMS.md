@@ -21,8 +21,9 @@ Reis's photos of the paper plans. Dimensions on them are in millimetres.
 ## Where the tour differs from the paper plans
 - Ground floor: kitchen and guest/study swapped (Reis's first change).
 - Stair: flipped so it starts near the living-room door; a reading nook uses the space under it.
-- Upper floor: the clothing room and the baby's room on paper (3.0 × 5.5 and 3.0 × 5.4 m) become an en-suite, a walk-in wardrobe, a baby's room and a study/guest room; the en-suite (pocket door) and the wardrobe (doorless opening) open off the bedroom, and the clothing room's hall door is gone. The outside-wall window at z 1.6–3.2 is removed; a 40 × 40 cm frosted en-suite vent and a study window (z 9.4–11.0) are added. Baby gate at the stair top. (From his 17 Nov drawing, published 17 Nov.)
+- Upper floor: the clothing room and the baby's room on paper (3.0 × 5.5 and 3.0 × 5.4 m) become an en-suite (3.0 × 2.2), a walk-in wardrobe (3.0 × 3.4) and one baby's room (3.0 × 5.2, the 17 Nov baby's room and study/guest merged on 26 Nov); the en-suite (pocket door) and the wardrobe (doorless opening) open off the bedroom, and the clothing room's hall door is gone. The outside-wall window at z 1.6–3.2 is removed; a 40 × 40 cm frosted en-suite vent and a second side window for the baby's room (z 9.4–11.0) are added. Baby gate at the stair top. (From his 17 Nov drawing, published 17 Nov; re-split 26 Nov.)
 - Porch strip: the left 2.5 m is an enclosed storage room and the porch's front wall is one full-length window, instead of open glass rails (published 17 Nov).
+- Entrance: the straight side steps are replaced by a fan-shaped curved stair in front of the porch (9 risers, rising and turning right into a porch-level entrance under the balcony), from his 26 Nov sketch `plans/entrance-stair-sketch-26-nov.jpg`.
 - The hall ends in a door to the balcony (Reis's note on the upper plan).
 - Doubts about reading the plan (handwritten widths, balcony door, area labels) are listed in `HANDOFF.md` §4.
 
@@ -44,17 +45,16 @@ Sizes are clear inside dimensions as labelled in the tour. The x and z columns g
 | Hall | 1.4 × 6.9 m | 9.7 m² | 3.5–5.1 | 4.5–11.7 |
 | Storage | 2.5 × 1.5 m | 3.8 m² | 0–3.0 | 11.7–13.6 |
 | Porch | 2.6 × 1.5 m | 3.9 m² | 3.0–5.7 | 11.7–13.6 |
-| Entrance steps | 9 risers up to the porch | – | 5.7–8.1 | 11.9–13.4 |
+| Entrance stair | 9 risers, curving up to the porch | – | 4.5–7.5 | 13.6–17.2 |
 
 **Upper floor**
 
 | Room | Size | Area | x (m) | z (m) |
 |---|---|---|---|---|
 | Bedroom | 4.6 × 4.0 m | 18.4 m² | 3.6–8.2 | 0.4–4.5 |
-| En-suite | 3.0 × 2.0 m | 6.0 m² | 0.4–3.5 | 0.4–2.45 |
-| Walk-in wardrobe | 3.0 × 3.0 m | 9.0 m² | 0.4–3.5 | 2.45–5.6 |
-| Baby's room | 3.0 × 2.9 m | 8.7 m² | 0.4–3.5 | 5.6–8.7 |
-| Study / guest | 3.0 × 2.7 m | 8.1 m² | 0.4–3.5 | 8.7–11.5 |
+| En-suite | 3.0 × 2.2 m | 6.6 m² | 0.4–3.5 | 0.4–2.65 |
+| Walk-in wardrobe | 3.0 × 3.4 m | 10.2 m² | 0.4–3.5 | 2.65–6.2 |
+| Baby's room | 3.0 × 5.2 m | 15.6 m² | 0.4–3.5 | 6.2–11.5 |
 | Gaming room | 3.0 × 4.0 m | 12.0 m² | 5.1–8.2 | 7.4–11.5 |
 | Stair | 3.0 × 2.7 m, 18 risers | – | 5.1–8.2 | 4.5–7.4 |
 | Upper hall | 1.4 × 6.9 m | 9.7 m² | 3.5–5.1 | 4.5–11.7 |

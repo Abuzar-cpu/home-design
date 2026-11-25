@@ -114,8 +114,14 @@ muteBtn.addEventListener('click', () => {
 // route: points are [x, z]; a point with a stop pauses there, turns to look at "look" and shows the card
 const ST = (n, m2, tip, lx, lz) => ({ n, s: m2.toFixed(1) + ' m²', tip, look: [lx, lz] });
 const ROUTE = [
-  [10.4, 12.65],
-  [8.4, 12.65],
+  [4.3, 18.3],
+  [4.75, 17.15],
+  [5.6, 16.2],
+  [6.06, 15.59],
+  [6.39, 14.95],
+  [6.58, 14.29],
+  [6.65, 13.6],
+  [6.65, 12.75],
   [5.3, 12.65],
   [4.3, 12.6, ST('Porch', 3.9, 'Glazed entry with a storage room beside it', 2.0, 12.6)],
   [4.3, 11.7],
@@ -160,27 +166,38 @@ const ROUTE = [
   [4.8, 3.8, ST('Bedroom', 18.4, 'Main bedroom with its own en-suite and walk-in wardrobe', 7.2, 2.3)],
   [4.3, 1.8],
   [3.0, 1.8],
-  [2.7, 1.8, ST('En-suite', 6.0, 'Bath with a shower over it, double basin and WC', 0.9, 0.8)],
+  [2.7, 1.8, ST('En-suite', 6.6, 'Bath with a shower over it, double basin and WC', 0.9, 0.8)],
   [3.0, 1.8],
   [4.3, 1.8],
-  [4.3, 3.0],
-  [3.0, 3.0],
-  [2.0, 3.6, ST('Walk-in wardrobe', 9.0, 'Wardrobes on both sides, straight off the bedroom', 1.9, 5.4)],
-  [3.0, 3.0],
-  [4.3, 3.0],
+  [4.3, 3.1],
+  [3.0, 3.1],
+  [
+    2.0,
+    3.6,
+    ST('Walk-in wardrobe', 10.2, 'Wardrobes on three sides with warm LED light, straight off the bedroom', 1.9, 5.6)
+  ],
+  [3.0, 3.1],
+  [4.3, 3.1],
   [4.25, 4.2],
   [4.25, 4.9],
   [4.3, 5.25],
-  [4.3, 6.55],
-  [3.0, 6.55],
-  [2.4, 7.4, ST("Baby's room", 8.7, 'Right next to the main suite, with a gate at the stairs', 1.6, 6.1)],
-  [3.0, 6.55],
-  [4.3, 6.55],
-  [4.3, 10.25],
-  [3.0, 10.25],
-  [2.6, 10.1, ST('Study / guest', 8.1, 'Desk by the window and a daybed for guests', 1.2, 9.1)],
-  [3.0, 10.25],
-  [4.3, 10.25],
+  [4.3, 6.85],
+  [3.0, 6.85],
+  [2.6, 7.3],
+  [
+    2.4,
+    9.9,
+    ST(
+      "Baby's room",
+      15.6,
+      'One large nursery next to the main suite, with a daybed and a gate at the stairs',
+      1.6,
+      7.0
+    )
+  ],
+  [2.6, 7.3],
+  [3.0, 6.85],
+  [4.3, 6.85],
   [4.3, 8.15],
   [5.9, 8.15],
   [5.9, 8.75, ST('Gaming room', 12, 'Set apart from the bedrooms for late nights', 7.4, 9.7)],
@@ -279,8 +296,7 @@ function tourStep(dt) {
     const dx = nx[0] - player.x,
       dz = nx[1] - player.z,
       d = Math.hypot(dx, dz),
-      sp =
-        (stairH(player.x, player.z) !== null || (groundH(player.x, player.z) < 0 && player.x < 8.2) ? 0.95 : 1.3) * dt;
+      sp = (stairH(player.x, player.z) !== null || fanH(player.x, player.z) !== null ? 0.95 : 1.3) * dt;
     if (d > 0.02) turn(Math.atan2(-dx, -dz), 3.2);
     if (d <= sp) {
       player.x = nx[0];

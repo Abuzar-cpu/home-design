@@ -29,7 +29,7 @@ solid(0.2, 0.62, 12.45, 13.35, 2.0);
   [12.55, 12.9, 0.5],
   [13.0, 13.28, 1.0]
 ].forEach(q => box(0.24, 0.58, q[2], q[2] + 0.26, q[0], q[1], M.paper));
-// floor lantern by the steps
+// floor lantern by the entrance
 box(5.08, 5.3, 0, 0.34, 12.02, 12.24, M.metal);
 box(5.11, 5.27, 0.04, 0.3, 12.05, 12.21, M.glow, { cast: false });
 box(5.08, 5.3, 0.34, 0.37, 12.02, 12.24, M.metal, { cast: false });

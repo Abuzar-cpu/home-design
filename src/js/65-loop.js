@@ -32,7 +32,8 @@ function hud() {
       '</span>';
   else if (r) roomEl.innerHTML = '<b>' + tr(r.n) + '</b><span>' + fd(r.d) + '</span>';
   else
-    roomEl.innerHTML = '<b>' + tr('Front yard') + '</b><span>' + tr('Walk up the steps to the front door') + '</span>';
+    roomEl.innerHTML =
+      '<b>' + tr('Front yard') + '</b><span>' + tr('Walk up the curved stair to the front door') + '</span>';
 }
 let qN = 0,
   qSum = 0,

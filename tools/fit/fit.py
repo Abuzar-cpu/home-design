@@ -153,6 +153,7 @@ def check_reach():
             for c in furn:
                 if level(c) != lv or c['y1'] - (UP if lv == 2 else 0) < 0.3: continue
                 if c['x1'] - c['x0'] > 2.5 and c['z1'] - c['z0'] < 0.25: continue  # long thin rails
+                if c['y0'] < -0.5: continue  # garden-level pieces outside the house (entrance stair rail posts)
                 cx = np.clip(idx[:, 0] * S, c['x0'], c['x1']); cz = np.clip(idx[:, 1] * S, c['z0'], c['z1'])
                 dist = np.sqrt((idx[:, 0] * S - cx) ** 2 + (idx[:, 1] * S - cz) ** 2).min()
                 if dist > r + 0.3: yield f'reach: floor {lv}, {dist - r:.2f} m beyond a {label} :: {where(c["src"])}'

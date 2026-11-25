@@ -1,10 +1,15 @@
 cut-in: 0.04 m into a wall :: src/js/44-en-suite.js: box(3.48, 3.52, 0.01, 2.065, 0.62, 1.52, M.door);
 door x-wall 10.3 span 2.4-3.2 floor 1, side -1: 0.28 m away, overlaps width by 0.08 :: src/js/35-wc.js: solid(2.2, 2.48, 9.62, 10.02, 0.9, 0.7);
 door x-wall 11.5 span 3.9-4.7 floor 2, side -1: 0.19 m away, overlaps width by 0.04 :: src/js/47-upper-hall.js: plant(4.82, 11.15, 0.8, 'snake');
+overlap 0.03 x 0.06 m :: src/js/12-exterior.js: solid(x - 0.03, x + 0.03, z - 0.03, z + 0.03, 1.0 - k * RISE, GROUND); :: src/js/12-exterior.js: solid(7.4, 8.2, 13.55, 13.65, 1.0, GROUND);
+overlap 0.06 x 0.03 m :: src/js/12-exterior.js: solid(0, 8.2, 11.9, 13.6, 0, GROUND); :: src/js/12-exterior.js: solid(x - 0.03, x + 0.03, z - 0.03, z + 0.03, 1.0 - k * RISE, GROUND);
 overlap 0.35 x 0.48 m :: src/js/13-stair.js: solid(6.1, 7.0, 6.1, 7.3, 1.9); :: src/js/32-hall.js: solid(5.3, 6.45, 6.82, 7.3, 0.92);
 overlap 0.55 x 0.26 m :: src/js/13-stair.js: solid(5.2, 7.0, 5.82, 6.08, 4.3); // low-headroom end of the nook under the upper flight, and the rail between the fligh :: src/js/32-hall.js: solid(6.45, 7.0, 5.8, 7.3, 1.78)
 overlap 0.55 x 1.20 m :: src/js/13-stair.js: solid(6.1, 7.0, 6.1, 7.3, 1.9); :: src/js/32-hall.js: solid(6.45, 7.0, 5.8, 7.3, 1.78);
+overlap 0.80 x 0.05 m :: src/js/12-exterior.js: solid(0, 8.2, 11.9, 13.6, 0, GROUND); :: src/js/12-exterior.js: solid(7.4, 8.2, 13.55, 13.65, 1.0, GROUND);
+wall: furniture 0.03 x 0.03 m inside a wall :: src/js/12-exterior.js: solid(x - 0.03, x + 0.03, z - 0.03, z + 0.03, 1.0 - k * RISE, GROUND);
 wall: furniture 0.1 x 0.2 m inside a wall :: src/js/40-upper-floor.js: solid(-0.05, 0.1, 11.9, 13.6, 1.0);
 wall: furniture 0.1 x 0.2 m inside a wall :: src/js/40-upper-floor.js: solid(8.5, 8.65, 11.9, 13.6, 1.0);
 wall: furniture 0.2 x 0.18 m inside a wall :: src/js/40-upper-floor.js: solid(0.4, 8.2, 13.42, 13.6, 1.0);
+wall: furniture 0.2 x 0.2 m inside a wall :: src/js/12-exterior.js: solid(0, 8.2, 11.9, 13.6, 0, GROUND);
 window z-wall 6.4-8 floor 1: top 1.20 m, 0.15 m from glass, covers 1.50 m :: src/js/31-guest-study.js: solid(x, x + 0.9, 6.5, 8.6, 1.2);
