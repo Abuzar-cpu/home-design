@@ -25,9 +25,14 @@ The published tour is one self-contained page (three.js r149 from the jsDelivr C
 | Public tour | `b59b1dc7-6508-44b1-bab9-aca7d9fc5149` | title "Ground Floor 3D Tour", shared publicly: republish with `shared_live: "public"` and `artifact_title` |
 | Working copy | `1a8fe74b-573a-4211-b385-1c3cd115d5dd` | title "Ground Floor 3D Tour Working Copy" (that is the `<title>` in `src/index.template.html`) |
 | Backup (latest only) | `0ff45733-d435-4ea1-875b-15ab9617a30b` | retitle it "Ground Floor 3D Tour – Backup <date> (before <change>)" each time |
+| Kitchen Colour Studio | `e54df07d-4824-4971-885c-7dffe1c02292` | a standalone furniture-colour picker for the kitchen (see "Object studios" below); not part of the publish flow above. Opened as its own PR (not yet merged as of this writing) — if its "Object studios" section isn't here yet, merge that wording with this entry rather than duplicating the section |
+| Living Room Colour Studio | `184bb646-d114-4440-8dfc-3445ac040a11` | the same, for the living + dining room |
 
 Publish flow: edit `src/` → `python3 tools/check.py` → `python3 tools/publish_prep.py` → publish `build/index.html` to the working copy → commit on a branch → open a pull request.
 When he says publish: copy the live public page into the backup artifact, publish `build/public.html` to the public artifact, then `list_files` both to confirm the sha256.
+
+## Object studios
+A studio is a small standalone page, under `studio/<room>/`, for trying colours on one room's furniture without the rest of the house — Reis asked for one for the kitchen first, then the same for the living + dining room. It reuses the house's own `src/js/01-textures.js`, `02-materials.js`, `04-helpers.js`, `20-furniture-pieces.js`, the room's own `src/js/NN-*.js` (unmodified — a studio never forks that code, so it never drifts from the real room) and `50-lighting.js`, plus a studio-only `00-setup.js` (scene/camera globals) and `90-ui.js` (context walls/floor, orbit camera, click-to-identify, the colour panel). Build with `python3 tools/build_kitchen_studio.py` / `python3 tools/build_living_studio.py` → `build/kitchen-studio.html` / `build/living-studio.html`; publish each file to its own artifact (not one of the three tour artifacts above). Adding a studio for another room: copy the `studio/kitchen/` (or `studio/living/`) pattern, point a new `tools/build_<room>_studio.py` at that room's `src/js/NN-*.js`, and re-centre `CX`/`CZ` and the context walls in `00-setup.js`/`90-ui.js` on that room.
 
 ## Checks (run from the repo root; output is only what changed)
 - `python3 tools/check.py` — furniture fit (overlaps, door swings, windows, wall cut-ins, 60 cm reachability), 17 walk tests, full guided-tour collision run.

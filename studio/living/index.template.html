@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Living Room Colour Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+<style>
+/*@STYLE@*/</style>
+</head>
+<body>
+<div class="wrap">
+  <aside id="panel">
+    <header>
+      <h1>Living &amp; dining</h1>
+      <p>Tap any piece in the view, or use a swatch below, to try a colour.</p>
+    </header>
+    <div id="presets" role="group" aria-label="Starting style">
+      <button type="button" data-style="modern" aria-pressed="true">Modern</button>
+      <button type="button" data-style="scandi" aria-pressed="false">Scandinavian</button>
+      <button type="button" data-style="lux" aria-pressed="false">Warm luxury</button>
+      <button type="button" data-style="loft" aria-pressed="false">Loft</button>
+    </div>
+    <div id="groups"></div>
+    <footer>
+      <button type="button" id="resetBtn">Reset to preset</button>
+      <button type="button" id="copyBtn">Copy colours</button>
+      <pre id="exportOut" hidden></pre>
+    </footer>
+  </aside>
+  <div class="fig" id="stage">
+    <canvas id="c" tabindex="0" aria-label="3D view of the living and dining room"></canvas>
+    <div id="tooltip" aria-hidden="true"></div>
+    <p id="hint2">Drag to orbit &middot; scroll to zoom &middot; tap a piece to find its colour</p>
+  </div>
+</div>
+<div id="err" hidden><p>The 3D library did not load. Check your connection and reload the page.</p></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script>
+//@SCRIPT@
+</script>
+</body>
+</html>

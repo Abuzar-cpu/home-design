@@ -3,7 +3,7 @@
 Read this at the start of a session, after `CLAUDE.md`. It holds what is live, what is waiting on Reis, and what was already decided or rejected, so nothing gets redone or re-asked.
 Keep it current: `docs/MAINTAINING.md` says which section to update for each kind of change.
 
-Last updated: 17 Nov 2026.
+Last updated: 26 Nov 2026.
 
 ## 1. Start-of-session checklist (about 2 minutes)
 1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
@@ -57,6 +57,8 @@ He sent a photo of under-stair pull-out storage with an oak handrail and spindle
 - Kitchen rebuilt from his own drawing: oven tower + gas hob on the outside wall, sink under the front window, fridge by the hall wall, stair-wall cabinets stop 1.05 m short of the door, island 1.0 × 0.7 with open shelves facing the hob and 2 stools, table for two 0.5 × 0.7 on the island's end. Stools/chairs pushed in so the walkway works. Kitchen door opens **into the kitchen** (opening into the hall blocked it).
 - Guest/study: computer removed, two single beds, small two-door wardrobe, plain writing desk.
 - Backups: keep **only the latest** backup artifact; overwrite it before each publish.
+- Built a Kitchen Colour Studio (26 Nov): a standalone page, separate from the tour's own publish flow, for trying furniture colours one piece at a time — cabinets, counters, island, stools, table, fridge, oven/hob, hardware — starting from any of the 4 styles. Link: https://claude.ai/artifact/VKJK7WgLMLrHKpbrbfuXV3 (slug `e54df07d-4824-4971-885c-7dffe1c02292`, see CLAUDE.md "Object studios"). Nothing from it is wired back into the house yet; its "Copy colours" button exports a `{materialKey: hex}` snippet for that.
+- Built a Living Room Colour Studio (26 Nov), same pattern as the kitchen one: sofa, cushions and accent colours, dining chairs, TV wall and sideboard wood, tables, rugs, curtains, pendant/lamp glow, plants — starting from any of the 4 styles. Link: https://claude.ai/artifact/411UrxpSyNetVqwwdJEkJL (slug `184bb646-d114-4440-8dfc-3445ac040a11`). Also not wired back into the house; same "Copy colours" export.
 
 ## 6. Working with Reis
 - Short messages, sometimes with typos. "Copy" = working copy; "publish" = push to the public link; "sketch first" = an inline SVG plan to scale, nothing built until he approves.
