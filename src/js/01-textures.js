@@ -146,6 +146,7 @@ const GEN = {
   concreteLoft: () => stoneTile({ seed: 44, base: '#8f8d89', a: .06, grout: '#7c7a77' }),
   tileLoft: () => stoneTile({ seed: 45, base: '#5c5d60', a: .05, grout: '#454648' }),
   tileLoftWall: () => stoneTile({ seed: 46, base: '#e9e7e2', a: .03, grout: '#8d8c89' }),
+  travertine: () => marble({ seed: 61, base: '#dccfb8', veins: 9, cols: ['rgba(186,166,132,.26)', 'rgba(242,232,212,.34)'], wmax: 2.6, cloud: .05 }),
   counterLoft: () => marble({ seed: 47, base: '#9c9a96', veins: 5, cols: ['rgba(70,70,72,.35)', 'rgba(215,212,205,.4)'], wmax: 1.6, cloud: .06 }),
   plankModern: () => plank({ seed: 7, rows: 10, h: 33, s: 13, l: 67, dh: 5, ds: 5, dl: 7, g: [70, 62, 55] }),
   plankScandi: () => plank({ seed: 8, rows: 16, h: 37, s: 36, l: 77, dh: 5, ds: 8, dl: 6, g: [150, 115, 75] }),
@@ -156,6 +157,12 @@ const GEN = {
   counterModern: () => marble({ seed: 21, base: '#f1f0ee', veins: 9, cols: ['rgba(120,124,130,.55)', 'rgba(160,163,168,.45)'], wmax: 2.2, cloud: .03 }),
   counterScandi: () => terrazzo({ seed: 22, base: '#eeebe4', chips: ['#c9b9a2', '#a9b3a4', '#8e8a84', '#d9a98f', '#f8f6f1', '#6f7376'] }),
   counterLux: () => marble({ seed: 23, base: '#f3ede2', veins: 12, cols: ['rgba(168,120,60,.65)', 'rgba(110,90,70,.5)', 'rgba(200,160,95,.55)'], wmax: 5, cloud: .05 }),
+  walnut: () => tex(512, 512, (g, w, h) => {      // calm walnut veneer: soft long grain, little contrast
+    const r = rng(17); g.fillStyle = '#f3ebdf'; g.fillRect(0, 0, w, h);
+    for (let k = 0; k < 170; k++) { g.strokeStyle = 'rgba(80,52,30,' + (0.025 + r() * 0.075) + ')'; g.lineWidth = 1 + r() * 3.2; const y0 = r() * h, A = 1 + r() * 4, f = 1 + (r() * 2 | 0), ph = r() * 6.28;
+      g.beginPath(); for (let x = 0; x <= w; x += 8) { const y = y0 + A * Math.sin(x / w * 6.2832 * f + ph); if (x) g.lineTo(x, y); else g.moveTo(x, y); } g.stroke(); }
+    for (let k = 0; k < 1400; k++) { g.fillStyle = 'rgba(70,44,24,' + (.03 + r() * .06) + ')'; g.fillRect(r() * w, r() * h, 4 + r() * 14, 1); }
+  }),
   grain: () => tex(512, 512, (g, w, h) => {      // furniture wood, 512 px = 1 m, tinted by the material colour
     const r = rng(3); g.fillStyle = '#f4efe8'; g.fillRect(0, 0, w, h);
     for (let k = 0; k < 300; k++) { g.strokeStyle = 'rgba(70,45,25,' + (0.05 + r() * 0.15) + ')'; g.lineWidth = 0.5 + r() * 1.7; const y0 = r() * h, A = 1 + r() * 5, f = 1 + (r() * 3 | 0), ph = r() * 6.28;

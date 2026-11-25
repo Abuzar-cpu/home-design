@@ -17,6 +17,10 @@ mk('floor', 0xffffff, .36, 0, { env: .95 }); mk('tile', 0xffffff, .24, 0, { env:
 mk('woodA', 0xffffff, .55, 0, WOOD); mk('woodB', 0xffffff, .5, 0, WOOD); mk('door', 0xffffff, .5, 0, WOODOPT); mk('frontDoor', 0xffffff, .45, 0, WOODOPT);
 mk('metal', 0xffffff, .4, .5); mk('metalAccent', 0xffffff, .22, 1); mk('winFrame', 0xffffff, .5, .3); mk('frameArt', 0xffffff, .5, 0);
 mk('cabinet', 0xffffff, .55, 0, WOODOPT); mk('cabinetUp', 0xffffff, .5, 0, WOODOPT); mk('counter', 0xffffff, .15, 0, { s: 2, env: .9 });
+// kitchen set: walnut lower units, ivory upper/tall units, travertine-look stone, champagne bronze, oak, greige (warm in Loft, the other styles reuse their own cabinet colours)
+mk('kLow', 0xffffff, .5, 0, WOODOPT); mk('kUp', 0xffffff, .55, 0, { map: null }); mk('kStone', 0xffffff, .32, 0, { s: 1.6, env: .7 }); mk('kBronze', 0xffffff, .3, 1);
+mk('kOak', 0xffffff, .5, 0, WOODOPT); mk('kGreige', 0xffffff, .85, 0, { map: null }); mk('kWall', 0xffffff, .95, 0, { s: 2.4, map: null });
+mk('kPlinth', 0x3a2b1f, .75); mk('kGlassB', 0x7a593a, .06, .3, { env: 1.4 }); Object.assign(M.kGlassB, { transparent: true, opacity: .5 });
 ['sofa', 'cushion', 'accent1', 'accent2', 'accent3', 'headboard', 'curtain', 'towel', 'mat', 'chairSeat'].forEach(n => mk(n, 0xffffff, 1, 0, FAB));
 M.curtain.side = THREE.DoubleSide;
 mk('chairFrame', 0xffffff, .5, 0, WOODOPT); mk('ceramic', 0xffffff, .5, 0, { env: .6 }); mk('ceramicAlt', 0xffffff, .5, 0, { env: .6 });
@@ -50,6 +54,7 @@ const STY = {
     woodA: [0x5a4533], woodB: [0x8f6b47], door: [0x27282b, { map: null, m: .4, r: .45 }], frontDoor: [0x1e1e20, { map: null, m: .4, r: .4 }],
     metal: [0x18191b, { m: .7, r: .45 }], metalAccent: [0xa06f47, { m: 1, r: .32 }], winFrame: [0x161719, { m: .5 }], frameArt: [0x161616],
     cabinet: [0x232426, { map: null, r: .6 }], cabinetUp: [0x6b523c, { map: 'grain' }], counter: [0xffffff, { map: 'counterLoft', r: .3 }],
+    kLow: [0x80583a, { map: 'walnut', r: .5 }], kUp: [0xf3ede1, { map: null, r: .55 }], kStone: [0xffffff, { map: 'travertine', r: .34 }], kBronze: [0xc4a47c, { m: 1, r: .3 }], kOak: [0xc89c68, { map: 'grain', r: .5 }], kGreige: [0xb3a594, { map: null, r: .85 }], kWall: [0xd5c8b3, { map: 'plaster', r: .95 }],
     sofa: [0x8a4f2c, { map: null, r: .5 }], cushion: [0x97593a, { map: null, r: .5 }], accent1: [0x4c5241, { map: 'weave' }], accent2: [0xd8cfbf, { map: 'boucle' }], accent3: [0x2e2f31, { map: 'weave' }],
     headboard: [0x6f4027, { map: null, r: .5 }], curtain: [0xa9a7a2, { map: 'weave' }], towel: [0x6b6d6f, { map: 'boucle' }], mat: [0x3c3d3f, { map: 'boucle' }],
     chairSeat: [0x6f4027, { map: null, r: .5 }], chairFrame: [0x18191b, { map: null, m: .7, r: .45 }], ceramic: [0xd9d5cd], ceramicAlt: [0x3a3b3d], glow: [0xffc980], slat: [0xffffff, { map: 'brick' }],
@@ -65,6 +70,8 @@ const STY = {
     chairSeat: [0x33503f, { map: 'weave' }], chairFrame: [0x6a4329, { map: 'grain' }], ceramic: [0xe8dfd0], ceramicAlt: [0x26221f], glow: [0xffd9a0], slat: [0x74492d],
     rugLiving: [0xffffff, { map: 'rug_lux_l' }], rugDining: [0xffffff, { map: 'rug_lux_d' }], rugGuest: [0xffffff, { map: 'rug_lux_g' }], runner: [0xffffff, { map: 'rug_lux_r' }] } }
 };
+const KALIAS = { kLow: 'cabinet', kUp: 'cabinetUp', kStone: 'counter', kBronze: 'metalAccent', kOak: 'woodB', kGreige: 'sofa', kWall: 'wall' };
+['modern', 'scandi', 'lux'].forEach(st => Object.keys(KALIAS).forEach(k => { STY[st].m[k] = STY[st].m[KALIAS[k]]; }));
 const arts = [], fills = [];
 const haloMat = new THREE.SpriteMaterial({ map: haloTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0, fog: false });
 function halo(x, y, z, sc, parent) { const sp = new THREE.Sprite(haloMat); sp.scale.set(sc, sc, 1); sp.position.set(x, y, z); (parent || PARENT).add(sp); }
