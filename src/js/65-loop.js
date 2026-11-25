@@ -118,7 +118,7 @@ function applyLang(l) {
   try {
     localStorage.setItem('tour-lang', l);
   } catch (e) {}
-  document.querySelectorAll('.sheet p, #styles button, #time label, #hint dt, #hint dd, #err p').forEach(el => {
+  document.querySelectorAll('.sheet p, #time label, #hint dt, #hint dd, #err p').forEach(el => {
     if (!el.dataset.en) el.dataset.en = el.textContent;
     el.textContent = tr(el.dataset.en);
   });
@@ -131,14 +131,14 @@ function applyLang(l) {
   lvlName.textContent = tr((mode === 'doll' ? dollLv : levelOf(player.y)) === 2 ? 'Upper floor' : 'Ground floor');
   rooms.forEach(r => r.draw());
   lastRoom = null;
-  if (sunReady && style) applyTime();
+  if (sunReady) applyTime();
   if (cardArgs && tcard.classList.contains('show')) showCard(cardArgs[0], cardArgs[1], cardArgs[2]);
 }
 langBtn.addEventListener('click', () => {
   applyLang(lang === 'az' ? 'en' : 'az');
   langBtn.blur();
 });
-applyStyle(styleFromHash() || 'modern');
+applyPalette();
 applyVis(false);
 applyLang(lang);
 window.tour = {
@@ -170,7 +170,6 @@ window.tour = {
   player,
   orbit,
   setMode,
-  setStyle: applyStyle,
   jumpTo: n => jumpTo(rooms.find(r => r.n === n)),
   rooms,
   colliders

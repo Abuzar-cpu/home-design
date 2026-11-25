@@ -122,50 +122,6 @@ function plank(o) {
     }
   });
 }
-// herringbone parquet: 16 x 16 cells of 90 mm, blocks 90 x 360 mm, 1024 px = 1.44 m
-function herring(o) {
-  return tex(1024, 1024, (g, w, h) => {
-    const r = rng(o.seed),
-      c = 64,
-      mod = v => ((v % 8) + 8) % 8;
-    const blockAt = (px, py, pw, ph) => {
-      const col =
-          'hsl(' + (o.h + (r() - 0.5) * 6) + ',' + (o.s + (r() - 0.5) * 10) + '%,' + (o.l + (r() - 0.5) * o.dl) + '%)',
-        lines = [];
-      for (let k = 0; k < 9; k++) lines.push([r(), 0.06 + r() * 0.14, 0.6 + r() * 1.3]);
-      for (let dx = -w; dx <= w; dx += w)
-        for (let dy = -h; dy <= h; dy += h) {
-          const X = px + dx,
-            Y = py + dy;
-          if (X + pw <= 0 || X >= w || Y + ph <= 0 || Y >= h) continue;
-          g.fillStyle = col;
-          g.fillRect(X, Y, pw, ph);
-          lines.forEach(l => {
-            g.strokeStyle = 'rgba(' + o.g[0] + ',' + o.g[1] + ',' + o.g[2] + ',' + l[1] + ')';
-            g.lineWidth = l[2];
-            g.beginPath();
-            if (pw > ph) {
-              g.moveTo(X, Y + l[0] * ph);
-              g.lineTo(X + pw, Y + l[0] * ph);
-            } else {
-              g.moveTo(X + l[0] * pw, Y);
-              g.lineTo(X + l[0] * pw, Y + ph);
-            }
-            g.stroke();
-          });
-          g.strokeStyle = 'rgba(20,12,6,.55)';
-          g.lineWidth = 1.5;
-          g.strokeRect(X + 0.5, Y + 0.5, pw - 1, ph - 1);
-        }
-    };
-    for (let y = 0; y < 16; y++)
-      for (let x = 0; x < 16; x++) {
-        const m = mod(x - y);
-        if (m === 0) blockAt(x * c, y * c, 4 * c, c);
-        else if (m === 7) blockAt(x * c, y * c, c, 4 * c);
-      }
-  });
-}
 // 600 mm porcelain / stone tiles: 1024 px = 1.2 m
 function stoneTile(o) {
   return tex(1024, 1024, (g, w, h) => {
@@ -193,70 +149,15 @@ function marble(o) {
     veins(g, r, w, h, o.veins, o.cols, o.wmax);
   });
 }
-// terrazzo: chips of stone in a cement ground.
-function terrazzo(o) {
-  return tex(1024, 1024, (g, w, h) => {
-    const r = rng(o.seed);
-    g.fillStyle = o.base;
-    g.fillRect(0, 0, w, h);
-    clouds(g, r, w, h, 120, 40, 140, 0.03);
-    for (let k = 0; k < 1500; k++) {
-      const x = r() * w,
-        y = r() * h,
-        s = 2.5 + r() * r() * 15,
-        n = 3 + ((r() * 3) | 0),
-        a0 = r() * 6.28,
-        pts = [];
-      for (let i = 0; i < n; i++) {
-        const a = a0 + (i / n) * 6.28 + (r() - 0.5) * 0.6,
-          d = s * (0.6 + r() * 0.5);
-        pts.push([Math.cos(a) * d, Math.sin(a) * d]);
-      }
-      g.fillStyle = o.chips[(r() * o.chips.length) | 0];
-      g.globalAlpha = 0.75 + r() * 0.25;
-      for (let dx = -w; dx <= w; dx += w)
-        for (let dy = -h; dy <= h; dy += h) {
-          const X = x + dx,
-            Y = y + dy;
-          if (X < -20 || X > w + 20 || Y < -20 || Y > h + 20) continue;
-          g.beginPath();
-          pts.forEach((p, i) => (i ? g.lineTo(X + p[0], Y + p[1]) : g.moveTo(X + p[0], Y + p[1])));
-          g.closePath();
-          g.fill();
-        }
-    }
-    g.globalAlpha = 1;
-  });
-}
-// Rug pattern for a style (modern, scandi, lux, loft) and room kind; T('rug_<style>_<kind>') caches it.
-function rugTex(style, kind) {
+// Rug pattern for a room kind (l living, d dining, g guest, r runner); T('rug_<kind>') caches it.
+function rugTex(kind) {
   const P = {
-    modern: {
-      l: ['#c9c8c4', '#2f3033', 'lines'],
-      d: ['#5a5d61', '#8a8d91', 'plain'],
-      g: ['#bfbeba', '#ecebe7', 'stripe'],
-      r: ['#8f9194', '#35363a', 'stripe']
-    },
-    scandi: {
-      l: ['#ece6d9', '#5a4a3c', 'diamond'],
-      d: ['#dfd7c7', '#f6f2e9', 'stripe'],
-      g: ['#eadfd1', '#b98f7a', 'diamond'],
-      r: ['#e8e1d2', '#8fa08a', 'stripe']
-    },
-    loft: {
-      l: ['#7d6c5c', '#26262a', 'lines'],
-      d: ['#4b4845', '#8c6a48', 'plain'],
-      g: ['#6f6c68', '#cbc4b7', 'stripe'],
-      r: ['#5b5650', '#b0653a', 'stripe']
-    },
-    lux: {
-      l: ['#5a2e2a', '#c9a45c', 'border'],
-      d: ['#3b4944', '#c9a45c', 'border'],
-      g: ['#6a523f', '#e3d2b3', 'border'],
-      r: ['#4a2e29', '#c9a45c', 'border']
-    }
-  }[style][kind];
-  const seed = { l: 31, d: 32, g: 33, r: 34 }[kind] + style.length * 10,
+    l: ['#e8dfcf', '#cbb99c', 'plain'],
+    d: ['#ddd1bd', '#b9a685', 'plain'],
+    g: ['#6f6c68', '#cbc4b7', 'stripe'],
+    r: ['#5b5650', '#b0653a', 'stripe']
+  }[kind];
+  const seed = { l: 71, d: 72, g: 73, r: 74 }[kind],
     bg = P[0],
     fg = P[1],
     pat = P[2];
@@ -301,62 +202,6 @@ function rugTex(style, kind) {
           on = !on;
         }
         g.globalAlpha = 1;
-      } else if (pat === 'diamond') {
-        g.strokeStyle = fg;
-        g.lineWidth = 5;
-        g.lineJoin = 'round';
-        const c = 128;
-        for (let y = -1; y < 5; y++)
-          for (let x = -1; x < 5; x++) {
-            const cx = x * c + c / 2,
-              cy = y * c + c / 2,
-              j = () => (r() - 0.5) * 10;
-            g.globalAlpha = 0.7 + r() * 0.3;
-            g.beginPath();
-            g.moveTo(cx + j(), cy - c / 2 + j());
-            g.lineTo(cx + c / 2 + j(), cy + j());
-            g.lineTo(cx + j(), cy + c / 2 + j());
-            g.lineTo(cx - c / 2 + j(), cy + j());
-            g.closePath();
-            g.stroke();
-          }
-        g.globalAlpha = 1;
-      } else {
-        g.fillStyle = 'rgba(0,0,0,.28)';
-        g.fillRect(0, 0, w, h);
-        g.fillStyle = bg;
-        g.fillRect(34, 34, w - 68, h - 68);
-        g.strokeStyle = fg;
-        g.lineWidth = 4;
-        g.strokeRect(22, 22, w - 44, h - 44);
-        g.lineWidth = 2;
-        g.strokeRect(44, 44, w - 88, h - 88);
-        for (let k = 0; k < 4; k++) {
-          const s = 1 - k * 0.22;
-          g.globalAlpha = 0.28 + k * 0.12;
-          g.fillStyle = k % 2 ? fg : 'rgba(0,0,0,.5)';
-          g.beginPath();
-          g.moveTo(w / 2, h / 2 - h * 0.4 * s);
-          g.lineTo(w / 2 + w * 0.4 * s, h / 2);
-          g.lineTo(w / 2, h / 2 + h * 0.4 * s);
-          g.lineTo(w / 2 - w * 0.4 * s, h / 2);
-          g.closePath();
-          g.fill();
-        }
-        g.globalAlpha = 0.55;
-        g.fillStyle = fg;
-        for (let y = 0; y < 9; y++)
-          for (let x = 0; x < 9; x++) {
-            const px = 68 + (x * (w - 136)) / 8,
-              py = 68 + (y * (h - 136)) / 8;
-            g.beginPath();
-            g.moveTo(px, py - 6);
-            g.lineTo(px + 6, py);
-            g.lineTo(px, py + 6);
-            g.lineTo(px - 6, py);
-            g.fill();
-          }
-        g.globalAlpha = 1;
       }
       for (let k = 0; k < 26000; k++) {
         g.fillStyle = k % 2 ? 'rgba(0,0,0,.07)' : 'rgba(255,255,255,.07)';
@@ -367,91 +212,36 @@ function rugTex(style, kind) {
   );
 }
 const artCache = {};
-// Generated abstract artwork i, in the palette of a style (pictures hung with art()).
-function artTex(style, i) {
-  const key = style + i;
-  if (artCache[key]) return artCache[key];
-  return (artCache[key] = tex(
+// Generated abstract artwork i (pictures hung with art()): a half disc, a rust block and a few ink lines.
+function artTex(i) {
+  if (artCache[i]) return artCache[i];
+  return (artCache[i] = tex(
     256,
     256,
     (g, w, h) => {
-      const r = rng(100 + i * 7 + style.length * 13);
-      if (style === 'modern' || style === 'loft') {
-        const loft = style === 'loft',
-          dark = i % 3 === 1,
-          ink = dark ? (loft ? '#d9d4ca' : '#efede8') : '#1c1d1f';
-        g.fillStyle = dark ? '#232325' : loft ? '#cfcac0' : '#efede8';
-        g.fillRect(0, 0, w, h);
-        g.fillStyle = ink;
+      const r = rng(152 + i * 7),
+        dark = i % 3 === 1,
+        ink = dark ? '#d9d4ca' : '#1c1d1f';
+      g.fillStyle = dark ? '#232325' : '#cfcac0';
+      g.fillRect(0, 0, w, h);
+      g.fillStyle = ink;
+      g.beginPath();
+      const a0 = (((r() * 4) | 0) * Math.PI) / 2;
+      g.arc(w * (0.35 + r() * 0.3), h * (0.4 + r() * 0.25), 46 + r() * 34, a0, a0 + Math.PI);
+      g.fill();
+      g.fillStyle = '#8a4a26';
+      g.fillRect(w * (0.1 + r() * 0.5), h * (0.12 + r() * 0.6), 30 + r() * 50, 30 + r() * 60);
+      g.strokeStyle = ink;
+      g.lineWidth = 3;
+      for (let k = 0; k < 3; k++) {
         g.beginPath();
-        const a0 = (((r() * 4) | 0) * Math.PI) / 2;
-        g.arc(w * (0.35 + r() * 0.3), h * (0.4 + r() * 0.25), 46 + r() * 34, a0, a0 + Math.PI);
-        g.fill();
-        g.fillStyle = loft ? '#8a4a26' : '#b0653a';
-        g.fillRect(w * (0.1 + r() * 0.5), h * (0.12 + r() * 0.6), 30 + r() * 50, 30 + r() * 60);
-        g.strokeStyle = ink;
-        g.lineWidth = 3;
-        for (let k = 0; k < 3; k++) {
-          g.beginPath();
-          g.moveTo(r() * w, r() * h);
-          g.lineTo(r() * w, r() * h);
-          g.stroke();
-        }
-        g.beginPath();
-        g.arc(w * (0.2 + r() * 0.6), h * (0.2 + r() * 0.6), 18 + r() * 16, 0, 6.3);
+        g.moveTo(r() * w, r() * h);
+        g.lineTo(r() * w, r() * h);
         g.stroke();
-      } else if (style === 'scandi') {
-        g.fillStyle = '#f3eee4';
-        g.fillRect(0, 0, w, h);
-        const cols = ['#8fa08a', '#d9b3a3', '#d8c7a6', '#a9b7bd', '#c98f6f'];
-        for (let k = 0; k < 4; k++) {
-          g.fillStyle = cols[(i + k) % cols.length];
-          g.globalAlpha = 0.85;
-          g.beginPath();
-          g.ellipse(w * (0.2 + r() * 0.6), h * (0.25 + r() * 0.55), 26 + r() * 46, 18 + r() * 34, r() * 3, 0, 6.3);
-          g.fill();
-        }
-        g.globalAlpha = 1;
-        g.strokeStyle = '#55634f';
-        g.fillStyle = '#55634f';
-        g.lineWidth = 2;
-        for (let k = 0; k < 2; k++) {
-          const x0 = w * (0.3 + r() * 0.4),
-            sw = (r() - 0.5) * 60;
-          g.beginPath();
-          g.moveTo(x0, h * 0.95);
-          g.quadraticCurveTo(x0 + sw, h * 0.6, x0 + sw * 0.4, h * 0.2);
-          g.stroke();
-          for (let t = 0.25; t < 1; t += 0.16) {
-            const px = x0 + sw * t * (1.6 - t),
-              py = h * (0.95 - 0.75 * t);
-            g.beginPath();
-            g.ellipse(px + (k ? 9 : -9), py, 10, 4.5, k ? -0.6 : 0.6, 0, 6.3);
-            g.fill();
-          }
-        }
-      } else {
-        const gr = g.createLinearGradient(0, 0, w, h);
-        gr.addColorStop(0, '#1f2b26');
-        gr.addColorStop(1, '#3b2a1d');
-        g.fillStyle = gr;
-        g.fillRect(0, 0, w, h);
-        g.fillStyle = 'rgba(232,223,208,.5)';
-        g.fillRect(w * (0.1 + r() * 0.3), h * (0.5 + r() * 0.25), w * 0.55, 16 + r() * 22);
-        g.strokeStyle = '#c9a45c';
-        g.lineCap = 'round';
-        for (let k = 0; k < 4; k++) {
-          g.lineWidth = 2 + r() * 9;
-          g.globalAlpha = 0.5 + r() * 0.5;
-          g.beginPath();
-          g.arc(w * (r() * 1.2 - 0.1), h * (r() * 1.2 - 0.1), 60 + r() * 120, r() * 6.3, r() * 6.3 + 1.2 + r() * 1.6);
-          g.stroke();
-        }
-        g.globalAlpha = 0.8;
-        g.fillStyle = '#d9b970';
-        for (let k = 0; k < 160; k++) g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2);
-        g.globalAlpha = 1;
       }
+      g.beginPath();
+      g.arc(w * (0.2 + r() * 0.6), h * (0.2 + r() * 0.6), 18 + r() * 16, 0, 6.3);
+      g.stroke();
     },
     true
   ));
@@ -502,37 +292,25 @@ const GEN = {
       wmax: 1.6,
       cloud: 0.06
     }),
-  plankModern: () => plank({ seed: 7, rows: 10, h: 33, s: 13, l: 67, dh: 5, ds: 5, dl: 7, g: [70, 62, 55] }),
-  plankScandi: () => plank({ seed: 8, rows: 16, h: 37, s: 36, l: 77, dh: 5, ds: 8, dl: 6, g: [150, 115, 75] }),
-  herringLux: () => {
-    const t = herring({ seed: 9, h: 24, s: 44, l: 31, dl: 9, g: [40, 22, 10] });
-    t.repeat.set(2.4 / 1.44, 2.4 / 1.44);
-    t.rotation = Math.PI / 4;
-    return t;
-  },
-  tileModern: () => stoneTile({ seed: 11, base: '#cbcac7', a: 0.028, grout: '#aaa9a6' }),
-  tileScandi: () => stoneTile({ seed: 12, base: '#e5e1d9', a: 0.035, grout: '#c7c2b8' }),
-  tileLux: () =>
-    stoneTile({ seed: 13, base: '#ddd0bc', a: 0.03, veins: 9, vein: 'rgba(150,115,80,.4)', grout: '#bfb19b' }),
-  counterModern: () =>
-    marble({
-      seed: 21,
-      base: '#f1f0ee',
-      veins: 9,
-      cols: ['rgba(120,124,130,.55)', 'rgba(160,163,168,.45)'],
-      wmax: 2.2,
-      cloud: 0.03
-    }),
-  counterScandi: () =>
-    terrazzo({ seed: 22, base: '#eeebe4', chips: ['#c9b9a2', '#a9b3a4', '#8e8a84', '#d9a98f', '#f8f6f1', '#6f7376'] }),
-  counterLux: () =>
-    marble({
-      seed: 23,
-      base: '#f3ede2',
-      veins: 12,
-      cols: ['rgba(168,120,60,.65)', 'rgba(110,90,70,.5)', 'rgba(200,160,95,.55)'],
-      wmax: 5,
-      cloud: 0.05
+  // natural oak boards of the living room, 1024 px = 2.4 m (16 boards of 15 cm)
+  plankOak: () => plank({ seed: 8, rows: 16, h: 34, s: 42, l: 68, dh: 5, ds: 8, dl: 6, g: [120, 85, 50] }),
+  // warm beige travertine, 512 px = 1 m: soft clouds, horizontal bands and small elongated pores
+  travertine: () =>
+    tex(512, 512, (g, w, h) => {
+      const r = rng(61);
+      g.fillStyle = '#e2d3b8';
+      g.fillRect(0, 0, w, h);
+      clouds(g, r, w, h, 50, 40, 160, 0.05);
+      for (let k = 0; k < 30; k++) {
+        g.fillStyle = 'rgba(' + (150 + r() * 40) + ',120,80,' + (0.04 + r() * 0.08) + ')';
+        g.fillRect(0, r() * h, w, 1 + r() * 7);
+      }
+      for (let k = 0; k < 520; k++) {
+        g.fillStyle = 'rgba(120,95,62,' + (0.2 + r() * 0.3) + ')';
+        g.beginPath();
+        g.ellipse(r() * w, r() * h, 1.5 + r() * 5, 0.6 + r() * 1.2, 0, 0, 6.3);
+        g.fill();
+      }
     }),
   grain: () =>
     tex(512, 512, (g, w, h) => {
@@ -620,7 +398,7 @@ const GEN = {
 const TX = {};
 // The texture called n, generated once (GEN[n] or a rug), then shared.
 function T(n) {
-  if (!TX[n]) TX[n] = n.indexOf('rug_') === 0 ? rugTex(n.split('_')[1], n.split('_')[2]) : GEN[n]();
+  if (!TX[n]) TX[n] = n.indexOf('rug_') === 0 ? rugTex(n.split('_')[1]) : GEN[n]();
   return TX[n];
 }
 const skyTex = tex(8, 256, () => {}, true),

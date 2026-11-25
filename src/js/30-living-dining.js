@@ -1,237 +1,197 @@
 /* ----------------------------------------------- living + dining 7.8 x 4.0 */
-// rug under the sofa and coffee table
-box(0.7, 3.75, 0, 0.014, 1.1, 3.8, M.rugLiving, { cast: false });
-// L-shaped sofa: 3.65 m along the back wall with a short chaise end on the dining side
-soft(0.55, 4.2, 0.13, 0.44, 0.46, 1.42, M.sofa, 0.04);
-soft(3.24, 4.2, 0.13, 0.44, 1.4, 2.05, M.sofa, 0.04);
-soft(0.55, 4.2, 0.36, 0.9, 0.46, 0.74, M.sofa, 0.05);
-soft(3.92, 4.2, 0.36, 0.9, 0.7, 2.05, M.sofa, 0.05);
-soft(0.55, 0.79, 0.36, 0.68, 0.52, 1.42, M.sofa, 0.05);
-[
-  [0.8, 1.61],
-  [1.615, 2.425],
-  [2.43, 3.24],
-  [3.24, 3.91]
-].forEach(s => soft(s[0], s[1], 0.42, 0.6, 0.76, 1.44, M.cushion, 0.05));
-soft(3.24, 3.91, 0.42, 0.6, 1.445, 2.04, M.cushion, 0.05);
-[
-  [0.81, 1.6],
-  [1.625, 2.415],
-  [2.44, 3.23],
-  [3.25, 3.7]
-].forEach(s => soft(s[0], s[1], 0.6, 0.98, 0.7, 0.9, M.cushion, 0.07, { rx: -0.1 }));
-[
-  [0.92, 1.48],
-  [1.49, 2.03]
-].forEach(z => soft(3.72, 3.92, 0.6, 0.98, z[0], z[1], M.cushion, 0.07, { rz: -0.1 }));
-pillow(1.05, 0.8, 1.02, 0.44, 0.42, 0.14, M.accent1, { rx: -0.3 });
-pillow(1.37, 0.78, 1.06, 0.36, 0.36, 0.12, M.accent2, { rx: -0.32, ry: 0.25 });
-pillow(2.9, 0.76, 1.08, 0.5, 0.26, 0.12, M.accent3, { rx: -0.35 });
-soft(3.58, 3.72, 0.59, 1.01, 1.5, 1.94, M.accent2, 0.066, { corner: 0.07, rz: -0.3 });
-soft(3.3, 3.85, 0.6, 0.625, 1.72, 2.05, M.accent3, 0.012, { cast: false });
-soft(3.32, 3.83, 0.3, 0.62, 2.05, 2.08, M.accent3, 0.01, { cast: false });
-legs(0.61, 4.14, 0.52, 1.36, 0.13);
-legs(3.3, 4.14, 1.5, 1.99, 0.13);
-solid(0.55, 4.2, 0.45, 1.42, 0.86);
-solid(3.24, 4.2, 1.42, 2.05, 0.86);
-// side table at the end of the L
-cyl(3.72, 0.5, 0.525, 2.3, 0.2, M.woodB, { seg: 28 });
-cyl(3.72, 0.02, 0.5, 2.3, 0.014, M.metal);
-cyl(3.72, 0, 0.02, 2.3, 0.13, M.metal);
-vase(3.72, 0.525, 2.3, 0.2, M.ceramicAlt, true);
-solid(3.54, 3.9, 2.12, 2.48, 0.55);
-floorLamp(4.45, 0.7);
-// coffee table, one per style, with the same styling on top
-box(1.4, 2.6, 0.34, 0.42, 1.9, 2.5, M.counter, { parent: SG.modern });
-box(1.52, 2.48, 0, 0.34, 2.0, 2.4, M.woodA, { parent: SG.modern });
-cyl(1.96, 0.385, 0.42, 2.2, 0.44, M.woodA, { parent: SG.scandi, seg: 36 });
-[
-  [1.71, 2.0],
-  [2.21, 2.05],
-  [1.96, 2.47]
-].forEach(q => cyl(q[0], 0, 0.385, q[1], 0.016, M.woodA, { parent: SG.scandi, cast: false }));
-cyl(2.11, 0.3, 0.33, 2.62, 0.24, M.woodB, { parent: SG.scandi, seg: 28 });
-[
-  [1.97, 2.56],
-  [2.23, 2.52],
-  [2.13, 2.76]
-].forEach(q => cyl(q[0], 0, 0.3, q[1], 0.013, M.woodB, { parent: SG.scandi, cast: false }));
-cyl(2.0, 0.385, 0.42, 2.2, 0.5, M.counter, { parent: SG.lux, seg: 44 });
-[
-  [1.7, 1.95],
-  [2.3, 1.95],
-  [2.0, 2.53]
-].forEach(q => cyl(q[0], 0, 0.385, q[1], 0.014, M.metal, { parent: SG.lux, cast: false }));
-(function () {
-  const t = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.012, 8, 40), M.metal);
-  t.rotation.x = Math.PI / 2;
-  t.position.set(2.0, 0.1, 2.2);
-  SG.lux.add(t);
-})();
-box(1.4, 2.6, 0.375, 0.42, 1.9, 2.5, M.woodB, { parent: SG.loft });
-box(1.46, 2.54, 0.1, 0.125, 1.96, 2.44, M.woodA, { parent: SG.loft, cast: false });
-[
-  [1.43, 1.93],
-  [2.57, 1.93],
-  [1.43, 2.47],
-  [2.57, 2.47]
-].forEach(q =>
-  box(q[0] - 0.02, q[0] + 0.02, 0, 0.375, q[1] - 0.02, q[1] + 0.02, M.metal, { parent: SG.loft, cast: false })
-);
-solid(1.4, 2.6, 1.9, 2.5, 0.42);
-// tray, candle, vase and books on the coffee table
-box(2.01, 2.31, 0.42, 0.432, 2.07, 2.33, M.metalAccent, { cast: false });
-cyl(2.08, 0.432, 0.52, 2.15, 0.035, M.paper, { cast: false });
-cyl(2.08, 0.52, 0.535, 2.15, 0.003, M.kick, { cast: false });
-vase(2.22, 0.432, 2.25, 0.16, M.ceramicAlt, true);
-bookStack(1.78, 0.42, 2.19, 3, 4);
-// media wall
-tiled('x', 4.4, -1, 0.4, 3.04, [], M.slat, 0.6);
-box(0.8, 3.0, 0.18, 0.55, 4.0, 4.385, M.woodA);
-solid(0.8, 3.0, 4.0, 4.4, 0.55);
-[1.53, 2.27].forEach(x => box(x - 0.002, x + 0.002, 0.2, 0.53, 3.995, 4.0, M.kick, { cast: false }));
-box(1.2, 2.6, 0.88, 1.68, 4.34, 4.372, M.screen);
-box(1.75, 2.05, 0.55, 0.6, 4.2, 4.33, M.kick, { cast: false });
-vase(1.0, 0.55, 4.2, 0.26, M.ceramic, true);
-bookStack(2.78, 0.55, 4.2, 3, 7);
-cyl(2.78, 0.646, 0.72, 4.2, 0.05, M.ceramicAlt, { rTop: 0.03 });
-// glass display cabinet beside the TV unit: dark frame, glass doors and shelves, lit from inside
-(function () {
-  const x0 = 3.08,
-    x1 = 3.53,
-    z0 = 3.99,
-    z1 = 4.39,
-    f = 0.025,
-    H = 2.25;
-  box(x0 + 0.02, x1 - 0.02, 0, 0.08, z0 + 0.03, z1, M.kick, { cast: false });
-  box(x0 + f, x1 - f, 0.08, H - f, z1 - 0.015, z1, M.mirror, { cast: false });
+// Warm contemporary: ivory walls, natural oak floor, walnut and travertine, champagne bronze details.
+// Living area on the left (TV wall on the hall wall), dining under the rear window on the right; the walk from
+// the hall opening (x 3.6-4.9) to the dining table stays at least 1.2 m wide.
+
+// Full-height curtain folds stacked on a wall face from a0 to a1 (axis and dir as for vpanel), d0..d1 off the
+// wall, up to top; mat is the fabric.
+function drapes(axis, face, dir, a0, a1, d0, d1, top, mat) {
+  for (let a = a0; a < a1 - 0.03; a += 0.066) {
+    const f0 = face + dir * d0,
+      f1 = face + dir * d1;
+    if (axis === 'x') soft(a, a + 0.06, 0.02, top, f0, f1, mat, 0.022, { cast: false });
+    else soft(f0, f1, 0.02, top, a, a + 0.06, mat, 0.022, { cast: false });
+  }
+}
+// Upholstered dining chair at (cx, cz) in sand fabric with a rounded back, walnut legs with bronze tips;
+// face = direction the sitter looks ('n' toward -z or 's' toward +z).
+function diningChair(cx, cz, face) {
+  const s = 0.24,
+    bk = face === 's' ? -1 : 1; // side the back is on, along z
+  soft(cx - s, cx + s, 0.42, 0.52, cz - s, cz + s, M.sandFab, 0.04, { corner: 0.08 });
+  soft(cx - s + 0.01, cx + s - 0.01, 0.5, 0.9, cz + bk * (s - 0.07), cz + bk * s, M.sandFab, 0.03, { corner: 0.1 });
   [
-    [x0, x0 + f, z0, z0 + f],
-    [x1 - f, x1, z0, z0 + f],
-    [x0, x0 + f, z1 - f, z1],
-    [x1 - f, x1, z1 - f, z1]
-  ].forEach(q => box(q[0], q[1], 0.08, H, q[2], q[3], M.metal));
-  [0.08, 1.6, H - f].forEach(y => {
-    box(x0, x1, y, y + f, z0, z0 + f, M.metal, { cast: false });
-    [x0, x1 - f].forEach(x => box(x, x + f, y, y + f, z0, z1, M.metal, { cast: false }));
+    [-1, -1],
+    [1, -1],
+    [-1, 1],
+    [1, 1]
+  ].forEach(q => {
+    const x = cx + q[0] * (s - 0.04),
+      z = cz + q[1] * (s - 0.04);
+    cyl(x, 0.03, 0.42, z, 0.016, M.walnut, { rTop: 0.02, cast: false, seg: 10 });
+    cyl(x, 0, 0.03, z, 0.015, M.bronze, { cast: false, seg: 10 });
   });
-  box(x0, x1, H - f, H, z0, z1, M.metal);
-  [
-    [0.08 + f, 1.6],
-    [1.6 + f, H - f]
-  ].forEach(d => box(x0 + f, x1 - f, d[0], d[1], z0 + 0.008, z0 + 0.014, M.glass, { cast: false, recv: false }));
-  [x0 + 0.009, x1 - 0.009].forEach(x =>
-    box(x - 0.003, x + 0.003, 0.08 + f, H - f, z0 + f, z1 - f, M.glass, { cast: false, recv: false })
-  );
-  [
-    [1.18, 1.52],
-    [1.68, 2.0]
-  ].forEach(h => box(x1 - 0.075, x1 - 0.065, h[0], h[1], z0 - 0.018, z0 - 0.008, M.metalAccent, { cast: false }));
-  [0.55, 0.97, 1.39, 1.82].forEach(y => {
-    box(x0 + f, x1 - f, y, y + 0.01, z0 + f, z1 - 0.015, M.glass, { cast: false, recv: false });
-    box(x0 + f, x1 - f, y - 0.006, y, z0 + f, z0 + f + 0.012, M.led, { cast: false });
-  });
-  [x0 + f, x1 - f - 0.006].forEach(x =>
-    box(x, x + 0.006, 0.12, H - 0.04, z0 + f, z0 + f + 0.012, M.led, { cast: false })
-  );
-  vase(3.2, 0.105, 4.2, 0.3, M.ceramicAlt);
-  cyl(3.41, 0.105, 0.27, 4.22, 0.05, M.glassObj, { cast: false });
-  [3.17, 3.25].forEach(x => cyl(x, 0.56, 0.72, 4.16, 0.028, M.glassObj, { cast: false }));
-  cyl(3.42, 0.56, 0.64, 4.2, 0.07, M.ceramic, { rTop: 0.05, cast: false });
-  bookStack(3.3, 0.98, 4.2, 2, 120);
-  cyl(3.2, 1.4, 1.66, 4.2, 0.042, M.glassObj, { rTop: 0.02, cast: false });
-  vase(3.42, 1.4, 4.2, 0.2, M.ceramic);
-  vase(3.3, 1.83, 4.2, 0.24, M.ceramicAlt);
-  cyl(3.15, 1.83, 1.93, 4.16, 0.045, M.metalAccent, { cast: false });
-  solid(x0, x1, z0, z1, H);
+}
+
+// ---- room finishes: oak floor, ivory walls and ceiling
+floorPlane(0.4, 8.2, 0.4, 4.4, 0.003, M.oak, 2.4);
+tiled('x', 0.4, 1, 0.4, 8.2, [win(5.8, 7.4, -1)], M.livWall, 2.4); // rear wall
+tiled('z', 0.4, 1, 0.4, 4.4, [win(1.6, 3.2, -1)], M.livWall, 2.4); // side wall with the living window
+tiled('z', 8.2, -1, 0.4, 4.4, [], M.livWall, 2.4); // right wall
+tiled('x', 4.4, -1, 3.55, 8.2, [{ a0: 3.6, a1: 4.9, sill: 0, head: 2.3 }], M.livWall, 2.4); // hall wall past the TV
+box(0.4, 8.2, H - 0.01, H - 0.002, 0.4, 4.4, M.livCeil, { parent: roof, cast: false });
+// plaster band along the two window walls, 12 cm deep: it hides the curtain tracks and an indirect LED line
+box(0.4, 8.2, H - 0.12, H - 0.01, 0.4, 0.64, M.livCeil, { parent: roof });
+box(0.4, 0.64, H - 0.12, H - 0.01, 0.64, 4.4, M.livCeil, { parent: roof });
+box(0.64, 8.2, H - 0.045, H - 0.035, 0.64, 0.65, M.ledWarm, { parent: roof, cast: false });
+box(0.64, 0.65, H - 0.045, H - 0.035, 0.65, 4.4, M.ledWarm, { parent: roof, cast: false });
+
+// ---- living area
+// rug: ivory and sand, under the sofa's front legs and the whole accent chair
+box(0.75, 4.05, 0, 0.014, 1.15, 3.62, M.rugLiving, { cast: false });
+// curved sofa 3.1 m in ivory bouclé: rounded plinth, softly rounded back and arms, three seat cushions
+box(0.8, 3.6, 0, 0.06, 0.6, 1.32, M.espresso, { cast: false });
+soft(0.68, 3.72, 0.06, 0.42, 0.5, 1.45, M.boucleIvory, 0.07, { corner: 0.32 });
+soft(0.65, 3.75, 0.06, 0.86, 0.45, 0.76, M.boucleIvory, 0.12, { corner: 0.3 });
+soft(0.65, 0.92, 0.06, 0.66, 0.5, 1.42, M.boucleIvory, 0.12, { corner: 0.13 });
+soft(3.48, 3.75, 0.06, 0.66, 0.5, 1.42, M.boucleIvory, 0.12, { corner: 0.13 });
+[
+  [0.93, 1.78],
+  [1.79, 2.62],
+  [2.63, 3.47]
+].forEach(c => {
+  soft(c[0], c[1], 0.42, 0.58, 0.76, 1.44, M.boucleIvory, 0.07, { corner: 0.1 });
+  soft(c[0] + 0.02, c[1] - 0.02, 0.56, 0.98, 0.74, 0.95, M.boucleIvory, 0.09, { rx: -0.12 });
+});
+pillow(1.15, 0.8, 1.02, 0.44, 0.42, 0.14, M.greigeFab, { rx: -0.3 });
+pillow(1.5, 0.78, 1.06, 0.36, 0.36, 0.12, M.taupe, { rx: -0.32, ry: 0.25 });
+pillow(3.2, 0.8, 1.04, 0.44, 0.42, 0.14, M.sandFab, { rx: -0.3, ry: -0.2 });
+soft(2.75, 3.4, 0.58, 0.6, 1.0, 1.42, M.greigeFab, 0.008, { cast: false });
+solid(0.65, 3.75, 0.45, 1.45, 0.86);
+// round walnut side table with a bronze stem and an alabaster table lamp
+cyl(4.0, 0.53, 0.56, 0.85, 0.21, M.walnut, { seg: 32 });
+cyl(4.0, 0.02, 0.53, 0.85, 0.016, M.bronze);
+cyl(4.0, 0, 0.02, 0.85, 0.15, M.bronze, { seg: 28 });
+tableLamp(4.0, 0.56, 0.85, 0.95, M.ceramic);
+solid(3.79, 4.21, 0.64, 1.06, 0.6);
+// sculptural oval coffee table in honed travertine: 1.3 x 0.75 top on an oval plinth
+(function () {
+  const top = cyl(2.2, 0.3, 0.4, 2.27, 0.5, M.travertine, { seg: 56 }),
+    base = cyl(2.2, 0, 0.3, 2.27, 0.5, M.travertine, { seg: 48, rTop: 0.46 });
+  top.scale.set(1.3, 1, 0.75);
+  base.scale.set(0.8, 1, 0.42);
 })();
-// pictures over the sofa, plant in the corner, curtains at the side window
+solid(1.55, 2.85, 1.9, 2.65, 0.4);
+// bronze tray, candle, vase and books on the coffee table
+cyl(2.45, 0.4, 0.41, 2.25, 0.16, M.bronze, { cast: false, seg: 32 });
+cyl(2.42, 0.41, 0.5, 2.22, 0.035, M.paper, { cast: false });
+vase(2.55, 0.41, 2.3, 0.18, M.ceramic, true);
+bookStack(1.85, 0.4, 2.25, 3, 4);
+// accent chair in sand bouclé on the hall side, facing the window: rounded tub on a walnut plinth
+box(3.3, 3.86, 0, 0.12, 2.4, 2.98, M.walnut);
+soft(3.2, 3.95, 0.12, 0.42, 2.3, 3.08, M.sandFab, 0.08, { corner: 0.22 });
+soft(3.72, 3.95, 0.12, 0.8, 2.3, 3.08, M.sandFab, 0.09, { corner: 0.12 });
+soft(3.22, 3.95, 0.12, 0.62, 2.3, 2.46, M.sandFab, 0.07, { corner: 0.08 });
+soft(3.22, 3.95, 0.12, 0.62, 2.92, 3.08, M.sandFab, 0.07, { corner: 0.08 });
+soft(3.25, 3.74, 0.42, 0.53, 2.46, 2.92, M.boucleIvory, 0.05, { corner: 0.1 });
+pillow(3.66, 0.68, 2.69, 0.3, 0.3, 0.12, M.taupe, { ry: Math.PI / 2, rz: 0.2 });
+solid(3.2, 3.95, 2.3, 3.08, 0.8);
+
+// ---- TV wall on the hall wall: travertine centre panel, fluted walnut either side, floating walnut console
+box(1.45, 2.85, 0, H, 4.34, 4.4, M.travertine);
+box(0.4, 1.45, 0, H, 4.36, 4.4, M.walnut);
+box(2.85, 3.55, 0, H, 4.36, 4.4, M.walnut);
+for (let x = 0.46; x < 3.52; x += 0.06) {
+  if (x > 1.42 && x < 2.88) continue;
+  box(x - 0.004, x + 0.004, 0.02, H - 0.02, 4.355, 4.36, M.espresso, { cast: false });
+}
+[1.45, 2.85].forEach(x => box(x - 0.006, x + 0.006, 0, H, 4.33, 4.36, M.espresso, { cast: false })); // shadow gaps
+// concealed LED grazing the stone from both shadow gaps, and the TV
+[1.465, 2.835].forEach(x => box(x - 0.004, x + 0.004, 0.5, H - 0.05, 4.335, 4.34, M.ledWarm, { cast: false }));
+box(1.43, 2.87, 0.95, 1.77, 4.31, 4.335, M.screen);
+// floating console 2.3 m, fluted front, with LED light washing the floor beneath it
+box(1.0, 3.3, 0.22, 0.48, 4.04, 4.34, M.walnut);
+for (let x = 1.05; x < 3.28; x += 0.05) box(x - 0.003, x + 0.003, 0.24, 0.46, 4.035, 4.04, M.espresso, { cast: false });
+box(1.05, 3.25, 0.214, 0.22, 4.08, 4.3, M.ledWarm, { cast: false });
+halo(2.15, 0.12, 4.2, 1.6);
+solid(1.0, 3.3, 4.04, 4.4, 0.48, 0.22);
+vase(1.2, 0.48, 4.2, 0.3, M.ceramic, true);
+bookStack(3.0, 0.48, 4.2, 2, 7);
+sph(3.0, 0.62, 4.2, 0.06, 0.06, 0.06, M.bronze);
+// pictures over the sofa, plant by the dining side
 art('x', 0.4, 1, 1.25, 2.1, 1.22, 2.06, 0);
 art('x', 0.4, 1, 2.3, 3.15, 1.22, 2.06, 1);
 plant(4.95, 0.85, 0.9, 'tree');
-curtains('z', 0.4, 1, 1.6, 3.2);
-// dining
-// dining table for six: rug, top, legs, chairs and place settings
-box(5.0, 7.8, 0, 0.014, 1.25, 3.35, M.rugDining, { cast: false });
-soft(5.5, 7.3, 0.715, 0.76, 1.85, 2.75, M.woodB, 0.012, { corner: 0.03 });
-[
-  [5.6, 1.95],
-  [7.2, 1.95],
-  [5.6, 2.65],
-  [7.2, 2.65]
-].forEach(q => box(q[0] - 0.035, q[0] + 0.035, 0, 0.72, q[1] - 0.035, q[1] + 0.035, M.woodB));
-[5.8, 6.4, 7.0].forEach(x => {
-  chair(x, 1.62, 's');
-  chair(x, 2.98, 'n');
-  placeSetting(x, 2.06, -1);
-  placeSetting(x, 2.54, 1);
+// living window: ivory sheers and taupe blackout curtains stacked beside the glass, full height
+drapes('z', 0.4, 1, 1.12, 1.62, 0.04, 0.09, H - 0.13, M.sheer);
+drapes('z', 0.4, 1, 3.18, 3.68, 0.04, 0.09, H - 0.13, M.sheer);
+drapes('z', 0.4, 1, 0.7, 1.12, 0.1, 0.17, H - 0.13, M.taupe);
+drapes('z', 0.4, 1, 3.68, 4.1, 0.1, 0.17, H - 0.13, M.taupe);
+
+// ---- dining area
+// rug and a walnut table for six, 2.0 x 1.0 with fully rounded ends, on two tapered pedestals with bronze feet
+box(5.05, 7.85, 0, 0.014, 0.95, 3.45, M.rugDining, { cast: false });
+box(5.95, 6.95, 0.72, 0.76, 1.7, 2.7, M.walnut);
+[5.95, 6.95].forEach(x => cyl(x, 0.72, 0.76, 2.2, 0.5, M.walnut, { seg: 48 }));
+[5.95, 6.95].forEach(x => {
+  cyl(x, 0.03, 0.72, 2.2, 0.15, M.walnut, { rTop: 0.1, seg: 28 });
+  cyl(x, 0, 0.03, 2.2, 0.2, M.bronze, { seg: 28 });
 });
-solid(5.5, 7.3, 1.4, 3.2, 0.86);
-// table runner, vase and two candles
-soft(5.65, 7.15, 0.76, 0.766, 2.24, 2.36, M.curtain, 0.003, { cast: false });
-vase(6.4, 0.766, 2.3, 0.24, M.ceramic, true);
-[6.12, 6.68].forEach(x => {
-  cyl(x, 0.766, 0.86, 2.3, 0.028, M.metalAccent, { rTop: 0.012 });
-  cyl(x, 0.86, 1.0, 2.3, 0.011, M.paper, { cast: false });
+[5.8, 6.45, 7.1].forEach(x => {
+  diningChair(x, 1.48, 's');
+  diningChair(x, 2.92, 'n');
 });
-// pendants, one design per style
-box(5.7, 7.1, 1.55, 1.6, 2.27, 2.33, M.metal, { parent: SG.modern });
-box(5.72, 7.08, 1.542, 1.55, 2.28, 2.32, M.led, { parent: SG.modern, cast: false });
-[5.9, 6.9].forEach(x => cyl(x, 1.6, H, 2.3, 0.004, M.metal, { parent: SG.modern, cast: false }));
-[5.95, 6.4, 6.85].forEach(x => halo(x, 1.52, 2.3, 0.8, SG.modern));
-[5.95, 6.85].forEach(x => {
-  cyl(x, 1.5, 1.74, 2.3, 0.22, M.ceramic, { parent: SG.scandi, rTop: 0.05, seg: 28 });
-  cyl(x, 1.488, 1.5, 2.3, 0.19, M.glow, { parent: SG.scandi, cast: false });
-  cyl(x, 1.74, H, 2.3, 0.005, M.metal, { parent: SG.scandi, cast: false });
-  halo(x, 1.5, 2.3, 1.2, SG.scandi);
+solid(5.45, 7.45, 1.24, 3.16, 0.9);
+// travertine bowl, a vase with stems and two bronze candlesticks
+(function () {
+  const b = cyl(6.45, 0.76, 0.82, 2.2, 0.16, M.travertine, { rTop: 0.2, seg: 32 });
+  b.scale.set(1.4, 1, 1);
+})();
+vase(6.0, 0.76, 2.2, 0.26, M.ceramic, true);
+[6.85, 7.0].forEach((x, i) => {
+  cyl(x, 0.76, 0.8 + i * 0.05, 2.2, 0.03, M.bronze, { rTop: 0.012 });
+  cyl(x, 0.8 + i * 0.05, 0.95 + i * 0.05, 2.2, 0.011, M.paper, { cast: false });
 });
-[
-  [5.9, 1.62],
-  [6.4, 1.48],
-  [6.9, 1.7]
-].forEach(q => {
-  sph(q[0], q[1], 2.3, 0.12, 0.12, 0.12, M.glow, { parent: SG.lux, cast: false });
-  cyl(q[0], q[1] + 0.1, q[1] + 0.16, 2.3, 0.035, M.metal, { parent: SG.lux, cast: false });
-  cyl(q[0], q[1] + 0.16, H, 2.3, 0.004, M.metal, { parent: SG.lux, cast: false });
-  halo(q[0], q[1], 2.3, 0.95, SG.lux);
-});
-[
-  [5.85, 1.62],
-  [6.4, 1.5],
-  [6.95, 1.62]
-].forEach(q => {
-  sph(q[0], q[1], 2.3, 0.055, 0.075, 0.055, M.glow, { parent: SG.loft, cast: false });
-  cyl(q[0], q[1] + 0.06, q[1] + 0.14, 2.3, 0.028, M.metal, { parent: SG.loft, cast: false });
-  cyl(q[0], q[1] + 0.14, H, 2.3, 0.004, M.metal, { parent: SG.loft, cast: false });
-  const cage = new THREE.Mesh(
-    new THREE.SphereGeometry(0.13, 8, 6),
-    new THREE.MeshBasicMaterial({ color: 0x18191b, wireframe: true })
-  );
-  cage.position.set(q[0], q[1], 2.3);
-  SG.loft.add(cage);
-  halo(q[0], q[1], 2.3, 0.9, SG.loft);
-});
-// sideboard
-box(5.6, 7.4, 0.16, 0.8, 4.0, 4.385, M.woodA);
-box(5.58, 7.42, 0.8, 0.83, 3.98, 4.39, M.counter);
-legs(5.68, 7.32, 4.06, 4.33, 0.16, M.metal, 0.015);
-solid(5.6, 7.4, 4.0, 4.4, 0.83);
-[6.2, 6.8].forEach(x => box(x - 0.002, x + 0.002, 0.18, 0.78, 3.995, 4.0, M.kick, { cast: false }));
-[5.9, 6.5, 7.1].forEach(x => box(x - 0.05, x + 0.05, 0.58, 0.592, 3.98, 4.0, M.metalAccent, { cast: false }));
-tableLamp(5.85, 0.83, 4.2, 1.15, M.ceramicAlt);
-vase(7.12, 0.83, 4.2, 0.3, M.ceramic, true);
-bookStack(6.5, 0.83, 4.2, 3, 12);
-cyl(6.5, 0.926, 0.96, 4.2, 0.09, M.ceramicAlt, { rTop: 0.12 });
+// sculptural pendant over the table: an oval alabaster disc in a champagne-bronze ring, on two fine cables
+(function () {
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.014, 10, 64), M.bronze);
+  ring.rotation.x = Math.PI / 2;
+  ring.scale.set(1.35, 1, 1);
+  ring.position.set(6.45, 1.66, 2.2);
+  ring.castShadow = true;
+  PARENT.add(ring);
+  const disc = cyl(6.45, 1.6, 1.66, 2.2, 0.4, M.alabaster, { seg: 48, rTop: 0.36, cast: false });
+  disc.scale.set(1.35, 1, 1);
+  [5.95, 6.95].forEach(x => cyl(x, 1.66, H, 2.2, 0.003, M.bronze, { cast: false }));
+  halo(6.45, 1.55, 2.2, 1.6);
+})();
+// slim walnut sideboard 35 cm deep on bronze legs, travertine top, fluted doors
+box(5.6, 7.4, 0.16, 0.8, 4.05, 4.4, M.walnut);
+box(5.58, 7.42, 0.8, 0.83, 4.03, 4.4, M.travertine);
+legs(5.68, 7.32, 4.1, 4.35, 0.16, M.bronze, 0.012);
+for (let x = 5.65; x < 7.38; x += 0.05) box(x - 0.003, x + 0.003, 0.2, 0.76, 4.045, 4.05, M.espresso, { cast: false });
+[6.2, 6.8].forEach(x => box(x - 0.006, x + 0.006, 0.18, 0.78, 4.04, 4.05, M.espresso, { cast: false }));
+[5.9, 6.5, 7.1].forEach(x => box(x - 0.05, x + 0.05, 0.58, 0.592, 4.03, 4.04, M.bronze, { cast: false }));
+solid(5.6, 7.4, 4.03, 4.4, 0.83);
+tableLamp(5.85, 0.83, 4.22, 1.15, M.ceramic);
+vase(7.12, 0.83, 4.22, 0.3, M.ceramic, true);
+bookStack(6.5, 0.83, 4.22, 3, 12);
 art('x', 4.4, -1, 6.05, 6.95, 1.2, 2.05, 2);
 plant(7.82, 0.82, 1.15, 'snake');
-curtains('x', 0.4, 1, 5.8, 7.4);
-// ceiling lights and room fill
+// dining window: ivory sheers stacked either side, from the hidden track in the ceiling band
+drapes('x', 0.4, 1, 5.3, 5.82, 0.05, 0.1, H - 0.13, M.sheer);
+drapes('x', 0.4, 1, 7.38, 7.9, 0.05, 0.1, H - 0.13, M.sheer);
+
+// ---- lighting, all 2700-3000 K: recessed spots, two TV-wall washers, room fill
 [
-  [1.6, 1.5],
-  [1.6, 3.3],
-  [4.3, 2.4],
-  [6.4, 3.6],
-  [7.6, 0.9]
+  [1.2, 2.0],
+  [3.2, 2.0],
+  [1.2, 3.4],
+  [3.2, 3.4],
+  [1.75, 4.05],
+  [2.55, 4.05],
+  [5.3, 3.9],
+  [7.6, 3.9]
 ].forEach(p => downlight(p[0], p[1]));
-fill(2.4, 2.3, 2.6, 0.5);
-fill(6.4, 1.45, 2.3, 0.55);
+fill(2.2, 2.3, 2.5, 0.5);
+fill(6.45, 1.45, 2.2, 0.55);

@@ -75,4 +75,3 @@ __FURN = false;
 
 //@before END
 window.__chk.scene = scene;
-window.__chk.SG = SG;

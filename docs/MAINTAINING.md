@@ -25,7 +25,7 @@ The notes in this repo are how the next session picks up without re-reading old 
 | He **asks a question you couldn't settle** | Keep it in §3 as "unanswered", with the options you offered. |
 | You flag a **builder or plan** concern | HANDOFF §4, one line. Remove it when he says it's resolved. |
 | He states a **working preference** ("only one backup", "fewer renders") | HANDOFF §6; also `CLAUDE.md` "How Reis works" if it's a standing rule. |
-| New helper, new `src/js` file, new style, new material, new convention | `CLAUDE.md` "Model conventions" (and the file list at the top if a file was added), `docs/CODE.md` (file table, recipes). A one-line comment above a new helper giving its arguments, and above each new piece of furniture saying what it is. Keep the `NN-` numbering so the build order stays right. Run `npm run format --prefix tools`. |
+| New helper, new `src/js` file, new material, new convention | `CLAUDE.md` "Model conventions" (and the file list at the top if a file was added), `docs/CODE.md` (file table, recipes). A one-line comment above a new helper giving its arguments, and above each new piece of furniture saying what it is. Keep the `NN-` numbering so the build order stays right. Run `npm run format --prefix tools`. |
 | Refactor that should change nothing visible | `python3 tools/fingerprint.py --save` before, `--diff` after (must print `identical`); say so in the PR. `docs/CODE.md` if the structure or a recipe changed. |
 | New tool or check, or a tool's usage changed | `CLAUDE.md` "Checks" and, if it's part of the start routine, HANDOFF §1. |
 | Artifact slug changes (new backup, new public page) | `CLAUDE.md` artifact table and HANDOFF §2. |

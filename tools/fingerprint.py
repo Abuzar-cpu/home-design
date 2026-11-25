@@ -1,5 +1,5 @@
 """Fingerprint of everything the tour builds, to prove a refactor changed nothing visible.
-It hashes, in each of the four styles: every object in the scene graph (type, visibility,
+It hashes every object in the scene graph (type, visibility,
 world matrix, geometry buffers, material settings and texture pixels), the colliders,
 the rooms list, the tour route, the Azerbaijani dictionary and the page text in both languages.
    python3 tools/fingerprint.py           print the hash and the per-part hashes
@@ -11,7 +11,7 @@ from common import build_test, url, CHROME, BUILD
 from playwright.sync_api import sync_playwright
 
 # exposes the scene to the page; the anchor is the end of the one shared <script> scope
-HOOK = 'window.__fp = { scene, colliders, rooms, ROUTE, AZ, applyStyle, applyLang };\n})();'
+HOOK = 'window.__fp = { scene, colliders, rooms, ROUTE, AZ, applyLang };\n})();'
 
 JS = r"""async () => {
   const F = window.__fp, out = {}, texCache = new Map();
@@ -64,8 +64,7 @@ JS = r"""async () => {
     }
     return { objects: parts.length, hash: await hash(parts.join('\n')) };
   }
-  for (const st of ['modern', 'scandi', 'lux', 'loft']) { F.applyStyle(st); out['scene:' + st] = await sceneHash(); }
-  F.applyStyle('modern');
+  out.scene = await sceneHash();
   out.colliders = await hash(JSON.stringify(F.colliders));
   out.rooms = await hash(JSON.stringify(F.rooms.map(q => Object.fromEntries(Object.entries(q).filter(e => typeof e[1] !== 'function' && typeof e[1] !== 'object' || Array.isArray(e[1]))))));
   out.route = await hash(JSON.stringify(F.ROUTE));

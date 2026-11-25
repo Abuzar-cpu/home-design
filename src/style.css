@@ -101,33 +101,6 @@ button:focus-visible {
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-#styles {
-  flex: 1 0 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  pointer-events: none;
-}
-#styles button {
-  pointer-events: auto;
-  background: var(--panel);
-  color: var(--ink);
-  font-size: 15px;
-  min-height: 40px;
-  padding: 0 13px;
-  border-bottom: 3px solid transparent;
-  box-shadow: none;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-#styles button:hover {
-  border-bottom-color: var(--line);
-}
-#styles button[aria-pressed='true'] {
-  background: var(--ink);
-  color: var(--paper);
-  border-bottom-color: var(--mark);
-}
 #time {
   flex: 0 1 430px;
   display: flex;
@@ -346,10 +319,6 @@ body.touch.walk #stick {
   button {
     font-size: 15px;
     padding: 0 12px;
-  }
-  #styles button {
-    font-size: 14px;
-    padding: 0 10px;
   }
   #time {
     flex-basis: 100%;

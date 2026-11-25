@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------- materials */
-// Every material by name. mk() creates one; the styles in STY below recolour them in place.
+// Every material by name. mk() creates one; the palette PAL below recolours most of them once at start.
 const M = {};
 // Material M[n]: colour c, roughness r, metalness m. ud (userData): texture scale s in metres, grain, map,
 // bump and bs (bump scale), env (reflection strength).
@@ -17,7 +17,7 @@ const WOOD = { s: 1, grain: true, map: 'grain', bump: true, bs: 0.0025 },
 // fixed
 mk('plinth', 0x8f8a82, 0.95);
 mk('stone', 0xa9a399, 0.9);
-mk('travertine', 0xe4d8c2, 0.7, 0, { env: 0.5 }); // ivory travertine-look stone of the entrance stair
+mk('travertine', 0xffffff, 0.7, 0, { s: 1, map: 'travertine', env: 0.5 }); // warm travertine: entrance stair, TV wall, tables
 mk('bronze', 0xb08d5e, 0.3, 1, { env: 1 }); // champagne bronze of the entrance stair handrails
 mk('roofDark', 0x4a4744, 0.9).side = THREE.DoubleSide;
 mk('lawn', 0x8c9c72, 1);
@@ -43,7 +43,7 @@ mk('glassDark', 0x33434d, 0.1);
 Object.assign(M.glassDark, { transparent: true, opacity: 0.72 });
 mk('glassObj', 0xe8f3f5, 0.04, 0, { env: 1.2 });
 Object.assign(M.glassObj, { transparent: true, opacity: 0.32 });
-// restyled by the style switch
+// coloured by PAL
 mk('wall', 0xffffff, 0.95, 0, { s: 2.4, map: null });
 mk('trim', 0xffffff, 0.95);
 mk('ceil', 0xffffff, 0.95);
@@ -74,185 +74,74 @@ M.glow.emissiveIntensity = 1.35;
 mk('slat', 0xffffff, 0.7, 0, { map: 'slat' });
 ['rugLiving', 'rugDining', 'rugGuest', 'runner'].forEach(n => mk(n, 0xffffff, 1));
 
-// The four interior styles. For each: hash = its name in the URL (#modern ...), fill = colour of the room
-// fill lights, exp = exposure, and m = per-material overrides { name: [colour, { map: texture name, ... }] }
-// applied by applyStyle(). Pieces that only exist in one style go in SG.<style> (00-setup.js).
-const STY = {
-  modern: {
-    hash: 'modern',
-    fill: 0xfff1e2,
-    exp: 1.0,
-    m: {
-      wall: [0xf0efed],
-      trim: [0xfafafa],
-      ceil: [0xfbfbfa],
-      floor: [0xffffff, { map: 'plankModern' }],
-      tile: [0xffffff, { map: 'tileModern' }],
-      tileWall: [0xf3f3f1, { map: 'tileModern' }],
-      stoneFloor: [0x9c9a97, { map: 'tileModern' }],
-      woodA: [0x35312e],
-      woodB: [0x80593c],
-      door: [0xf2f1ef, { map: null }],
-      frontDoor: [0x232323, { map: null, r: 0.4 }],
-      metal: [0x1b1c1e, { m: 0.5, r: 0.4 }],
-      metalAccent: [0xc4c7cb, { m: 1, r: 0.2 }],
-      winFrame: [0x1c1d1f, { m: 0.3 }],
-      frameArt: [0x161616],
-      cabinet: [0x3a3c3f, { map: null, r: 0.6 }],
-      cabinetUp: [0xefeeec, { map: null }],
-      counter: [0xffffff, { map: 'counterModern', r: 0.15 }],
-      sofa: [0x5a5d62, { map: 'weave' }],
-      cushion: [0x6e7176, { map: 'weave' }],
-      accent1: [0xb0653a, { map: 'weave' }],
-      accent2: [0xdddbd5, { map: 'boucle' }],
-      accent3: [0x2b2c2e, { map: 'weave' }],
-      headboard: [0x7b7e83, { map: 'weave' }],
-      curtain: [0xe9e9e7, { map: 'weave' }],
-      towel: [0x8f9296, { map: 'boucle' }],
-      mat: [0x55585c, { map: 'boucle' }],
-      chairSeat: [0x2a2a2c, { map: null, r: 0.55 }],
-      chairFrame: [0x1b1c1e, { map: null, m: 0.5, r: 0.4 }],
-      ceramic: [0xebeae7],
-      ceramicAlt: [0x2c2c2e],
-      glow: [0xfff0d8],
-      slat: [0x35302c],
-      rugLiving: [0xffffff, { map: 'rug_modern_l' }],
-      rugDining: [0xffffff, { map: 'rug_modern_d' }],
-      rugGuest: [0xffffff, { map: 'rug_modern_g' }],
-      runner: [0xffffff, { map: 'rug_modern_r' }]
-    }
-  },
-  scandi: {
-    hash: 'scandinavian',
-    fill: 0xfff2e0,
-    exp: 1.04,
-    m: {
-      wall: [0xf6f3ec],
-      trim: [0xfcfbf7],
-      ceil: [0xfcfbf8],
-      floor: [0xffffff, { map: 'plankScandi' }],
-      tile: [0xffffff, { map: 'tileScandi' }],
-      tileWall: [0xf8f6f1, { map: 'tileScandi' }],
-      stoneFloor: [0xaaa59b, { map: 'tileScandi' }],
-      woodA: [0xdcc49c],
-      woodB: [0xc9a070],
-      door: [0xf6f4ee, { map: null }],
-      frontDoor: [0xc9a070, { map: 'grain' }],
-      metal: [0x2a2a2b, { m: 0.3, r: 0.5 }],
-      metalAccent: [0xc8a96a, { m: 1, r: 0.32 }],
-      winFrame: [0xf4f2ed, { m: 0 }],
-      frameArt: [0xc9a070],
-      cabinet: [0xf4f2ec, { map: null }],
-      cabinetUp: [0xdcc49c, { map: 'grain' }],
-      counter: [0xffffff, { map: 'counterScandi', r: 0.3 }],
-      sofa: [0xd8d1c3, { map: 'boucle' }],
-      cushion: [0xe4ded2, { map: 'boucle' }],
-      accent1: [0x8fa08a, { map: 'weave' }],
-      accent2: [0xd9b3a3, { map: 'weave' }],
-      accent3: [0xa9b7bd, { map: 'weave' }],
-      headboard: [0xd7cebd, { map: 'boucle' }],
-      curtain: [0xf4f0e7, { map: 'weave' }],
-      towel: [0xa9b8a4, { map: 'boucle' }],
-      mat: [0xd2cabb, { map: 'boucle' }],
-      chairSeat: [0xd2ccbf, { map: 'weave' }],
-      chairFrame: [0xdcc49c, { map: 'grain' }],
-      ceramic: [0xeee8dd],
-      ceramicAlt: [0xc98f6f],
-      glow: [0xffedd0],
-      slat: [0xdcc7a2],
-      rugLiving: [0xffffff, { map: 'rug_scandi_l' }],
-      rugDining: [0xffffff, { map: 'rug_scandi_d' }],
-      rugGuest: [0xffffff, { map: 'rug_scandi_g' }],
-      runner: [0xffffff, { map: 'rug_scandi_r' }]
-    }
-  },
-  loft: {
-    hash: 'loft',
-    fill: 0xffd2a0,
-    exp: 1.0,
-    m: {
-      wall: [0xcfccc6, { map: 'plaster' }],
-      trim: [0x2a2a2c],
-      ceil: [0xc4c2be],
-      floor: [0xffffff, { map: 'concreteLoft', r: 0.3 }],
-      tile: [0xffffff, { map: 'tileLoft', r: 0.28 }],
-      tileWall: [0xffffff, { map: 'tileLoftWall' }],
-      stoneFloor: [0xa3a19d, { map: 'concreteLoft' }],
-      woodA: [0x5a4533],
-      woodB: [0x8f6b47],
-      door: [0x27282b, { map: null, m: 0.4, r: 0.45 }],
-      frontDoor: [0x1e1e20, { map: null, m: 0.4, r: 0.4 }],
-      metal: [0x18191b, { m: 0.7, r: 0.45 }],
-      metalAccent: [0xa06f47, { m: 1, r: 0.32 }],
-      winFrame: [0x161719, { m: 0.5 }],
-      frameArt: [0x161616],
-      cabinet: [0x232426, { map: null, r: 0.6 }],
-      cabinetUp: [0x6b523c, { map: 'grain' }],
-      counter: [0xffffff, { map: 'counterLoft', r: 0.3 }],
-      sofa: [0x8a4f2c, { map: null, r: 0.5 }],
-      cushion: [0x97593a, { map: null, r: 0.5 }],
-      accent1: [0x4c5241, { map: 'weave' }],
-      accent2: [0xd8cfbf, { map: 'boucle' }],
-      accent3: [0x2e2f31, { map: 'weave' }],
-      headboard: [0x6f4027, { map: null, r: 0.5 }],
-      curtain: [0xa9a7a2, { map: 'weave' }],
-      towel: [0x6b6d6f, { map: 'boucle' }],
-      mat: [0x3c3d3f, { map: 'boucle' }],
-      chairSeat: [0x6f4027, { map: null, r: 0.5 }],
-      chairFrame: [0x18191b, { map: null, m: 0.7, r: 0.45 }],
-      ceramic: [0xd9d5cd],
-      ceramicAlt: [0x3a3b3d],
-      glow: [0xffc980],
-      slat: [0xffffff, { map: 'brick' }],
-      rugLiving: [0xffffff, { map: 'rug_loft_l' }],
-      rugDining: [0xffffff, { map: 'rug_loft_d' }],
-      rugGuest: [0xffffff, { map: 'rug_loft_g' }],
-      runner: [0xffffff, { map: 'rug_loft_r' }]
-    }
-  },
-  lux: {
-    hash: 'warm-luxury',
-    fill: 0xffd9a8,
-    exp: 0.98,
-    m: {
-      wall: [0xe6dccd],
-      trim: [0xefe8dc],
-      ceil: [0xf6f1e8],
-      floor: [0xffffff, { map: 'herringLux', r: 0.27 }],
-      tile: [0xffffff, { map: 'tileLux', r: 0.2 }],
-      tileWall: [0xf4ede1, { map: 'tileLux' }],
-      stoneFloor: [0xa89c8a, { map: 'tileLux' }],
-      woodA: [0x6a4329],
-      woodB: [0x3b291e],
-      door: [0x603c26, { map: 'grain' }],
-      frontDoor: [0x3a271b, { map: 'grain' }],
-      metal: [0xb08d4f, { m: 1, r: 0.3 }],
-      metalAccent: [0xc9a45c, { m: 1, r: 0.2 }],
-      winFrame: [0x3a3028, { m: 0.5 }],
-      frameArt: [0xb08d4f, { m: 1, r: 0.3 }],
-      cabinet: [0x5e3b25, { map: 'grain' }],
-      cabinetUp: [0xe9e1d3, { map: null }],
-      counter: [0xffffff, { map: 'counterLux', r: 0.12 }],
-      sofa: [0xe5dbc9, { map: 'boucle' }],
-      cushion: [0xefe8da, { map: 'boucle' }],
-      accent1: [0x2f4a3d, { map: 'weave' }],
-      accent2: [0xa5552f, { map: 'weave' }],
-      accent3: [0xb9834f, { map: 'weave' }],
-      headboard: [0x2f4a3d, { map: 'weave' }],
-      curtain: [0xd8c8b0, { map: 'weave' }],
-      towel: [0xc9a27a, { map: 'boucle' }],
-      mat: [0x5a4636, { map: 'boucle' }],
-      chairSeat: [0x33503f, { map: 'weave' }],
-      chairFrame: [0x6a4329, { map: 'grain' }],
-      ceramic: [0xe8dfd0],
-      ceramicAlt: [0x26221f],
-      glow: [0xffd9a0],
-      slat: [0x74492d],
-      rugLiving: [0xffffff, { map: 'rug_lux_l' }],
-      rugDining: [0xffffff, { map: 'rug_lux_d' }],
-      rugGuest: [0xffffff, { map: 'rug_lux_g' }],
-      runner: [0xffffff, { map: 'rug_lux_r' }]
-    }
+// living and dining room only (warm contemporary: ivory, greige, oak, walnut, travertine, champagne bronze)
+mk('livWall', 0xece5d8, 0.92); // warm ivory paint
+mk('livCeil', 0xf1ebe1, 0.95);
+mk('oak', 0xffffff, 0.42, 0, { env: 0.8, map: 'plankOak' }); // natural oak boards
+mk('walnut', 0x74503a, 0.5, 0, Object.assign({}, WOOD)); // rich walnut, grain tinted
+mk('espresso', 0x3a2a20, 0.55);
+mk('boucleIvory', 0xefe9de, 1, 0, Object.assign({ map: 'boucle' }, FAB)); // sofa and cushions
+mk('sandFab', 0xd9c8aa, 1, 0, Object.assign({ map: 'weave' }, FAB)); // dining and accent chairs
+mk('greigeFab', 0xbfb3a2, 1, 0, Object.assign({ map: 'weave' }, FAB)); // throw cushions
+mk('taupe', 0x9c8a77, 1, 0, Object.assign({ map: 'weave' }, FAB)); // blackout curtains
+mk('sheer', 0xf6f1e8, 0.9, 0, { env: 0.2 }); // ivory sheer curtains
+Object.assign(M.sheer, { transparent: true, opacity: 0.62, side: THREE.DoubleSide });
+mk('ledWarm', 0xffffff, 1); // concealed 2700 K LED strips, dimmed by day like M.led
+M.ledWarm.emissive.setHex(0xffc98a);
+M.ledWarm.emissiveIntensity = 1.5;
+mk('alabaster', 0xf6e7cc, 0.6); // pendant diffuser, glows at night like M.glow
+M.alabaster.emissive.setHex(0xffd49a);
+M.alabaster.emissiveIntensity = 1.2;
+['travertine', 'oak', 'walnut', 'boucleIvory', 'sandFab', 'greigeFab', 'taupe'].forEach(n => {
+  const m = M[n];
+  m.map = T(m.userData.map);
+  if (m.userData.bump) m.bumpMap = m.map;
+});
+
+// The house's one palette (the former Loft style): fill = colour of the room fill lights, exp = exposure,
+// m = per-material settings { name: [colour, { map: texture name, r: roughness, m: metalness }] } applied once
+// at start by applyPalette(); materials not listed keep the values given to mk() above.
+const PAL = {
+  fill: 0xffd2a0,
+  exp: 1.0,
+  m: {
+    wall: [0xcfccc6, { map: 'plaster' }],
+    trim: [0x2a2a2c],
+    ceil: [0xc4c2be],
+    floor: [0xffffff, { map: 'concreteLoft', r: 0.3 }],
+    tile: [0xffffff, { map: 'tileLoft', r: 0.28 }],
+    tileWall: [0xffffff, { map: 'tileLoftWall' }],
+    stoneFloor: [0xa3a19d, { map: 'concreteLoft' }],
+    woodA: [0x5a4533],
+    woodB: [0x8f6b47],
+    door: [0x27282b, { map: null, m: 0.4, r: 0.45 }],
+    frontDoor: [0x1e1e20, { map: null, m: 0.4, r: 0.4 }],
+    metal: [0x18191b, { m: 0.7, r: 0.45 }],
+    metalAccent: [0xa06f47, { m: 1, r: 0.32 }],
+    winFrame: [0x161719, { m: 0.5 }],
+    frameArt: [0x161616],
+    cabinet: [0x232426, { map: null, r: 0.6 }],
+    cabinetUp: [0x6b523c, { map: 'grain' }],
+    counter: [0xffffff, { map: 'counterLoft', r: 0.3 }],
+    sofa: [0x8a4f2c, { map: null, r: 0.5 }],
+    cushion: [0x97593a, { map: null, r: 0.5 }],
+    accent1: [0x4c5241, { map: 'weave' }],
+    accent2: [0xd8cfbf, { map: 'boucle' }],
+    accent3: [0x2e2f31, { map: 'weave' }],
+    headboard: [0x6f4027, { map: null, r: 0.5 }],
+    curtain: [0xa9a7a2, { map: 'weave' }],
+    towel: [0x6b6d6f, { map: 'boucle' }],
+    mat: [0x3c3d3f, { map: 'boucle' }],
+    chairSeat: [0x6f4027, { map: null, r: 0.5 }],
+    chairFrame: [0x18191b, { map: null, m: 0.7, r: 0.45 }],
+    ceramic: [0xd9d5cd],
+    ceramicAlt: [0x3a3b3d],
+    glow: [0xffc980],
+    slat: [0xffffff, { map: 'brick' }],
+    rugLiving: [0xffffff, { map: 'rug_l' }],
+    rugDining: [0xffffff, { map: 'rug_d' }],
+    rugGuest: [0xffffff, { map: 'rug_g' }],
+    runner: [0xffffff, { map: 'rug_r' }]
   }
 };
 const arts = [],
@@ -273,15 +162,11 @@ function halo(x, y, z, sc, parent) {
   (parent || PARENT).add(sp);
 }
 let sunReady = false;
-let style = null;
-// Switch to style k: recolour every material, swap textures, show that style's SG group.
-function applyStyle(k) {
-  if (!STY[k] || k === style) return;
-  style = k;
-  const S = STY[k];
-  Object.keys(S.m).forEach(n => {
+// Colour every material from PAL, swap in its textures and set the artwork (called once at start).
+function applyPalette() {
+  Object.keys(PAL.m).forEach(n => {
     const m = M[n],
-      v = S.m[n],
+      v = PAL.m[n],
       p = v[1] || {},
       d = m.userData;
     m.color.setHex(v[0]);
@@ -306,20 +191,11 @@ function applyStyle(k) {
     }
   });
   arts.forEach(a => {
-    a.mat.map = artTex(k, a.i);
+    a.mat.map = artTex(a.i);
     a.mat.needsUpdate = true;
   });
-  Object.keys(SG).forEach(g => {
-    SG[g].visible = g === k;
-  });
-  fills.forEach(l => l.color.setHex(S.fill));
-  haloMat.color.setHex(S.fill);
+  fills.forEach(l => l.color.setHex(PAL.fill));
+  haloMat.color.setHex(PAL.fill);
   if (typeof applyTime === 'function' && sunReady) applyTime();
   renderer.shadowMap.needsUpdate = true;
-  document
-    .querySelectorAll('#styles button')
-    .forEach(b => b.setAttribute('aria-pressed', String(b.dataset.style === k)));
-  try {
-    if (location.hash.slice(1) !== S.hash) location.hash = S.hash;
-  } catch (e) {}
 }

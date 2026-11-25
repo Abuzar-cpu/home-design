@@ -109,6 +109,8 @@ function applyTime() {
   });
   M.glow.emissiveIntensity = 0.3 + 1.5 * L;
   M.led.emissiveIntensity = 0.22 + 1.8 * L;
+  M.ledWarm.emissiveIntensity = 0.15 + 1.9 * L;
+  M.alabaster.emissiveIntensity = 0.05 + 1.6 * L;
   haloMat.opacity = L * 0.55;
   haloMat.visible = L > 0.02;
   const ek = Math.max(day, 0.32 * L) + 0.06;
@@ -116,7 +118,7 @@ function applyTime() {
     const m = M[n];
     m.envMapIntensity = m.userData.envNow * ek;
   });
-  renderer.toneMappingExposure = STY[style].exp * (1 + 0.14 * L);
+  renderer.toneMappingExposure = PAL.exp * (1 + 0.14 * L);
   const c = skyCols(el),
     gr = skyG.createLinearGradient(0, 0, 0, 256),
     dk = (v, f) => v.map(x => Math.round(x * f));

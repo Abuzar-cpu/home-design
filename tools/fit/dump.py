@@ -13,9 +13,7 @@ COLLECT = """() => {
   C.scene.traverse(o => {
     if (!o.isMesh || !o.userData.f) return;
     bx.setFromObject(o);
-    let sg = '';
-    for (const k in C.SG) if (o.parent === C.SG[k]) sg = k;
-    out.meshes.push({ x0: bx.min.x, x1: bx.max.x, y0: bx.min.y, y1: bx.max.y, z0: bx.min.z, z1: bx.max.z, src: o.userData.src || '', sg });
+    out.meshes.push({ x0: bx.min.x, x1: bx.max.x, y0: bx.min.y, y1: bx.max.y, z0: bx.min.z, z1: bx.max.z, src: o.userData.src || '' });
   });
   return out;
 }"""

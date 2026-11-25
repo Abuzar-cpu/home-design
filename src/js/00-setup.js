@@ -26,8 +26,6 @@ scene.add(roof); // hidden in dollhouse view
 const dollOnly = new THREE.Group();
 dollOnly.visible = false;
 scene.add(dollOnly);
-const SG = { modern: new THREE.Group(), scandi: new THREE.Group(), lux: new THREE.Group(), loft: new THREE.Group() }; // pieces that differ per style
-Object.keys(SG).forEach(k => scene.add(SG[k]));
 const colliders = [];
 const upG = new THREE.Group();
 upG.position.y = UPPER_Y;

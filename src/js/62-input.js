@@ -2,8 +2,6 @@
 window.addEventListener('keydown', e => {
   if (e.code === 'KeyV' && !e.repeat) setMode(mode === 'walk' ? 'doll' : 'walk');
   if (e.code === 'KeyF' && !e.repeat && mode === 'doll') setDollLevel(dollLv === 2 ? 1 : 2);
-  const si = ['Digit1', 'Digit2', 'Digit3', 'Digit4'].indexOf(e.code);
-  if (si >= 0) applyStyle(['modern', 'scandi', 'lux', 'loft'][si]);
   if (tour && /^(Escape|Key[WASD]|Arrow)/.test(e.code)) endTour(false);
   keys[e.code] = true;
   if (/^Arrow|Space/.test(e.code)) e.preventDefault();

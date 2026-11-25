@@ -107,14 +107,3 @@ function jumpTo(r) {
   if (mode === 'walk') applyVis(false);
   setMode('walk');
 }
-document.querySelectorAll('#styles button').forEach(b =>
-  b.addEventListener('click', () => {
-    applyStyle(b.dataset.style);
-    b.blur();
-  })
-);
-const styleFromHash = () => Object.keys(STY).find(k => STY[k].hash === location.hash.slice(1));
-window.addEventListener('hashchange', () => {
-  const k = styleFromHash();
-  if (k) applyStyle(k);
-});
