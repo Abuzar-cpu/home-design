@@ -3,7 +3,7 @@
 Read this at the start of a session, after `CLAUDE.md`. It holds what is live, what is waiting on Reis, and what was already decided or rejected, so nothing gets redone or re-asked.
 Keep it current: `docs/MAINTAINING.md` says which section to update for each kind of change.
 
-Last updated: 17 Nov 2026.
+Last updated: 26 Nov 2026.
 
 ## 1. Start-of-session checklist (about 2 minutes)
 1. `git switch main && git pull`, then `trail build` (refreshes the code map; the cache is git-ignored). Check for open pull requests (`gh api repos/Abuzar-cpu/home-design/pulls --jq '.[].title'`): an unmerged one means its changes aren't on `main` yet, so ask Reis before stacking new work on it.
@@ -47,6 +47,7 @@ He sent a photo of under-stair pull-out storage with an oak handrail and spindle
 - **Performance ideas offered, not requested:** draw only the current floor, merge static meshes, throttle shadow refreshes.
 
 ## 5. Decided, so don't re-ask
+- Built a Kitchen Colour Studio (26 Nov): a standalone page, separate from the tour's own publish flow, for trying furniture colours one piece at a time — cabinets, counters, island, stools, table, fridge, oven/hob, hardware — starting from any of the 4 styles. Link: https://claude.ai/artifact/VKJK7WgLMLrHKpbrbfuXV3 (slug `e54df07d-4824-4971-885c-7dffe1c02292`, see CLAUDE.md "Object studios"). Nothing from it is wired back into the house yet; its "Copy colours" button exports a `{materialKey: hex}` snippet for that.
 - Ground floor: kitchen and guest/study swapped versus the paper plan (his first change).
 - Styles: Modern, Scandinavian, Warm luxury, Loft, with a switch. He asked whether Loft-only would be easier; told him it barely saves work and he kept all four.
 - Language switch English/Azerbaijani; areas in m².
